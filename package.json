@@ -1,0 +1,37 @@
+{
+  "name": "urll",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "2.3.2",
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "11.10.4",
+    "@prisma/client": "^4.3.1",
+    "framer-motion": "7.3.5",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zod": "^3.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.0.0",
+    "@types/react": "18.0.14",
+    "@types/react-dom": "18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "8.22.0",
+    "eslint-config-next": "12.2.5",
+    "prisma": "^4.3.1",
+    "typescript": "4.7.4"
+  },
+  "ct3aMetadata": {
+    "initVersion": "5.12.0"
+  }
+}
