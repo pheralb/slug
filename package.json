@@ -1,6 +1,8 @@
 {
   "name": "urll",
-  "version": "0.1.0",
+  "author": "@pheralb_",
+  "description": "A URL shortener built with Nextjs + Prisma + Planetscale & Vercel Edge Functions",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -10,25 +12,30 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.3.2",
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
-    "@prisma/client": "^4.3.1",
+    "@next-auth/prisma-adapter": "1.0.4",
+    "@prisma/client": "4.3.1",
     "framer-motion": "7.3.5",
+    "nanoid": "4.0.0",
     "next": "12.2.5",
+    "next-auth": "4.10.3",
+    "next-seo": "5.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "zod": "^3.18.0"
+    "react-icons": "4.4.0",
+    "zod": "3.18.0"
   },
   "devDependencies": {
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
+    "@typescript-eslint/eslint-plugin": "5.33.0",
+    "@typescript-eslint/parser": "5.33.0",
+    "autoprefixer": "10.4.11",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
-    "prisma": "^4.3.1",
+    "postcss": "8.4.16",
+    "prisma": "4.3.1",
+    "tailwindcss": "3.1.8",
     "typescript": "4.7.4"
   },
   "ct3aMetadata": {
