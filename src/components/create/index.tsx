@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { IoCut } from "react-icons/io5";
 
+import { Button, Input, Textarea } from "@/styles/ui";
+
 const Create = () => {
   const [url, setUrl] = useState("");
   const [slug, setSlug] = useState("");
@@ -32,45 +34,42 @@ const Create = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className="mb-5">
         <label htmlFor="url">Enter the URL here:</label>
-        <input
-          id="url"
-          name="url"
+        <Input
           type="text"
-          placeholder="URL"
+          id="url"
+          placeholder="https://"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          required
+          className="mt-1"
+          required={true}
         />
       </div>
-      <div>
+      <div className="mb-5">
         <label htmlFor="slug">Custom slug:</label>
-        <input
-          id="slug"
-          name="slug"
-          placeholder="custom slug"
+        <Input
+          type="text"
+          id="url"
+          placeholder="Custom slug"
           value={slug}
           onChange={(e) => setSlug(e.target.value)}
-          required
+          className="mt-1"
+          required={true}
         />
       </div>
-      <div>
+      <div className="mb-3">
         <label htmlFor="description">Description (optional):</label>
-        <textarea
-          name="description"
+        <Textarea
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          className="mt-1"
         />
       </div>
-      <button
-        type="submit"
-        disabled={loading}
-        className={loading ? "" : ""}
-      >
-        Create
-      </button>
+      <Button type="submit" disabled={loading}>
+        {loading ? "Loading..." : "Create link"}
+      </Button>
     </form>
   );
 };
