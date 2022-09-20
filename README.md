@@ -1,6 +1,4 @@
-# urll
-
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+<img src="https://i.ibb.co/G9vSzNB/banner-gh.png" />
 
 ## ⚒ With T3 Stack
 
