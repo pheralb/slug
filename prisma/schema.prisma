@@ -15,7 +15,8 @@ model link {
     slug        String   @unique
     description String?
     createdAt   DateTime @default(now())
-    createdBy   User?     @relation(fields: [slug], references: [id])
+    createdBy   User?    @relation(fields: [creatorId], references: [id])
+    creatorId   String
 
     @@index(slug)
 }
