@@ -12,7 +12,7 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       {...props}
-      className={`bg-midnightLight rounded-md px-4 py-2 hover:bg-slate-800 hover:transition duration-200 ease-in-out focus:outline-none ${props.className}`}
+      className={`rounded-md px-4 py-2 hover:transition duration-200 ease-in-out focus:outline-none ${props.className} focus:ring-1 focus:ring-offset-1 focus:ring-offset-stone-800 focus:ring-gray-500`}
     >
       {props.children}
     </button>

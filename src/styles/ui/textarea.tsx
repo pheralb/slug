@@ -14,7 +14,7 @@ const Textarea = (props: InputProps) => {
   return (
     <textarea
       id={props.id}
-      className={`bg-midnightLight rounded-md px-4 py-2 w-full focus:border-none ${props.className}`}
+      className={`rounded-md px-4 py-2 w-full focus:border-none ${props.className}`}
       placeholder={props.placeholder}
       value={props.value}
       onChange={props.onChange}
