@@ -14,6 +14,7 @@ export default async function handler(
   }
 }
 
+// Create new link:
 async function createNewLink(req: NextApiRequest, res: NextApiResponse) {
   const body = req.body;
   try {
@@ -22,11 +23,14 @@ async function createNewLink(req: NextApiRequest, res: NextApiResponse) {
         slug: body.slug,
         url: body.url,
         description: body.description,
+        creatorId: body.creatorId,
       },
     });
     return res.status(200).json(newLink);
   } catch (error) {
     console.error("[X] Request error:", error);
-    res.status(500).json({ error: "[X] Error creating question:", success: false });
+    res
+      .status(500)
+      .json({ error: "[X] Error creating question:", success: false });
   }
 }
