@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Input, Textarea } from "@/styles/ui";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { BiRocket } from "react-icons/bi";
 
 const Create = () => {
   const [url, setUrl] = useState("");
@@ -13,7 +14,12 @@ const Create = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const body = { url, slug, description, createdBy: session?.user?.email };
+    const body = {
+      url,
+      slug,
+      description,
+      creatorId: session?.user?.id,
+    };
     setLoading(true);
     try {
       const response = await fetch("/api/query", {
@@ -51,7 +57,7 @@ const Create = () => {
         <label htmlFor="slug">Custom slug:</label>
         <Input
           type="text"
-          id="url"
+          id="slug"
           placeholder="Custom slug"
           value={slug}
           onChange={(e) => setSlug(e.target.value)}
@@ -68,7 +74,8 @@ const Create = () => {
           className="mt-1 bg-midnightLight text-white"
         />
       </div>
-      <Button type="submit" disabled={loading}>
+      <Button type="submit" disabled={loading} className="bg-midnightLight">
+        <BiRocket className="mr-2" size={18} />
         {loading ? "Loading..." : "Create link"}
       </Button>
     </form>
