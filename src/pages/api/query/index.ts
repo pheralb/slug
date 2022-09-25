@@ -17,7 +17,7 @@ export default async function handler(
 async function createNewLink(req: NextApiRequest, res: NextApiResponse) {
   const body = req.body;
   try {
-    const newLink = await prisma.link.create({
+    const newLink = await prisma.link?.create({
       data: {
         slug: body.slug,
         url: body.url,
