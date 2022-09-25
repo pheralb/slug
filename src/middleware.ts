@@ -22,5 +22,5 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 }
 
 export const config = {
-  matcher: "/u/:slug*",
+  matcher: "/s/:slug*",
 };
