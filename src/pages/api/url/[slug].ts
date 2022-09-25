@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (!data) {
     return res.status(404).json({
-      error: "[X] Error: Link not found or removed. Go to urll.vercel.app and create a new link.",
+      error: "[X] Error: Link not found or removed. Go to slug.vercel.app and create a new link.",
     });
   }
 

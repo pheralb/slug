@@ -1,9 +1,9 @@
 export default {
   title: "URL Shortener",
-  titleTemplate: "%s - urll",
+  titleTemplate: "%s - slug",
   description:
     "A URL shortener built with Nextjs + Next-Auth + Prisma + Planetscale & Edge Functions.",
-  defaultTitle: "urll",
+  defaultTitle: "slug",
   additionalLinkTags: [
     {
       rel: "icon",
@@ -37,8 +37,8 @@ export default {
     },
   ],
   openGraph: {
-    site_name: "urll",
-    url: "https://urll.vercel.app/",
+    site_name: "slug",
+    url: "https://slug.vercel.app/",
     type: "website",
     locale: "en_IE",
     images: [

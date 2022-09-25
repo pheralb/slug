@@ -19,12 +19,12 @@ The "T3 Stack" is a web development stack made by [Theo](https://twitter.com/t3d
 
 1. Fork this project:
 
-- [Click here](https://github.com/pheralb/urll/fork).
+- [Click here](https://github.com/pheralb/slug/fork).
 
 2. Clone the repository:
 
 ```bash
-git clone git@github.com:YOU_USER/urll.git
+git clone git@github.com:YOU_USER/slug.git
 ```
 
 3. Install dependencies:
@@ -39,7 +39,7 @@ yarn install
 
 4. Create a **.env** file with the following content:
 
-> 🚧 The environment variables must match the following [schema](https://github.com/pheralb/urll/blob/main/src/env/schema.mjs#L8).
+> 🚧 The environment variables must match the following [schema](https://github.com/pheralb/slug/blob/main/src/env/schema.mjs#L8).
 
 ```bash
 # Planetscale DB URL:
@@ -84,4 +84,4 @@ npm run dev
 
 ## 🚀 Deploy on Vercel
 
-- ✅ [https://urll.vercel.app/](https://urll.vercel.app/).
+- ✅ [https://slug.vercel.app/](https://slug.vercel.app/).

@@ -4,9 +4,9 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "urll",
+  "name": "slug",
   "description": "A URL shortener.",
-  "short_name": "urll",
+  "short_name": "slug",
   "icons": [
     {
       "src": "/img/icon-192x192.png",

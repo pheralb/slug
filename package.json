@@ -1,5 +1,5 @@
 {
-  "name": "urll",
+  "name": "slug",
   "author": "@pheralb_",
   "description": "A URL shortener built with Nextjs + Prisma + Planetscale & Vercel Edge Functions",
   "version": "1.0.0",

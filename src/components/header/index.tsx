@@ -10,14 +10,14 @@ const Header = () => {
         <Link href="/">
           <div className="flex items-center hover:-translate-y-0.5 cursor-pointer transition-transform duration-300">
             <Logo width={22} height={22} />
-            <h1 className="text-xl ml-2 mr-2">urll</h1>
+            <h1 className="text-xl ml-2 mr-2">slug</h1>
             <p className="text-gray-500 font-medium">beta</p>
           </div>
         </Link>
         <div className="flex items-center">
           <Auth />
           <a
-            href="https://github.com/pheralb/urll"
+            href="https://github.com/pheralb/slug"
             rel="noreferrer"
             target="_blank"
             className="hover:transform hover:scale-110 transition duration-200 ease-in-out"
