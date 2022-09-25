@@ -1,8 +1,16 @@
-<img src="https://i.ibb.co/G9vSzNB/banner-gh.png" />
+<img src="https://i.ibb.co/nRDsr1j/banner-gh-readme.jpg" />
+<div align="center">
+
+![GitHub stars](https://img.shields.io/github/stars/pheralb/slug)
+![GitHub issues](https://img.shields.io/github/issues/pheralb/slug)
+![GitHub license](https://img.shields.io/github/license/pheralb/slug)
+[![Required Node.JS >=16.0.0](https://img.shields.io/static/v1?label=node&message=%20%3E=16.0.0&logo=node.js&color=3f893e)](https://nodejs.org/about/releases)
+
+</div>
 
 ## ⚒ With T3 Stack
 
-The "T3 Stack" is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack typesafety. This project is using:
+The **T3 Stack** is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack typesafety. This project is using:
 
 - ✅ [Nextjs + Typescript](https://nextjs.org/).
 - ✅ [Next-Auth.js](https://next-auth.js.org)
@@ -11,7 +19,7 @@ The "T3 Stack" is a web development stack made by [Theo](https://twitter.com/t3d
 - ✅ [TailwindCSS](https://tailwindcss.com).
 - ✅ [Zod](https://github.com/colinhacks/zod).
 
-> 📦 [Getting Started with create-t3-app](https://github.com/t3-oss/create-t3-app#getting-started).
+> 🚀 [Getting Started with create-t3-app](https://github.com/t3-oss/create-t3-app#getting-started).
 
 ## 👨‍🚀 Getting Started
 
@@ -54,7 +62,7 @@ NEXTAUTH_SECRET:
 NEXTAUTH_URL:
 ```
 
-### How to get environment variables:
+### 🔑 How to get environment variables:
 
 **Planetscale database:**
 - [Create a new database](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide#getting-started-planet-scale-dashboard).
@@ -82,6 +90,6 @@ npx prisma db push
 npm run dev
 ```
 
-## 🚀 Deploy on Vercel
+## 🎉 Deploy on Vercel
 
 - ✅ [https://slug.vercel.app/](https://slug.vercel.app/).
