@@ -3,6 +3,7 @@ import { Button, Input, Textarea } from "@/styles/ui";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { BiRocket } from "react-icons/bi";
+import Loader from "@/motions/loader";
 
 const Create = () => {
   const [url, setUrl] = useState("");
@@ -75,8 +76,17 @@ const Create = () => {
         />
       </div>
       <Button type="submit" disabled={loading} className="bg-midnightLight">
-        <BiRocket className="mr-2" size={18} />
-        {loading ? "Loading..." : "Create link"}
+        {loading ? (
+          <>
+            <Loader />
+            Creating your link...
+          </>
+        ) : (
+          <>
+            <BiRocket className="mr-2" size={18} />
+            Create your link
+          </>
+        )}
       </Button>
     </form>
   );

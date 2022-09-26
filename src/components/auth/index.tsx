@@ -10,6 +10,7 @@ import {
   BiPlus,
 } from "react-icons/bi";
 import Link from "next/link";
+import Loader from "@/motions/loader";
 
 const Auth = () => {
   const { data: session, status } = useSession();
@@ -48,6 +49,7 @@ const Auth = () => {
         onClick={handleSignIn}
         disabled={disabled}
       >
+        <Loader />
         Loading...
       </Button>
     );
@@ -59,7 +61,14 @@ const Auth = () => {
         className="mr-4 bg-midnightLight hover:bg-stone-700"
         onClick={handleSignIn}
       >
-        {disabled ? "Loading..." : "Sign in with Github"}
+        {disabled ? (
+          <>
+            <Loader />
+            Logging in...
+          </>
+        ) : (
+          "Sign in with Github"
+        )}
       </Button>
     );
   }
