@@ -12,12 +12,14 @@
 
 The **T3 Stack** is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack typesafety. This project is using:
 
-- ✅ [Nextjs + Typescript](https://nextjs.org/).
-- ✅ [Next-Auth.js](https://next-auth.js.org)
-- ✅ [Prisma](https://prisma.io).
-- ✅ [Planetscale](https://planetscale.com/).
-- ✅ [TailwindCSS](https://tailwindcss.com).
-- ✅ [Zod](https://github.com/colinhacks/zod).
+- ✅ **Bootstrapping**: [create-t3-app](https://create.t3.gg).
+- ✅ **Framework**: [Nextjs + Typescript](https://nextjs.org/).
+- ✅ **Auth**: [Next-Auth.js](https://next-auth.js.org)
+- ✅ **ORM**: [Prisma](https://prisma.io).
+- ✅ **Database**: [Planetscale](https://planetscale.com/).
+- ✅ **Styling**: [TailwindCSS + HeadlessUI](https://tailwindcss.com).
+- ✅ **Typescript Schema Validation**: [Zod](https://github.com/colinhacks/zod).
+- ⚒ **End-to-end typesafe API**: [tRPC](https://trpc.io/).
 
 > 🚀 [Getting Started with create-t3-app](https://github.com/t3-oss/create-t3-app#getting-started).
 
