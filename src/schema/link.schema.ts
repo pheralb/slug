@@ -1,8 +1,8 @@
 import z from "zod";
 
 export const CreateLinkSchema = z.object({
-  url: z.string().min(10),
-  slug: z.string().max(256, "Max 256 characters"),
+  url: z.string(),
+  slug: z.string(),
   description: z.string(),
 });
 
