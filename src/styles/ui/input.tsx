@@ -1,20 +1,10 @@
-import React from "react";
+import { ComponentProps, FC } from "react";
 
-interface InputProps {
-  className?: string;
-  id?: string;
-  type?: string;
-  placeholder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  required?: boolean;
-}
-
-const Input = (props: InputProps) => {
+const Input: FC<ComponentProps<"input">> = (props) => {
   return (
     <input
-      {...props}
       className={`rounded-md px-4 py-2 w-full focus:border-none ${props.className}`}
+      {...props}
     />
   );
 };
