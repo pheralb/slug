@@ -44,6 +44,7 @@ const Create = () => {
         <input
           id="url"
           type="text"
+          required
           placeholder="https://"
           className="rounded-md px-4 py-2 w-full focus:border-none mt-1 bg-midnightLight text-white"
           {...register("url")}
@@ -54,6 +55,7 @@ const Create = () => {
         <input
           id="slug"
           type="text"
+          required
           placeholder="Custom slug"
           className="rounded-md px-4 py-2 w-full focus:border-none mt-1 bg-midnightLight text-white"
           {...register("slug")}
