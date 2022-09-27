@@ -9,18 +9,21 @@ import { Button, Input, Textarea } from "@/styles/ui";
 import { BiRocket } from "react-icons/bi";
 import Loader from "@/motions/loader";
 
+interface linkData {
+  id: string;
+  url: string;
+  slug: string;
+  description?: string;
+}
+
 const Create = () => {
   const { handleSubmit, register } = useForm<CreateLinkInput>();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const [url, setUrl] = useState("");
-  const [slug, setSlug] = useState("");
-  const [description, setDescription] = useState("");
-
   const { mutate, error } = trpc.useMutation(["links.create-link"], {
-    onSuccess: (data) => {
-      router.push(`/link/${data.id}`);
+    onSuccess: () => {
+      router.push(`/dash`);
       setLoading(false);
     },
     onError: () => {
