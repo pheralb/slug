@@ -4,6 +4,7 @@ import { trpc } from "@/utils/trpc";
 import Loader from "@/motions/loader";
 import { Button } from "@/styles/ui";
 import Link from "next/link";
+import Card from "@/components/card";
 
 const Dashboard = () => {
   const { data: session } = useSession();
@@ -25,17 +26,19 @@ const Dashboard = () => {
         {isLoading && (
           <>
             <div className="flex justify-center items-center mt-8">
-              <Loader width={40} height={40}/>
+              <Loader width={40} height={40} />
             </div>
           </>
         )}
         {error && <p>{JSON.stringify(error)}</p>}
         {data?.map((link) => (
-          <div key={link.id} className="mt-8">
-            <p className="text-2xl">{link.url}</p>
-            <p className="text-gray-400">{link.slug}</p>
-            <p className="text-gray-400">{link.description}</p>
-          </div>
+          <Card
+            key={link.id}
+            url={link.url}
+            slug={link.slug}
+            description={link.description || "No description"}
+            className="mt-3"
+          />
         ))}
       </div>
     </>
