@@ -20,6 +20,7 @@ The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Th
 - ✅ **Styling**: [TailwindCSS + HeadlessUI](https://tailwindcss.com).
 - ✅ **Typescript Schema Validation**: [Zod](https://github.com/colinhacks/zod).
 - ✅ **End-to-end typesafe API**: [tRPC](https://trpc.io/).
+- ✅ **Safely serialize JavaScript expressions**: [Superjson](https://github.com/blitz-js/superjson).
 
 ## 👨‍🚀 Getting Started
 
