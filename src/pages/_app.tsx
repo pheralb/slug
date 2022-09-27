@@ -13,6 +13,7 @@ import { SessionProvider } from "next-auth/react";
 // Styles =>
 import "@/styles/globals.css";
 import Show from "@/motions/show";
+import { Toaster } from 'react-hot-toast';
 
 // Layout =>
 import Layout from "@/layout";
@@ -49,6 +50,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           </Show>
         </Layout>
       </SessionProvider>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </>
   );
 };
