@@ -32,11 +32,12 @@ const Card = (props: CardProps) => {
 
   return (
     <div
-      className={`bg-midnightLight rounded-lg shadow-sm p-4 ${props.className}`}
+      className={`bg-midnightLight rounded-lg  hover:shadow-lg transition-all p-4 ${props.className}`}
     >
       <div className="flex items-center">
         <a
-          className="text-gray-200 text-xl"
+          className="text-gray-100 text-xl hover:text-gray-300 transition-all"
+          target="_blank"
           href={`https://slug.vercel.app/s/${props.slug}`}
         >
           /s/{props.slug}
