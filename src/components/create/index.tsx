@@ -80,6 +80,16 @@ const Create = () => {
               value: true,
               message: "Please enter a URL.",
             },
+            minLength: {
+              value: 8,
+              message:
+                "Please enter a valid URL. It should be at least 8 characters long.",
+            },
+            pattern: {
+              value: /^https?:\/\//i,
+              message:
+                "Please enter a valid URL. It should start with http:// or https://",
+            },
           })}
         />
         {errors.url && <Messages text={errors.url.message} className="mt-2" />}
@@ -98,9 +108,19 @@ const Create = () => {
                 value: true,
                 message: "Please enter a custom slug or generate a random.",
               },
+              pattern: {
+                value: /^[a-zA-Z0-9_-]+$/i,
+                message:
+                  "Please enter a valid slug without blank spaces or special characters.",
+              },
             })}
           />
-          <Button onClick={handleGenerateRandomSlug} className="ml-2 bg-midnightLight">Random</Button>
+          <Button
+            onClick={handleGenerateRandomSlug}
+            className="ml-2 bg-midnightLight"
+          >
+            Random
+          </Button>
         </div>
         {errors.slug && (
           <Messages text={errors.slug.message} className="mt-2" />
