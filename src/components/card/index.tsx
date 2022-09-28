@@ -38,6 +38,7 @@ const Card = (props: CardProps) => {
         <a
           className="text-gray-100 text-xl hover:text-gray-300 transition-all"
           target="_blank"
+          rel="noreferrer"
           href={`https://slug.vercel.app/s/${props.slug}`}
         >
           /s/{props.slug}
