@@ -6,7 +6,7 @@ import Link from "@/components/link";
 const Header = () => {
   return (
     <header className="sticky top-0 z-40 w-full py-4 bg-midnight duration-300">
-      <div className="flex container items-center justify-between mx-auto">
+      <div className="flex container pl-4 pr-4 md:pl-0 md:pr-0 items-center justify-between mx-auto">
         <Link href="/">
           <div className="flex items-center hover:-translate-y-0.5 cursor-pointer transition-transform duration-300">
             <Logo width={22} height={22} />
