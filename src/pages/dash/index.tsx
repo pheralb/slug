@@ -6,6 +6,8 @@ import Loader from "@/motions/loader";
 import Card from "@/components/card";
 import DashboardLayout from "@/layout/dashboard";
 import Messages from "@/components/messages";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { getServerAuthSession } from "@/server/common/get-server-auth-session";
 
 const Dashboard = () => {
   const { data, error, isLoading } = trpc.useQuery(["links.links"]);
@@ -34,6 +36,25 @@ const Dashboard = () => {
         ))}
     </DashboardLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (
+  ctx: GetServerSidePropsContext
+) => {
+  const session = await getServerAuthSession(ctx);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 };
 
 export default Dashboard;

@@ -2,15 +2,10 @@ import { useState, Fragment } from "react";
 import { Button } from "@/styles/ui";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Transition, Menu } from "@headlessui/react";
-import {
-  BiBookmarkAltPlus,
-  BiBox,
-  BiExit,
-  BiHash,
-  BiPlus,
-} from "react-icons/bi";
+import { BiBookmarkAltPlus, BiBox, BiExit, BiHash } from "react-icons/bi";
 import Link from "next/link";
 import Loader from "@/motions/loader";
+import toast from "react-hot-toast";
 
 const Auth = () => {
   const { data: session, status } = useSession();
@@ -24,7 +19,17 @@ const Auth = () => {
         callbackUrl: "/dash",
       });
     } catch (error) {
-      console.error(error);
+      toast(
+        "An error occurred while logging in. Please create an issue about the problem.",
+        {
+          icon: "🤔",
+          style: {
+            borderRadius: "10px",
+            background: "#28283E",
+            color: "#fff",
+          },
+        }
+      );
     } finally {
       setDisabled(false);
     }
@@ -38,7 +43,17 @@ const Auth = () => {
         callbackUrl: "/",
       });
     } catch (error) {
-      console.error(error);
+      toast(
+        "An error occurred while logout. Please create an issue about the problem.",
+        {
+          icon: "🤔",
+          style: {
+            borderRadius: "10px",
+            background: "#28283E",
+            color: "#fff",
+          },
+        }
+      );
     } finally {
       setDisabled(false);
       setClosing(false);

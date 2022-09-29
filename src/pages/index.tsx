@@ -3,7 +3,9 @@ import { useSession } from "next-auth/react";
 
 import Link from "@/components/link";
 import Up from "@/motions/up";
-import { BiRocket } from "react-icons/bi";
+import { BiRocket, BiStar } from "react-icons/bi";
+import LinkRoute from "@/styles/ui/linkRoute";
+import Loader from "@/motions/loader";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -20,25 +22,19 @@ const Home: NextPage = () => {
         </h3>
       </Up>
       <Up delay={0.4}>
-        <div className="flex flex-col md:flex-row gap-4">
-          {(status === "authenticated" && (
-            <>
-              <Link href="/dash">
-                <div className="p-2 cursor-pointer hover:-translate-y-0.5 duration-200 transition-transform bg-midnight rounded-md flex items-center">
-                  Go to dashboard
-                </div>
-              </Link>
-            </>
-          )) || (
-            <>
-              <Link href="/api/auth/signin">
-                <div className="p-2 cursor-pointer hover:-translate-y-0.5 duration-200 transition-transform bg-midnight rounded-md flex items-center">
-                  <BiRocket className="mr-2" />
-                  Sign in
-                </div>
-              </Link>
-            </>
-          )}
+        <div className="flex">
+          <LinkRoute href="/dash">
+            <BiRocket className="mr-2" />
+            Getting Started
+          </LinkRoute>
+          <a
+            href="https://github.com/pheralb/slug"
+            target="_blank"
+            className="flex items-center hover:text-gray-300 duration-200 transition-all ml-6"
+          >
+            <BiStar className="mr-2" />
+            Star on GitHub
+          </a>
         </div>
       </Up>
     </div>
