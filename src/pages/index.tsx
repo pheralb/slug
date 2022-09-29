@@ -30,6 +30,7 @@ const Home: NextPage = () => {
           <a
             href="https://github.com/pheralb/slug"
             target="_blank"
+            rel="noreferrer"
             className="flex items-center hover:text-gray-300 duration-200 transition-all ml-6"
           >
             <BiStar className="mr-2" />
