@@ -1,6 +1,7 @@
 import { CreateLinkSchema, getSingleLinkSchema } from "@/schema/link.schema";
 import { createProtectedRouter } from "./context";
 import { prisma } from "@/server/db/client";
+import { TRPCError } from "@trpc/server";
 
 // export const protectedExampleRouter = createProtectedRouter()
 //   .query("getSession", {
@@ -18,6 +19,12 @@ export const linkRouter = createProtectedRouter()
   .mutation("create-link", {
     input: CreateLinkSchema,
     async resolve({ ctx, input }) {
+      const existedSlug = await prisma.link.findUnique({
+        where: { slug: input.slug }
+      });
+
+      if (existedSlug) throw new TRPCError({ code: "CONFLICT", message: "slug name not available" });
+
       const newLink = await prisma.link?.create({
         data: {
           ...input,

@@ -9,12 +9,6 @@ import Loader from "@/motions/loader";
 import Messages from "../messages";
 import { nanoid } from "nanoid";
 import toast from "react-hot-toast";
-interface linkData {
-  id: string;
-  url: string;
-  slug: string;
-  description?: string;
-}
 
 const Create = () => {
   const {
@@ -59,12 +53,11 @@ const Create = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       {error && (
         <div
-          className="flex border border-red-700 rounded-lg p-4 mb-5 text-sm text-red-500"
+          className="flex border border-rose-500/30 rounded-lg p-4 mb-5 text-sm text-rose-500 bg-rose-500/10"
           role="alert"
         >
           <p>
-            <span className="font-medium">Danger alert!</span> Change a few
-            things up and try submitting again.
+            <span className="font-medium">{error.data?.code}:</span> {error.message}
           </p>
         </div>
       )}
