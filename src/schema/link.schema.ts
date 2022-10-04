@@ -8,6 +8,12 @@ export const CreateLinkSchema = z.object({
 
 export type CreateLinkInput = z.TypeOf<typeof CreateLinkSchema>
 
+export const FilterLinkSchema = z.object({
+  filter: z.string(),
+});
+
+export type FilterLinkInput = z.TypeOf<typeof FilterLinkSchema>
+
 export const getSingleLinkSchema = z.object({
   linkId: z.number(),
 });
