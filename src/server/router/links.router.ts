@@ -1,4 +1,4 @@
-import { CreateLinkSchema, getSingleLinkSchema } from "@/schema/link.schema";
+import { FilterLinkSchema, CreateLinkSchema, getSingleLinkSchema } from "@/schema/link.schema";
 import { createProtectedRouter } from "./context";
 import { prisma } from "@/server/db/client";
 import { TRPCError } from "@trpc/server";
@@ -35,10 +35,20 @@ export const linkRouter = createProtectedRouter()
     },
   })
   .query("links", {
-    resolve({ ctx }) {
+    input: FilterLinkSchema,
+    async resolve({ ctx, input }) {
       return prisma.link?.findMany({
         where: {
           creatorId: ctx.session.user.id,
+          AND: input.filter ? [
+            {
+              OR: [
+                { url: { contains: input.filter } },
+                { slug: { contains: input.filter } },
+                { description: { contains: input.filter } },
+              ],
+            }
+          ] : undefined
         },
       });
     },
