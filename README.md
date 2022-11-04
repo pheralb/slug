@@ -1,5 +1,16 @@
-<img src="https://i.ibb.co/nRDsr1j/banner-gh-readme.jpg" />
 <div align="center">
+
+<a href="slug.vercel.app">
+<img src="./public/img/banner_gh.jpg" />
+</a>
+
+<p></p>
+
+<a href="#">🚀 Short link</a>
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="#-getting-started">🤝 Contribute</a>
+<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+<a href="https://twitter.com/pheralb_">🐦 Twitter</a>
 
 ![GitHub stars](https://img.shields.io/github/stars/pheralb/slug)
 ![GitHub issues](https://img.shields.io/github/issues/pheralb/slug)
@@ -8,9 +19,9 @@
 
 </div>
 
-## ⚒ With T3 Stack
+## 🤔 What is T3 Stack?
 
-The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack typesafety. This project is using:
+The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**. This project is using:
 
 - ✅ **Bootstrapping**: [create-t3-app](https://create.t3.gg).
 - ✅ **Framework**: [Nextjs + Typescript](https://nextjs.org/).
