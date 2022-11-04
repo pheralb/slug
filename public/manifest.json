@@ -1,11 +1,11 @@
 {
-  "theme_color": "#1E1E2E",
-  "background_color": "#1E1E2E",
+  "theme_color": "#121212",
+  "background_color": "#121212",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
   "name": "slug",
-  "description": "A URL shortener.",
+  "description": "A URL shortener built with T3 Stack",
   "short_name": "slug",
   "icons": [
     {
