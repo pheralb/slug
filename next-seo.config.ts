@@ -2,7 +2,7 @@ export default {
   title: "URL Shortener",
   titleTemplate: "%s - slug",
   description:
-    "A URL shortener built with Nextjs + Next-Auth + Prisma + Planetscale & Edge Functions.",
+    "A URL shortener built with T3 Stack",
   defaultTitle: "slug",
   additionalLinkTags: [
     {
