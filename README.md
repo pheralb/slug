@@ -6,7 +6,7 @@
 
 <p></p>
 
-<a href="#">🚀 Short link</a>
+<a href="https://slug.vercel.app/dash/create">🚀 Short link</a>
 <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
 <a href="#-getting-started">🤝 Contribute</a>
 <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
@@ -24,7 +24,7 @@
 The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**. This project is using:
 
 - ✅ **Bootstrapping**: [create-t3-app](https://create.t3.gg).
-- ✅ **Framework**: [Nextjs + Typescript](https://nextjs.org/).
+- ✅ **Framework**: [Nextjs 13 + Typescript](https://nextjs.org/).
 - ✅ **Auth**: [Next-Auth.js](https://next-auth.js.org)
 - ✅ **ORM**: [Prisma](https://prisma.io).
 - ✅ **Database**: [Planetscale](https://planetscale.com/).
@@ -55,6 +55,8 @@ npm install
 pnpm install
 # or
 yarn install
+# or
+ultra install
 ```
 
 4. Create a **.env** file with the following content:
@@ -100,8 +102,23 @@ npx prisma db push
 
 # Run the project:
 npm run dev
+
+# (Optional) Run Prisma Studio to see your DB data:
+npx prisma studio
 ```
+
+😊 Contributing:
+
+<a href="https://github.com/pheralb/slug/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=pheralb/slug" />
+</a>
+
+<p></p>
 
 ## 🎉 Deploy on Vercel
 
 - ✅ [https://slug.vercel.app/](https://slug.vercel.app/).
+
+## 🔑 License
+
+- [MIT](https://github.com/pheralb/slug/blob/main/LICENSE).
