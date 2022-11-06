@@ -10,8 +10,8 @@ module.exports = {
         custom: "15px",
       },
       colors: {
-        midnight: "#1E1E2E",
-        midnightLight: "#28283E",
+        midnight: "#121212",
+        midnightLight: "#292828",
       },
     },
   },
