@@ -23,7 +23,7 @@ export const linkRouter = createProtectedRouter()
         where: { slug: input.slug }
       });
 
-      if (existedSlug) throw new TRPCError({ code: "CONFLICT", message: "slug name not available" });
+      if (existedSlug) throw new TRPCError({ code: "CONFLICT", message: "slug name not available. Type another one or click on random." });
 
       const newLink = await prisma.link?.create({
         data: {
