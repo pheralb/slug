@@ -2,7 +2,7 @@
   "name": "slug",
   "author": "@pheralb_",
   "description": "A URL shortener built with T3 Stack",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -20,6 +20,7 @@
     "@trpc/next": "9.27.4",
     "@trpc/react": "9.27.4",
     "@trpc/server": "9.27.4",
+    "@uiball/loaders": "1.2.6",
     "framer-motion": "7.5.1",
     "nanoid": "4.0.0",
     "next": "13.0.2",
@@ -33,6 +34,7 @@
     "react-icons": "4.6.0",
     "react-query": "3.39.2",
     "superjson": "1.10.0",
+    "superkey": "0.1.0-rc.9",
     "zod": "3.19.1"
   },
   "devDependencies": {
