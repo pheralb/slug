@@ -1,7 +1,5 @@
-import { Button } from "@/styles/ui";
-import React from "react";
 import toast from "react-hot-toast";
-import { BiCopy, BiLinkAlt, BiLinkExternal } from "react-icons/bi";
+import { BiCopy } from "react-icons/bi";
 
 interface CardProps {
   url: string;
@@ -24,7 +22,8 @@ const Card = (props: CardProps) => {
       icon: "🚀",
       style: {
         borderRadius: "10px",
-        background: "#28283E",
+        borderColor: "#fff",
+        background: "#222222",
         color: "#fff",
       },
     });
@@ -32,7 +31,7 @@ const Card = (props: CardProps) => {
 
   return (
     <div
-      className={`bg-midnightLight rounded-lg  hover:shadow-lg transition-all p-4 ${props.className}`}
+      className={`bg-midnight border border-zinc-800 rounded-lg  hover:shadow-lg transition-all p-4 ${props.className}`}
     >
       <div className="flex items-center">
         <a
@@ -52,7 +51,7 @@ const Card = (props: CardProps) => {
           <BiCopy className="mr-2" />
         </button>
       </div>
-      <p className="truncate text-gray-400 mb-2">{props.url}</p>
+      <p className="truncate text-gray-500 mb-2">{props.url}</p>
       <p className="text-gray-400">{props.description}</p>
     </div>
   );

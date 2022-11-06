@@ -38,12 +38,12 @@ const Auth = () => {
     <div className="container mx-auto pt-6">
       <div className="flex flex-col items-center justify-center">
         <Up>
-          <h1 className="text-4xl mb-8">Sign in</h1>
+          <h1 className="text-4xl mb-8">👋 Welcome</h1>
         </Up>
         <Button className="ml-4 bg-midnightLight" onClick={handleSignIn}>
           {loading ? (
             <>
-              <Loader className="mr-2" />
+              <Loader />
               Loading
             </>
           ) : (

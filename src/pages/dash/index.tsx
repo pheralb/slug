@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { trpc } from "@/utils/trpc";
@@ -10,33 +10,37 @@ import DashboardLayout from "@/layout/dashboard";
 import Messages from "@/components/messages";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getServerAuthSession } from "@/server/common/get-server-auth-session";
+import { BiSearch } from "react-icons/bi";
 
 const Dashboard = () => {
-  const {
-    register,
-  } = useForm<FilterLinkInput>();
-  const [filter, setFilter] = React.useState('');
+  const { register } = useForm<FilterLinkInput>();
+  const [filter, setFilter] = useState("");
   const { data, error, isLoading } = trpc.useQuery(["links.links", { filter }]);
 
   return (
     <DashboardLayout>
       <div className="my-5">
-        <div className="flex items-center justify-between mt-1">
-          <input
-            id="filter"
-            type="text"
-            placeholder="Search"
-            className="rounded-md px-4 py-2 w-full focus:border-none bg-midnightLight text-white"
-            {...register("filter", {})}
-            onChange={(e) => setFilter(e.target.value)}
-          />
+        <div className="flex items-center">
+          <div className="relative  w-full">
+            <div className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400">
+              <BiSearch size={22} />
+            </div>
+            <input
+              id="filter"
+              type="text"
+              placeholder="Search"
+              className="w-full pl-10 pr-3 py-2 rounded-md bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-700 focus:border-transparent"
+              {...register("filter", {})}
+              onChange={(e) => setFilter(e.target.value)}
+            />
+          </div>
         </div>
       </div>
       {isLoading && (
         <>
           <div className="flex flex-col justify-center items-center mt-8">
             <p className="mb-2">Loading your links...</p>
-            <Loader width={40} height={40} />
+            <Loader />
           </div>
         </>
       )}
@@ -49,7 +53,7 @@ const Dashboard = () => {
             url={link.url}
             slug={link.slug}
             description={link.description || "No description"}
-            className="mt-3"
+            className="mt-3 hover:bg-zinc-900"
           />
         ))}
     </DashboardLayout>

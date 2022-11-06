@@ -1,6 +1,6 @@
 import { Github } from "@react-symbols/icons";
+
 import Auth from "@/components/auth";
-import Logo from "@/components/icons/logo";
 import Link from "@/components/link";
 
 const Header = () => {
@@ -8,10 +8,9 @@ const Header = () => {
     <header className="sticky top-0 z-40 w-full py-4 bg-midnight duration-300">
       <div className="flex container pl-4 pr-4 md:pl-0 md:pr-0 items-center justify-between mx-auto">
         <Link href="/">
-          <div className="flex items-center hover:-translate-y-0.5 cursor-pointer transition-transform duration-300">
-            <Logo width={22} height={22} />
+          <div className="flex items-center cursor-pointer text-white hover:text-gray-300 transition-all">
+            <img src="/img/logo.png" alt="Logo" className="w-8 h-8" />
             <h1 className="text-xl ml-2 mr-2">slug</h1>
-            <p className="text-gray-500 font-medium">beta</p>
           </div>
         </Link>
         <div className="flex items-center">

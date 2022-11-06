@@ -131,7 +131,7 @@ const Create = () => {
         {loading ? (
           <>
             <Loader />
-            Creating your link...
+            <span className="ml-2">Creating your link...</span>
           </>
         ) : (
           <>
