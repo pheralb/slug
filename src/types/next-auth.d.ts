@@ -1,17 +1,22 @@
-import { Session } from "next-auth";
+import { type DefaultSession } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   interface Session {
-    user: {
-      username: string | undefined;
+    user?: {
+      id: string;
+      username?: string | undefined;
     } & DefaultSession["user"];
+  }
+
+  interface User {
+    username?: string | undefined;
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
-    user: {
+    user?: {
       username: string | undefined;
     } & DefaultSession["user"];
   }
