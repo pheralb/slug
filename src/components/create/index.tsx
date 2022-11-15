@@ -108,6 +108,11 @@ const Create = () => {
                 value: true,
                 message: "Please enter a custom slug or generate a random.",
               },
+              pattern: {
+                value: /^[a-zA-Z0-9_-]+$/i,
+                message:
+                  "Please enter a valid slug without blank spaces or special characters.",
+              },
             })}
           />
           <Button
