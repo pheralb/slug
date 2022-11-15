@@ -40,9 +40,8 @@ const Create = () => {
   });
 
   const onSubmit = (values: CreateLinkInput) => {
-    const hasValues = values.url && values.slug;
     const areEquals = values.url === values.slug;
-    if (hasValues && areEquals) {
+    if (areEquals) {
       return setError("slug", {
         message: "The original URL and the custom URL cannot be the same",
       });
