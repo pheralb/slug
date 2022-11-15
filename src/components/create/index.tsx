@@ -15,6 +15,7 @@ const Create = () => {
     handleSubmit,
     register,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<CreateLinkInput>();
   const [loading, setLoading] = useState(false);
@@ -39,6 +40,13 @@ const Create = () => {
   });
 
   const onSubmit = (values: CreateLinkInput) => {
+    const hasValues = values.url && values.slug;
+    const areEquals = values.url === values.slug;
+    if (hasValues && areEquals) {
+      return setError("slug", {
+        message: "The original URL and the custom URL cannot be the same",
+      });
+    }
     setLoading(true);
     mutate(values);
   };
@@ -100,11 +108,6 @@ const Create = () => {
               required: {
                 value: true,
                 message: "Please enter a custom slug or generate a random.",
-              },
-              pattern: {
-                value: /^[a-zA-Z0-9_-]+$/i,
-                message:
-                  "Please enter a valid slug without blank spaces or special characters.",
               },
             })}
           />
