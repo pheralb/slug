@@ -2,7 +2,7 @@
   "name": "slug",
   "author": "@pheralb_",
   "description": "A URL shortener built with T3 Stack",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -26,6 +26,7 @@
     "next": "13.0.4",
     "next-auth": "4.16.4",
     "next-seo": "5.14.1",
+    "next-themes": "0.2.1",
     "nextjs-progressbar": "0.0.16",
     "react": "18.2.0",
     "react-dom": "18.2.0",
