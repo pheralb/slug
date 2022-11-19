@@ -3,19 +3,8 @@ import { createProtectedRouter } from "./context";
 import { prisma } from "@/server/db/client";
 import { TRPCError } from "@trpc/server";
 
-// export const protectedExampleRouter = createProtectedRouter()
-//   .query("getSession", {
-//     resolve({ ctx }) {
-//       return ctx.session;
-//     },
-//   })
-//   .query("getSecretMessage", {
-//     resolve({ ctx }) {
-//       return "He who asks a question is a fool for five minutes; he who does not ask a question remains a fool forever.";
-//     },
-//   });
-
 export const linkRouter = createProtectedRouter()
+  // Create new link =>
   .mutation("create-link", {
     input: CreateLinkSchema,
     async resolve({ ctx, input }) {
@@ -23,7 +12,7 @@ export const linkRouter = createProtectedRouter()
         where: { slug: input.slug }
       });
 
-      if (existedSlug) throw new TRPCError({ code: "CONFLICT", message: "slug name not available. Type another one or click on random." });
+      if (existedSlug) throw new TRPCError({ code: "CONFLICT", message: "Custom slug not available. Type another one or click on random." });
 
       const newLink = await prisma.link?.create({
         data: {
@@ -34,6 +23,7 @@ export const linkRouter = createProtectedRouter()
       return newLink;
     },
   })
+  // Fetch links =>
   .query("links", {
     input: FilterLinkSchema,
     async resolve({ ctx, input }) {
@@ -53,6 +43,7 @@ export const linkRouter = createProtectedRouter()
       });
     },
   })
+  // Get single link info =>
   .query("single-link", {
     input: getSingleLinkSchema,
     resolve({ input, ctx }) {
