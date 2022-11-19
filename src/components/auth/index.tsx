@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { Dropdown, DropdownItem } from "@/ui/dropdown";
+import LinkRoute from "@/ui/linkRoute";
 
 const Auth = () => {
   const { data: session, status } = useSession();
@@ -72,17 +73,7 @@ const Auth = () => {
   }
 
   if (status === "unauthenticated") {
-    return (
-      <Button
-        className="ml-2"
-        disabled={disabled}
-        onClick={handleSignIn}
-        isLoading={disabled}
-        loadingText="Signing in..."
-      >
-        Sign in with GitHub
-      </Button>
-    );
+    return <LinkRoute href="/auth">Sign in</LinkRoute>;
   }
 
   return (

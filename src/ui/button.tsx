@@ -15,7 +15,9 @@ export interface ButtonProps {
 const Button = (props: ButtonProps) => {
   return (
     <button
-      {...props}
+      type={props.type}
+      disabled={props.disabled || props.isLoading}
+      onClick={props.onClick}
       className={`flex items-center rounded-md px-3 p-2 hover:transition duration-200 ease-in-out focus:outline-none ${
         props.className
       } focus:ring-1 focus:ring-offset-1 focus:ring-offset-stone-800 focus:ring-gray-500 hover:text-gray-300 

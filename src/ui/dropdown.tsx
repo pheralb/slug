@@ -7,6 +7,7 @@ import { BiLinkExternal } from "react-icons/bi";
 interface DropdownProps extends ButtonProps {
   title?: string | undefined;
   external?: boolean;
+  onClick?: () => void;
 }
 
 export const Dropdown = (props: DropdownProps) => {
@@ -38,6 +39,7 @@ export const DropdownItem = (props: DropdownProps) => {
       <div
         className={`cursor-pointer block justify-between rounded text-stone-200 px-3 py-2 text-sm hover:bg-midnightLight duration-200
         ${props.className}`}
+        onClick={props.onClick}
       >
         <div className="flex items-center">
           {props.icon && <div className="mr-3">{props.icon}</div>}
