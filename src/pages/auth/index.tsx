@@ -1,7 +1,7 @@
 import Loader from "@/motions/loader";
 import Up from "@/motions/up";
 import { getServerAuthSession } from "@/server/common/get-server-auth-session";
-import { Button } from "@/styles/ui";
+import { Button } from "@/ui";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { signIn } from "next-auth/react";
 import { useState } from "react";

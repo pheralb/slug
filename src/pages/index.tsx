@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
-import { useSession } from "next-auth/react";
 
-import Link from "@/components/link";
 import Up from "@/motions/up";
 import { BiRocket, BiStar } from "react-icons/bi";
-import LinkRoute from "@/styles/ui/linkRoute";
+import LinkRoute from "@/ui/linkRoute";
 
 const Home: NextPage = () => {
   return (

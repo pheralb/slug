@@ -7,10 +7,11 @@ import Loader from "@/motions/loader";
 
 import Card from "@/components/card";
 import DashboardLayout from "@/layout/dashboard";
-import Messages from "@/components/messages";
+
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getServerAuthSession } from "@/server/common/get-server-auth-session";
 import { BiSearch } from "react-icons/bi";
+import Alert from "@/ui/alert";
 
 const Dashboard = () => {
   const { register } = useForm<FilterLinkInput>();
@@ -44,7 +45,11 @@ const Dashboard = () => {
           </div>
         </>
       )}
-      {error && <Messages text="An error has occurred obtaining the links." />}
+      {error && (
+        <Alert>
+          <p>{error.message}</p>
+        </Alert>
+      )}
       {data
         ?.sort((a, b) => b.id - a.id)
         .map((link) => (

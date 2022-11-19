@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import { BiCopy } from "react-icons/bi";
+import IconButton from "@/ui/iconButton";
 
 interface CardProps {
   url: string;
@@ -42,14 +43,13 @@ const Card = (props: CardProps) => {
         >
           /s/{props.slug}
         </a>
-        <button
+        <IconButton
+          icon={<BiCopy />}
           className="p-1 ml-1 text-gray-500 hover:text-gray-200 transition-colors duration-200"
           onClick={() =>
             copyToClipboard(`https://slug.vercel.app/s/${props.slug}`)
           }
-        >
-          <BiCopy className="mr-2" />
-        </button>
+        />
       </div>
       <p className="truncate text-gray-500 mb-2">{props.url}</p>
       <p className="text-gray-400">{props.description}</p>

@@ -1,5 +1,4 @@
-import LinkRoute from "@/styles/ui/linkRoute";
-import Link from "next/link";
+import LinkRoute from "@/ui/linkRoute";
 import { BiPlus } from "react-icons/bi";
 
 interface DashboardLayoutProps {

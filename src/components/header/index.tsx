@@ -1,7 +1,7 @@
-import { Github } from "@react-symbols/icons";
-
+import Link from "next/link";
+import { BsGithub } from "react-icons/bs";
 import Auth from "@/components/auth";
-import Link from "@/components/link";
+import IconButton from "@/ui/iconButton";
 
 const Header = () => {
   return (
@@ -13,15 +13,14 @@ const Header = () => {
             <h1 className="text-xl ml-2 mr-2">slug</h1>
           </div>
         </Link>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
           <Auth />
           <a
             href="https://github.com/pheralb/slug"
             rel="noreferrer"
             target="_blank"
-            className="hover:transform hover:scale-110 transition duration-200 ease-in-out"
           >
-            <Github width={28} height={28} />
+            <IconButton icon={<BsGithub size={20} />} />
           </a>
         </div>
       </div>

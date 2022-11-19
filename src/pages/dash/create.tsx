@@ -1,7 +1,6 @@
-import React from "react";
-import { getServerAuthSession } from "@/server/common/get-server-auth-session";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import Create from "@/components/create";
+import { getServerAuthSession } from "@/server/common/get-server-auth-session";
+import Create from "@/components/functions/create";
 
 const CreateNewLink = () => {
   return (

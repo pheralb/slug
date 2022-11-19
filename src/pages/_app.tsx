@@ -15,7 +15,6 @@ import "@/styles/globals.css";
 import "superkey/styles.css";
 import Show from "@/motions/show";
 import { Toaster } from "react-hot-toast";
-import { ThemeProvider } from "next-themes";
 
 // Layout =>
 import Layout from "@/layout";
@@ -36,7 +35,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   router,
 }) => {
   return (
-    <ThemeProvider attribute="class">
+    <>
       <NextNProgress
         color="#979797"
         startPosition={0.3}
@@ -53,7 +52,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         </Layout>
       </SessionProvider>
       <Toaster position="bottom-center" reverseOrder={false} />
-    </ThemeProvider>
+    </>
   );
 };
 
