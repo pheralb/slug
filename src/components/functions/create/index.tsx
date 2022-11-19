@@ -15,6 +15,7 @@ const Create = () => {
     handleSubmit,
     register,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<CreateLinkInput>();
   const [loading, setLoading] = useState(false);
@@ -39,6 +40,12 @@ const Create = () => {
   });
 
   const onSubmit = (values: CreateLinkInput) => {
+    const areEquals = values.url === values.slug;
+    if (areEquals) {
+      return setError("slug", {
+        message: "The original URL and the custom URL cannot be the same",
+      });
+    }
     setLoading(true);
     mutate(values);
   };
