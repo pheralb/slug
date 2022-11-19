@@ -1,14 +1,14 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import { CreateLinkInput } from "@/schema/link.schema";
-import { Button } from "@/styles/ui";
 import { BiRocket } from "react-icons/bi";
-import Loader from "@/motions/loader";
-import Messages from "../messages";
 import { nanoid } from "nanoid";
 import toast from "react-hot-toast";
+
+import { Button } from "@/ui";
+import Alert from "@/ui/alert";
 
 const Create = () => {
   const {
@@ -52,14 +52,9 @@ const Create = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {error && (
-        <div
-          className="flex border border-rose-500/30 rounded-lg p-4 mb-5 text-sm text-rose-500 bg-rose-500/10"
-          role="alert"
-        >
-          <p>
-            <span className="font-medium">{error.data?.code}:</span> {error.message}
-          </p>
-        </div>
+        <Alert>
+          <p>{error.message}</p>
+        </Alert>
       )}
       <div className="mb-5">
         <label htmlFor="url">Enter the URL here:</label>
@@ -85,7 +80,7 @@ const Create = () => {
             },
           })}
         />
-        {errors.url && <Messages text={errors.url.message} className="mt-2" />}
+        {errors.url && <Alert className="mt-2">{errors.url.message}</Alert>}
       </div>
       <div className="mb-5">
         <label htmlFor="slug">Custom slug:</label>
@@ -115,9 +110,7 @@ const Create = () => {
             Random
           </Button>
         </div>
-        {errors.slug && (
-          <Messages text={errors.slug.message} className="mt-2" />
-        )}
+        {errors.slug && <Alert className="mt-2">{errors.slug.message}</Alert>}
       </div>
       <div className="mb-3">
         <label htmlFor="description">Description (optional):</label>
@@ -127,18 +120,13 @@ const Create = () => {
           {...register("description")}
         />
       </div>
-      <Button type="submit" disabled={loading} className="bg-midnightLight">
-        {loading ? (
-          <>
-            <Loader />
-            <span className="ml-2">Creating your link...</span>
-          </>
-        ) : (
-          <>
-            <BiRocket className="mr-2" size={18} />
-            Create your link
-          </>
-        )}
+      <Button
+        type="submit"
+        isLoading={loading}
+        loadingText="Creating your link..."
+        icon={<BiRocket size={18} />}
+      >
+        Create your link
       </Button>
     </form>
   );
