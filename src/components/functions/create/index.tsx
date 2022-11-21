@@ -29,7 +29,7 @@ const Create = () => {
         icon: "🥳",
         style: {
           borderRadius: "10px",
-          background: "#28283E",
+          background: "#121212",
           color: "#fff",
         },
       });
