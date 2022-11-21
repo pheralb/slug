@@ -6,7 +6,14 @@ export const CreateLinkSchema = z.object({
   description: z.string(),
 });
 
+export const EditLinkSchema = z.object({
+  url: z.string(),
+  slug: z.string(),
+  description: z.string(),
+});
+
 export type CreateLinkInput = z.TypeOf<typeof CreateLinkSchema>
+export type EditLinkInput = z.TypeOf<typeof EditLinkSchema>
 
 export const FilterLinkSchema = z.object({
   filter: z.string(),
