@@ -9,7 +9,7 @@ const Layout = (props: LayoutProps) => {
   return (
     <>
       <Header />
-      {props.children}
+      <div className="min-h-auto">{props.children}</div>
       <Footer />
     </>
   );

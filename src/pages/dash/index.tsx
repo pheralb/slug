@@ -55,6 +55,7 @@ const Dashboard = () => {
         .map((link) => (
           <Card
             key={link.id}
+            id={link.id}
             url={link.url}
             slug={link.slug}
             description={link.description || "No description"}

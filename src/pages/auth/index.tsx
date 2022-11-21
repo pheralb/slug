@@ -1,12 +1,10 @@
-import Loader from "@/motions/loader";
-import Up from "@/motions/up";
 import { getServerAuthSession } from "@/server/common/get-server-auth-session";
 import { Button } from "@/ui";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { BiRightArrowAlt } from "react-icons/bi";
+import { BsGithub } from "react-icons/bs";
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -35,23 +33,17 @@ const Auth = () => {
   };
 
   return (
-    <div className="container mx-auto pt-6">
-      <div className="flex flex-col items-center justify-center">
-        <Up>
-          <h1 className="text-4xl mb-8">👋 Welcome</h1>
-        </Up>
-        <Button className="ml-4 bg-midnightLight" onClick={handleSignIn}>
-          {loading ? (
-            <>
-              <Loader />
-              Loading
-            </>
-          ) : (
-            <>
-              Continue with GitHub
-              <BiRightArrowAlt className="ml-2" />
-            </>
-          )}
+    <div className="container mx-auto">
+      <div className="flex flex-col items-center justify-center mt-16 px-4">
+        <h1 className="text-4xl mb-8">👋 Welcome</h1>
+        <Button
+          className="ml-4 bg-midnightLight"
+          onClick={handleSignIn}
+          isLoading={loading}
+          loadingText="Loading..."
+          icon={<BsGithub size={17} />}
+        >
+          Sign in with GitHub
         </Button>
       </div>
     </div>
