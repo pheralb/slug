@@ -16,21 +16,23 @@ import Alert from "@/ui/alert";
 const Dashboard = () => {
   const { register } = useForm<FilterLinkInput>();
   const [filter, setFilter] = useState("");
-  const { data, error, isLoading } = trpc.useQuery(["links.links", { filter }]);
+  const { data, error, isLoading } = trpc.links.allLinks.useQuery({
+    filter,
+  });
 
   return (
     <DashboardLayout>
       <div className="my-5">
         <div className="flex items-center">
           <div className="relative  w-full">
-            <div className="absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400">
+            <div className="absolute top-1/2 left-2 -translate-y-1/2 transform text-gray-400">
               <BiSearch size={22} />
             </div>
             <input
               id="filter"
               type="text"
               placeholder="Search"
-              className="w-full pl-10 pr-3 py-2 rounded-md bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-700 focus:border-transparent"
+              className="w-full rounded-md bg-transparent py-2 pl-10 pr-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-zinc-700"
               {...register("filter", {})}
               onChange={(e) => setFilter(e.target.value)}
             />
@@ -39,7 +41,7 @@ const Dashboard = () => {
       </div>
       {isLoading && (
         <>
-          <div className="flex flex-col justify-center items-center mt-8">
+          <div className="mt-8 flex flex-col items-center justify-center">
             <p className="mb-2">Loading your links...</p>
             <Loader />
           </div>
@@ -51,17 +53,24 @@ const Dashboard = () => {
         </Alert>
       )}
       {data
-        ?.sort((a, b) => b.id - a.id)
-        .map((link) => (
-          <Card
-            key={link.id}
-            id={link.id}
-            url={link.url}
-            slug={link.slug}
-            description={link.description || "No description"}
-            className="mt-3 hover:bg-zinc-900"
-          />
-        ))}
+        ?.sort((a: any, b: any) => b.id - a.id)
+        .map(
+          (link: {
+            id: number;
+            url: string;
+            slug: string;
+            description: string;
+          }) => (
+            <Card
+              key={link.id}
+              id={link.id}
+              url={link.url}
+              slug={link.slug}
+              description={link.description || "No description"}
+              className="mt-3 hover:bg-zinc-900"
+            />
+          )
+        )}
     </DashboardLayout>
   );
 };
