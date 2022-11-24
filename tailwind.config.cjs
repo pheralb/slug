@@ -12,7 +12,7 @@ module.exports = {
       colors: {
         light: "#FAFAFA",
         midnight: "#121212",
-        midnightLight: "#292828",
+        midnightLight: "#1D1D1D",
       },
     },
   },
