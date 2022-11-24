@@ -26,7 +26,7 @@ const Edit = (props: EditProps) => {
   const router = useRouter();
   const [disabled, setDisabled] = useState(false);
 
-  const { mutate, error } = trpc.useMutation(["links.edit-link"], {
+  const { mutate, error } = trpc.links.editLink.useMutation({
     onSuccess: () => {
       router.reload();
       setLoading(false);
@@ -69,7 +69,7 @@ const Edit = (props: EditProps) => {
           type="text"
           placeholder="https://"
           defaultValue={props.url}
-          className="rounded-md px-4 py-2 w-full focus:border-none mt-1 bg-midnightLight text-white"
+          className="mt-1 w-full rounded-md bg-midnightLight px-4 py-2 text-white focus:border-none"
           {...register("url", {
             required: {
               value: true,
@@ -93,7 +93,7 @@ const Edit = (props: EditProps) => {
         <label htmlFor="description">Description:</label>
         <textarea
           id="description"
-          className="rounded-md px-4 py-2 w-full focus:border-none mt-1 bg-midnightLight text-white"
+          className="mt-1 w-full rounded-md bg-midnightLight px-4 py-2 text-white focus:border-none"
           defaultValue={props.description}
           {...register("description")}
         />
@@ -101,7 +101,7 @@ const Edit = (props: EditProps) => {
       <Alert>
         <p>This action is irreversible.</p>
       </Alert>
-      <div className="flex justify-end mt-5">
+      <div className="mt-5 flex justify-end">
         <Button
           type="submit"
           disabled={loading}

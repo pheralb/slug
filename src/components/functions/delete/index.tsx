@@ -32,7 +32,7 @@ const Delete = (props: DeleteProps) => {
     }
   }, []);
 
-  const { mutate, error } = trpc.useMutation(["links.delete-link"], {
+  const { mutate, error } = trpc.links.deleteLink.useMutation({
     onSuccess: () => {
       router.reload();
       setLoading(false);
@@ -89,12 +89,12 @@ const Delete = (props: DeleteProps) => {
           <input
             type="text"
             placeholder="..."
-            className="rounded-md px-4 py-2 w-full focus:border-none bg-midnightLight text-white"
+            className="w-full rounded-md bg-midnightLight px-4 py-2 text-white focus:border-none"
             {...register("validate", { required: true, maxLength: 20 })}
           />
         </div>
       </div>
-      <div className="flex justify-end mt-5">
+      <div className="mt-5 flex justify-end">
         <Button
           type="submit"
           disabled={loading}
