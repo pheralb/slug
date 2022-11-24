@@ -7,13 +7,7 @@ import Modal from "@/ui/modal";
 import Edit from "../functions/edit";
 import Delete from "../functions/delete";
 
-interface CardProps {
-  id: number;
-  url: string;
-  slug: string;
-  description: string;
-  className?: string;
-}
+import { CardProps } from "./interface";
 
 const Card = (props: CardProps) => {
   const [editModal, setEditModal] = useState(false);
