@@ -1,11 +1,11 @@
-import { createRouter } from "./context";
-import superjson from "superjson";
-
+import { router } from "./trpc";
+import { authRouter } from "./auth";
 import { linkRouter } from "./links.router";
 
-export const appRouter = createRouter()
-  .transformer(superjson)
-  .merge("links.", linkRouter);
+export const appRouter = router({
+  links: linkRouter,
+  auth: authRouter,
+});
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

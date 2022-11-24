@@ -2,10 +2,7 @@ import type { AppType } from "next/dist/shared/lib/utils";
 import type { Session } from "next-auth";
 
 // tRPC =>
-import type { AppRouter } from "@/server/router";
-import { withTRPC } from "@trpc/next";
-import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
-import { loggerLink } from "@trpc/client/links/loggerLink";
+import { trpc } from "@/utils/trpc";
 
 // Auth =>
 import { SessionProvider } from "next-auth/react";
@@ -25,9 +22,6 @@ import nextSeoConfig from "next-seo.config";
 
 // Next progress =>
 import NextNProgress from "nextjs-progressbar";
-
-// Superjson =>
-import superjson from "superjson";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -56,27 +50,4 @@ const MyApp: AppType<{ session: Session | null }> = ({
   );
 };
 
-const getBaseUrl = () => {
-  if (typeof window !== "undefined") return "";
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return `http://localhost:${process.env.PORT ?? 3000}`;
-};
-
-export default withTRPC<AppRouter>({
-  config({ ctx }) {
-    const url = `${getBaseUrl()}/api/trpc`;
-    return {
-      links: [
-        loggerLink({
-          enabled: (opts) =>
-            process.env.NODE_ENV === "development" ||
-            (opts.direction === "down" && opts.result instanceof Error),
-        }),
-        httpBatchLink({ url }),
-      ],
-      url,
-      transformer: superjson,
-    };
-  },
-  ssr: false,
-})(MyApp);
+export default trpc.withTRPC(MyApp);
