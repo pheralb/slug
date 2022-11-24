@@ -65,7 +65,7 @@ const Dashboard = () => {
       {result.data?.length === 0 && (
         <div className="mt-5 flex flex-col items-center justify-center">
           <BiRocket className="mb-4 text-gray-400" size={64} />
-          <p className="mb-4 text-xl">Let's create your first link!</p>
+          <p className="mb-4 text-xl">Lets create your first link!</p>
           <LinkRoute href="/dash/create" className="border border-gray-400">
             Create a link
           </LinkRoute>
