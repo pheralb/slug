@@ -7,7 +7,7 @@ import { BiRefresh, BiRocket } from "react-icons/bi";
 import { nanoid } from "nanoid";
 import toast from "react-hot-toast";
 
-import { Button } from "@/ui";
+import Button from "@/ui/button";
 import Alert from "@/ui/alert";
 
 const Create = () => {
@@ -21,7 +21,7 @@ const Create = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const { mutate, error } = trpc.links.createLink.useMutation({
+  const { mutate } = trpc.links.createLink.useMutation({
     onSuccess: () => {
       router.push(`/dash`);
       setLoading(false);
@@ -34,7 +34,7 @@ const Create = () => {
         },
       });
     },
-    onError: ({ message }) => {
+    onError: () => {
       setLoading(false);
       setError("slug", {
         type: "manual",

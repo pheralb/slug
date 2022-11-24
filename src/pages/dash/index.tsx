@@ -10,36 +10,33 @@ import DashboardLayout from "@/layout/dashboard";
 
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getServerAuthSession } from "@/server/common/get-server-auth-session";
-import { BiSearch } from "react-icons/bi";
+import { BiHash, BiRocket, BiSearch } from "react-icons/bi";
 import Alert from "@/ui/alert";
+import { CardProps } from "@/components/card/interface";
+import LinkRoute from "@/ui/linkRoute";
+import { Input } from "@/ui";
 
 const Dashboard = () => {
   const { register } = useForm<FilterLinkInput>();
   const [filter, setFilter] = useState("");
-  const { data, error, isLoading } = trpc.links.allLinks.useQuery({
+  const result = trpc.links.allLinks.useQuery({
     filter,
   });
 
   return (
     <DashboardLayout>
-      <div className="my-5">
-        <div className="flex items-center">
-          <div className="relative  w-full">
-            <div className="absolute top-1/2 left-2 -translate-y-1/2 transform text-gray-400">
-              <BiSearch size={22} />
-            </div>
-            <input
-              id="filter"
-              type="text"
-              placeholder="Search"
-              className="w-full rounded-md bg-transparent py-2 pl-10 pr-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-zinc-700"
-              {...register("filter", {})}
-              onChange={(e) => setFilter(e.target.value)}
-            />
-          </div>
+      <div className="my-6">
+        <div className="w-full">
+          <Input
+            id="filter"
+            type="text"
+            placeholder="Search links"
+            {...register("filter", {})}
+            onChange={(e) => setFilter(e.target?.value)}
+          />
         </div>
       </div>
-      {isLoading && (
+      {result.isLoading && (
         <>
           <div className="mt-8 flex flex-col items-center justify-center">
             <p className="mb-2">Loading your links...</p>
@@ -47,30 +44,33 @@ const Dashboard = () => {
           </div>
         </>
       )}
-      {error && (
+      {result.error && (
         <Alert>
-          <p>{error.message}</p>
+          <p>{result.error.message}</p>
         </Alert>
       )}
-      {data
-        ?.sort((a: any, b: any) => b.id - a.id)
-        .map(
-          (link: {
-            id: number;
-            url: string;
-            slug: string;
-            description: string;
-          }) => (
+      {result.data && (
+        <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {result.data.map((link: CardProps) => (
             <Card
               key={link.id}
               id={link.id}
               url={link.url}
+              description={link.description || "No description."}
               slug={link.slug}
-              description={link.description || "No description"}
-              className="mt-3 hover:bg-zinc-900"
             />
-          )
-        )}
+          ))}
+        </div>
+      )}
+      {result.data?.length === 0 && (
+        <div className="mt-5 flex flex-col items-center justify-center">
+          <BiRocket className="mb-4 text-gray-400" size={64} />
+          <p className="mb-4 text-xl">Let's create your first link!</p>
+          <LinkRoute href="/dash/create" className="border border-gray-400">
+            Create a link
+          </LinkRoute>
+        </div>
+      )}
     </DashboardLayout>
   );
 };
