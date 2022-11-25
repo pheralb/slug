@@ -1,5 +1,6 @@
 import type { AppType } from "next/dist/shared/lib/utils";
 import type { Session } from "next-auth";
+import { Analytics } from '@vercel/analytics/react';
 
 // tRPC =>
 import { trpc } from "@/utils/trpc";
@@ -46,6 +47,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         </Layout>
       </SessionProvider>
       <Toaster position="bottom-center" reverseOrder={false} />
+      <Analytics />
     </>
   );
 };
