@@ -77,11 +77,11 @@ export const linkRouter = router({
 
   // Check if slug is available =>
   checkSlug: publicProcedure
-  .input(z.object({ customSlug: z.string().nullish() }).nullish())
+    .input(z.object({ customSlug: z.string().nullish() }).nullish())
     .query(({ ctx, input }) => {
       return ctx.prisma.link?.findUnique({
         where: {
-          slug: input?.customSlug,
+          slug: input?.customSlug || "",
         },
       });
     }),
