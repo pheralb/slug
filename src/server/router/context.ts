@@ -16,7 +16,7 @@ export const createContextInner = async (opts: CreateContextOptions) => {
 };
 
 export const createContext = async (
-  opts: trpcNext.CreateNextContextOptions,
+  opts: trpcNext.CreateNextContextOptions
 ) => {
   const { req, res } = opts;
   const session = await getServerAuthSession({ req, res });
@@ -25,7 +25,7 @@ export const createContext = async (
   });
 };
 
-type Context = trpc.inferAsyncReturnType<typeof createContext>;
+export type Context = trpc.inferAsyncReturnType<typeof createContext>;
 
 export const createRouter = () => trpc.router<Context>();
 

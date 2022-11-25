@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { trpc } from "@/utils/trpc";
 import { CreateLinkInput } from "@/schema/link.schema";
-import { BiRocket } from "react-icons/bi";
+import { BiRefresh, BiRocket } from "react-icons/bi";
 import { nanoid } from "nanoid";
 import toast from "react-hot-toast";
 
-import { Button } from "@/ui";
+import Button from "@/ui/button";
 import Alert from "@/ui/alert";
 
 const Create = () => {
@@ -21,7 +21,7 @@ const Create = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const { mutate, error } = trpc.useMutation(["links.create-link"], {
+  const { mutate } = trpc.links.createLink.useMutation({
     onSuccess: () => {
       router.push(`/dash`);
       setLoading(false);
@@ -36,15 +36,21 @@ const Create = () => {
     },
     onError: () => {
       setLoading(false);
+      setError("slug", {
+        type: "manual",
+        message: "Slug already exists. Please try another one or click 'Randomize' button.",
+      });
     },
   });
 
   const onSubmit = (values: CreateLinkInput) => {
-    const areEquals = values.url === values.slug;
-    if (areEquals) {
-      return setError("slug", {
-        message: "The original URL and the custom URL cannot be the same",
+    // Check if slug & url are equals to prevent infinite redirect =>
+    if (values.slug === values.url) {
+      setError("url", {
+        type: "manual",
+        message: "The URL and the slug cannot be the same",
       });
+      return;
     }
     setLoading(true);
     mutate(values);
@@ -58,18 +64,13 @@ const Create = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {error && (
-        <Alert>
-          <p>{error.message}</p>
-        </Alert>
-      )}
       <div className="mb-5">
         <label htmlFor="url">Enter the URL here:</label>
         <input
           id="url"
           type="text"
           placeholder="https://"
-          className="rounded-md px-4 py-2 w-full focus:border-none mt-1 bg-midnightLight text-white"
+          className="mt-1 w-full rounded-md bg-midnightLight px-4 py-2 text-white focus:border-none"
           {...register("url", {
             required: {
               value: true,
@@ -83,7 +84,7 @@ const Create = () => {
             pattern: {
               value: /^https?:\/\//i,
               message:
-                "Please enter a valid URL. It should start with http:// or https://",
+                "Please enter a valid URL. It should start with https://.",
             },
           })}
         />
@@ -92,12 +93,12 @@ const Create = () => {
       <div className="mb-5">
         <label htmlFor="slug">Custom slug:</label>
         <p className="text-gray-500">https://slug.vercel.app/s/</p>
-        <div className="flex items-center justify-between mt-1">
+        <div className="mt-1 flex items-center justify-between">
           <input
             id="slug"
             type="text"
             placeholder="Custom slug"
-            className="rounded-md px-4 py-2 w-full focus:border-none bg-midnightLight text-white"
+            className="w-full rounded-md bg-midnightLight px-4 py-2 text-white focus:border-none"
             {...register("slug", {
               required: {
                 value: true,
@@ -113,8 +114,9 @@ const Create = () => {
           <Button
             onClick={handleGenerateRandomSlug}
             className="ml-2 bg-midnightLight"
+            icon={<BiRefresh size={17} />}
           >
-            Random
+            Randomize
           </Button>
         </div>
         {errors.slug && <Alert className="mt-2">{errors.slug.message}</Alert>}
@@ -123,7 +125,7 @@ const Create = () => {
         <label htmlFor="description">Description (optional):</label>
         <textarea
           id="description"
-          className="rounded-md px-4 py-2 w-full focus:border-none mt-1 bg-midnightLight text-white"
+          className="mt-1 w-full rounded-md bg-midnightLight px-4 py-2 text-white focus:border-none"
           {...register("description")}
         />
       </div>
