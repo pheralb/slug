@@ -14,7 +14,7 @@ const data = [
   {
     id: 2,
     name: "Dashboard",
-    href: "/dash/create",
+    href: "/dash",
     icon: <BiBox />,
   },
   {
