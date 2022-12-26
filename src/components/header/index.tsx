@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BsGithub } from "react-icons/bs";
 import Auth from "@/components/auth";
 import IconButton from "@/ui/iconButton";
+import CommandMenu from "../command";
 
 const Header = () => {
   return (
@@ -13,8 +14,9 @@ const Header = () => {
             <h1 className="text-xl ml-2 mr-2">slug</h1>
           </div>
         </Link>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           <Auth />
+          <CommandMenu />
           <a
             href="https://github.com/pheralb/slug"
             rel="noreferrer"
