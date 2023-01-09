@@ -1,4 +1,5 @@
 import { getServerAuthSession } from "@/server/common/get-server-auth-session";
+import { toastStyles } from "@/styles/toast";
 import { Button } from "@/ui";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { signIn } from "next-auth/react";
@@ -20,22 +21,16 @@ const Auth = () => {
         "An error occurred while logging in. Please create an issue about the problem.",
         {
           icon: "🤔",
-          style: {
-            borderRadius: "10px",
-            background: "#28283E",
-            color: "#fff",
-          },
+          style: toastStyles,
         }
       );
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
     <div className="container mx-auto">
-      <div className="flex flex-col items-center justify-center mt-16 px-4">
-        <h1 className="text-4xl mb-8">👋 Welcome</h1>
+      <div className="mt-16 flex flex-col items-center justify-center px-4">
+        <h1 className="mb-8 text-4xl">👋 Welcome</h1>
         <Button
           className="ml-4 bg-midnightLight"
           onClick={handleSignIn}
