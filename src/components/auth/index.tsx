@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/ui";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import {
   BiBox,
   BiExit,
@@ -12,34 +12,12 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { Dropdown, DropdownItem } from "@/ui/dropdown";
 import LinkRoute from "@/ui/linkRoute";
+import { toastStyles } from "@/styles/toast";
 
 const Auth = () => {
   const { data: session, status } = useSession();
   const [disabled, setDisabled] = useState(false);
   const [closing, setClosing] = useState(false);
-
-  const handleSignIn = async () => {
-    setDisabled(true);
-    try {
-      await signIn("github", {
-        callbackUrl: "/dash",
-      });
-    } catch (error) {
-      toast(
-        "An error occurred while logging in. Please create an issue about the problem.",
-        {
-          icon: "🤔",
-          style: {
-            borderRadius: "10px",
-            background: "#28283E",
-            color: "#fff",
-          },
-        }
-      );
-    } finally {
-      setDisabled(false);
-    }
-  };
 
   const handleLogout = async () => {
     setDisabled(true);
@@ -53,11 +31,7 @@ const Auth = () => {
         "An error occurred while logout. Please create an issue about the problem.",
         {
           icon: "🤔",
-          style: {
-            borderRadius: "10px",
-            background: "#28283E",
-            color: "#fff",
-          },
+          style: toastStyles,
         }
       );
     } finally {

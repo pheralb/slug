@@ -93,9 +93,9 @@ const CommandMenu = () => {
             <CommandOption
               key={action.id}
               value={action.href || ""}
-              activeClassName="hover:bg-neutral-900"
+              activeClassName="bg-gray-100 dark:bg-zinc-700/25"
             >
-              <div className="flex items-center space-x-3 py-1">
+              <div className="flex items-center space-x-3 py-1 px-1">
                 <div className="icon-size-8 flex-shrink-0">{action.icon}</div>
                 <h1 className="text-gray-100">{action.name}</h1>
               </div>

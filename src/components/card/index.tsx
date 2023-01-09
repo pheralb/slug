@@ -8,6 +8,7 @@ import Edit from "../functions/edit";
 import Delete from "../functions/delete";
 
 import { CardProps } from "./interface";
+import { toastStyles } from "@/styles/toast";
 
 const Card = (props: CardProps) => {
   const [editModal, setEditModal] = useState(false);
@@ -32,23 +33,18 @@ const Card = (props: CardProps) => {
     }
     toast("Copied to clipboard", {
       icon: "🚀",
-      style: {
-        borderRadius: "10px",
-        borderColor: "#fff",
-        background: "#222222",
-        color: "#fff",
-      },
+      style: toastStyles,
     });
   };
 
   return (
     <div
-      className={`flex justify-between bg-midnight border border-zinc-800 rounded-lg  hover:shadow-lg transition-all p-4 ${props.className}`}
+      className={`flex justify-between rounded-lg border border-zinc-800 bg-midnight  p-4 transition-all hover:shadow-lg ${props.className}`}
     >
       <div className="truncate">
         <div className="flex items-center">
           <a
-            className="text-gray-100 text-xl hover:text-gray-300 transition-all"
+            className="text-xl text-gray-100 transition-all hover:text-gray-300"
             target="_blank"
             rel="noreferrer"
             href={`https://slug.vercel.app/s/${props.slug}`}
@@ -57,13 +53,13 @@ const Card = (props: CardProps) => {
           </a>
           <IconButton
             icon={<BiCopy />}
-            className="p-1 ml-1 text-gray-500 hover:text-gray-200 transition-colors duration-200"
+            className="ml-1 p-1 text-gray-500 transition-colors duration-200 hover:text-gray-200"
             onClick={() =>
               copyToClipboard(`https://slug.vercel.app/s/${props.slug}`)
             }
           />
         </div>
-        <p className="text-gray-500 mb-2">{props.url}</p>
+        <p className="mb-2 text-gray-500">{props.url}</p>
         <p className="text-gray-400">{props.description}</p>
       </div>
       <div>

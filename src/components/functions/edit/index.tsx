@@ -7,6 +7,7 @@ import { Button } from "@/ui";
 import toast from "react-hot-toast";
 import Alert from "@/ui/alert";
 import { BiCheck } from "react-icons/bi";
+import { toastStyles } from "@/styles/toast";
 
 interface EditProps {
   id: number;
@@ -32,11 +33,7 @@ const Edit = (props: EditProps) => {
       setLoading(false);
       toast("Link edited successfully", {
         icon: "🥳",
-        style: {
-          borderRadius: "10px",
-          background: "#121212",
-          color: "#fff",
-        },
+        style: toastStyles,
       });
     },
     onError: () => {

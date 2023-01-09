@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Alert from "@/ui/alert";
 import { BiTrash } from "react-icons/bi";
 import { nanoid } from "nanoid";
+import { toastStyles } from "@/styles/toast";
 
 interface DeleteProps {
   id: number;
@@ -38,11 +39,7 @@ const Delete = (props: DeleteProps) => {
       setLoading(false);
       toast("Link deleted successfully", {
         icon: "🥳",
-        style: {
-          borderRadius: "10px",
-          background: "#121212",
-          color: "#fff",
-        },
+        style: toastStyles,
       });
     },
     onError: () => {
@@ -60,11 +57,7 @@ const Delete = (props: DeleteProps) => {
     } else {
       toast("The values do not match. Check the validation.", {
         icon: "🤔",
-        style: {
-          borderRadius: "10px",
-          background: "#121212",
-          color: "#fff",
-        },
+        style: toastStyles,
       });
     }
   };

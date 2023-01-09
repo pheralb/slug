@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 import Button from "@/ui/button";
 import Alert from "@/ui/alert";
+import { toastStyles } from "@/styles/toast";
 
 const Create = () => {
   const {
@@ -27,11 +28,7 @@ const Create = () => {
       setLoading(false);
       toast("Link created successfully", {
         icon: "🥳",
-        style: {
-          borderRadius: "10px",
-          background: "#121212",
-          color: "#fff",
-        },
+        style: toastStyles,
       });
     },
     onError: () => {
