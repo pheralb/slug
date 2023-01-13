@@ -1,5 +1,5 @@
 import Loader from "@/motions/loader";
-import React from "react";
+import React, { forwardRef } from "react";
 
 export interface ButtonProps {
   type?: "button" | "submit" | "reset";
@@ -12,13 +12,14 @@ export interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = (props: ButtonProps) => {
+const Button = (props: ButtonProps, ref: React.Ref<HTMLButtonElement>) => {
   return (
     <button
+      ref={ref}
       type={props.type}
       disabled={props.disabled || props.isLoading}
       onClick={props.onClick}
-      className={`flex items-center rounded-md px-3 p-2 hover:transition duration-200 ease-in-out focus:outline-none ${
+      className={`flex items-center rounded-md px-3 p-2 hover:transition duration-200 ease-in-out outline-none ${
         props.className
       } focus:ring-1 focus:ring-offset-1 focus:ring-offset-stone-800 focus:ring-gray-500 hover:text-gray-300 
       ${
@@ -42,4 +43,4 @@ const Button = (props: ButtonProps) => {
   );
 };
 
-export default Button;
+export default forwardRef(Button);
