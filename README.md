@@ -1,3 +1,5 @@
+> ✨ We are preparing a new version with Next.js 13 /app router, you can see the progress here: [next](https://github.com/pheralb/slug/tree/next) ✨
+
 <div align="center">
 
 <a href="slug.vercel.app">
