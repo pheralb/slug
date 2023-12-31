@@ -1,5 +1,4 @@
 import type { NextRequest } from "next/server";
-import type { link } from "@prisma/client";
 
 import { NextResponse } from "next/server";
 import { db } from "@/server/db";
@@ -23,7 +22,7 @@ export const GET = async (req: NextRequest) => {
         equals: params,
       },
     },
-  })) as link;
+  }))!;
 
   // Return (/) if not found (404):
   if (!data) {
