@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 model link {
@@ -19,6 +20,8 @@ model link {
     folderId    Int?
 
     @@index(slug)
+    @@index([creatorId])
+    @@index([folderId])
 }
 
 model folder {
@@ -29,6 +32,8 @@ model folder {
     createdBy   User?    @relation(fields: [creatorId], references: [id])
     creatorId   String
     links       link[]
+
+    @@index([creatorId])
 }
 
 model Account {
@@ -47,6 +52,7 @@ model Account {
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
+    @@index([userId])
 }
 
 model Session {
@@ -55,6 +61,13 @@ model Session {
     userId       String
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+}
+
+enum UserRole {
+    USER
+    ADMIN
 }
 
 model User {
@@ -65,6 +78,7 @@ model User {
     emailVerified DateTime?
     image         String?
     password      String?
+    role          UserRole  @default(USER)
     accounts      Account[]
     sessions      Session[]
     links         link[]
@@ -72,9 +86,10 @@ model User {
 }
 
 model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
+    id      String   @id @default(cuid())
+    email   String
+    token   String   @unique
+    expires DateTime
 
-    @@unique([identifier, token])
+    @@unique([email, token])
 }
