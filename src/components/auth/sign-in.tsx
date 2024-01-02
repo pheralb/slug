@@ -30,8 +30,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import SocialLogin from "@/components/auth/social-login";
 import { useState, useTransition } from "react";
 import Alert from "@/ui/alert";
+import { useSearchParams } from "next/navigation";
 
 const SignIn = () => {
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email already in use with a different provider."
+      : "";
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState<string>("");
   const [isError, setError] = useState<boolean>(false);
@@ -48,14 +54,12 @@ const SignIn = () => {
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
     setMessage("");
     setError(false);
-    startTransition(() => {
-      login(values).then((res) => {
-        if (res.isError) {
-          setMessage(res.message);
-          setError(res.isError);
+    startTransition(async () => {
+      await login(values).then((res) => {
+        if (res) {
+          setMessage(res?.message);
+          setError(res?.isError);
         }
-        setMessage(res.message);
-        setError(res.isError);
       });
     });
   };
@@ -105,9 +109,11 @@ const SignIn = () => {
                 )}
               />
             </div>
-            {message && (
-              <Alert variant={isError ? "error" : "success"}>{message}</Alert>
-            )}
+            {message || urlError ? (
+              <Alert variant={isError || urlError ? "error" : "success"}>
+                {message || urlError}
+              </Alert>
+            ) : null}
             <Button type="submit" className="w-full" disabled={isPending}>
               <span>Sign In</span>
             </Button>

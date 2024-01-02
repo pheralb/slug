@@ -9,7 +9,7 @@ export const publicRoutes = ["/"];
  * Not required for authentication.
  * @type {string[]}
  */
-export const authRoutes = ["/login", "/register"];
+export const authRoutes = ["/login", "/register", "/auth-error"];
 
 /**
  * These routes require authentication and are only accessible to admins.
