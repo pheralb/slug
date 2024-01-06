@@ -49,7 +49,8 @@ model Account {
     scope             String?
     id_token          String? //@db.Text
     session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
     @@index([userId])
@@ -86,6 +87,15 @@ model User {
 }
 
 model VerificationToken {
+    id      String   @id @default(cuid())
+    email   String
+    token   String   @unique
+    expires DateTime
+
+    @@unique([email, token])
+}
+
+model PasswordResetToken {
     id      String   @id @default(cuid())
     email   String
     token   String   @unique
