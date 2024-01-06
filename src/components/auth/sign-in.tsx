@@ -31,6 +31,8 @@ import SocialLogin from "@/components/auth/social-login";
 import { useState, useTransition } from "react";
 import Alert from "@/ui/alert";
 import { useSearchParams } from "next/navigation";
+import { sharedAnimationCards } from "./animation-cards";
+import { Loader } from "lucide-react";
 
 const SignIn = () => {
   const searchParams = useSearchParams();
@@ -65,14 +67,14 @@ const SignIn = () => {
   };
 
   return (
-    <Card>
+    <Card className={sharedAnimationCards}>
       <CardHeader>
         <CardTitle className="text-xl">Sign In</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="space-y-4">
+            <div className="space-y-5">
               <FormField
                 control={form.control}
                 name="email"
@@ -95,7 +97,15 @@ const SignIn = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <div className="flex w-full items-center justify-between">
+                      <FormLabel>Password</FormLabel>
+                      <Link
+                        href="/reset"
+                        className="text-xs opacity-75 transition-opacity duration-100 hover:text-black hover:opacity-100 dark:hover:text-white"
+                      >
+                        <span>Forgot password?</span>
+                      </Link>
+                    </div>
                     <FormControl>
                       <Input
                         {...field}
@@ -115,7 +125,8 @@ const SignIn = () => {
               </Alert>
             ) : null}
             <Button type="submit" className="w-full" disabled={isPending}>
-              <span>Sign In</span>
+              {isPending ? <Loader className="animate-spin" size={16} /> : null}
+              {isPending ? <span>Logging in...</span> : <span>Sign In</span>}
             </Button>
           </form>
         </Form>

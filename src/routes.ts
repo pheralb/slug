@@ -2,14 +2,21 @@
  * These routes do not require authentication.
  * @type {string[]}
  */
-export const publicRoutes = ["/"];
+export const publicRoutes = ["/", "verify"];
 
 /**
  * These routes are used for authentication.
  * Not required for authentication.
  * @type {string[]}
  */
-export const authRoutes = ["/login", "/register", "/auth-error"];
+export const authRoutes = [
+  "/login",
+  "/register",
+  "/auth-error",
+  "/verify",
+  "/reset",
+  "/new-password",
+];
 
 /**
  * These routes require authentication and are only accessible to admins.

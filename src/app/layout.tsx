@@ -1,15 +1,19 @@
+import { cookies } from "next/headers";
+
 // Styles:
 import "@/styles/globals.css";
 import { cn } from "@/utils";
 
 // Providers:
-import { cookies } from "next/headers";
 import { TRPCReactProvider } from "@/server/trpc/react";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ToasterComponent } from "@/components/providers/toaster";
+
+// Layout:
+import Header from "@/components/header";
 
 // Fonts:
 import localFont from "next/font/local";
-import Header from "@/components/header";
 
 const interVariable = localFont({
   variable: "--font-sans",
@@ -45,7 +49,7 @@ export default function RootLayout({
       <body
         className={cn(
           `font-sans ${interVariable.variable} ${calsansSemibold.variable} antialiased`,
-          "dark:bg-neutral-900 bg-white",
+          "bg-white dark:bg-neutral-900",
         )}
       >
         <ThemeProvider
@@ -58,6 +62,7 @@ export default function RootLayout({
           <TRPCReactProvider cookies={cookies().toString()}>
             {children}
           </TRPCReactProvider>
+          <ToasterComponent />
         </ThemeProvider>
       </body>
     </html>

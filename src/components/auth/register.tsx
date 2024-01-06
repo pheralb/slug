@@ -1,6 +1,7 @@
 "use client";
 
 import type z from "zod";
+import { useState, useTransition } from "react";
 
 import {
   Card,
@@ -28,8 +29,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import SocialLogin from "@/components/auth/social-login";
-import { useState, useTransition } from "react";
 import Alert from "@/ui/alert";
+import { sharedAnimationCards } from "./animation-cards";
+import { Loader } from "lucide-react";
 
 const SignUp = () => {
   const [isPending, startTransition] = useTransition();
@@ -50,8 +52,8 @@ const SignUp = () => {
   const onSubmit = (values: z.infer<typeof registerSchema>) => {
     setMessage("");
     setError(false);
-    startTransition(() => {
-      register(values).then((res) => {
+    startTransition(async () => {
+      await register(values).then((res) => {
         if (res.isError) {
           setMessage(res.message);
           setError(res.isError);
@@ -63,7 +65,7 @@ const SignUp = () => {
   };
 
   return (
-    <Card>
+    <Card className={sharedAnimationCards}>
       <CardHeader>
         <CardTitle className="text-xl">Create an account</CardTitle>
       </CardHeader>
@@ -146,7 +148,12 @@ const SignUp = () => {
               <Alert variant={isError ? "error" : "success"}>{message}</Alert>
             )}
             <Button type="submit" className="w-full" disabled={isPending}>
-              <span>Create an account</span>
+              {isPending ? <Loader className="animate-spin" size={16} /> : null}
+              {isPending ? (
+                <span>Creating account...</span>
+              ) : (
+                <span>Create account</span>
+              )}
             </Button>
           </form>
         </Form>

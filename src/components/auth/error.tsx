@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { sharedAnimationCards } from "./animation-cards";
 
 const AuthError = () => {
   return (
-    <Card>
+    <Card className={sharedAnimationCards}>
       <CardHeader>
         <CardTitle className="text-xl">Something went wrong.</CardTitle>
       </CardHeader>
