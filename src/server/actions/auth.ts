@@ -20,16 +20,24 @@ import {
 } from "@/server/schemas";
 import {
   generatePasswordResetToken,
+  generateTwoFactorToken,
   generateVerificationToken,
 } from "@/server/tokens";
-import { sendPasswordResetEmail, sendVerificationEmail } from "@/server/mail";
+import {
+  sendPasswordResetEmail,
+  sendTwoFactorTokenEmail,
+  sendVerificationEmail,
+} from "@/server/mail";
 
 // Auth Routes, check src/routes.ts for more details:
 import { DEFAULT_LOGIN_REDIRECT_URL } from "@/routes";
+import { getTwoFactorTokenByEmail } from "../utils/two-factor-tokens";
+import { getTwoFactorConfirmationByUserId } from "../utils/two-factor-confirm";
 
 interface AuthResponse {
   message: string;
   isError: boolean;
+  twoFactorTokenForm?: boolean;
 }
 
 export const login = async (values: z.infer<typeof loginSchema>) => {
@@ -39,7 +47,7 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
     return { message: "Invalid fields", isError: true } as AuthResponse;
   }
 
-  const { email, password } = validatedFields.data;
+  const { email, password, code } = validatedFields.data;
   const existingUser = await getUserByEmail(email);
 
   // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
@@ -66,6 +74,72 @@ export const login = async (values: z.infer<typeof loginSchema>) => {
         "Email not verified. We are sending you a new email with a link to verify your email.",
       isError: true,
     } as AuthResponse;
+  }
+
+  if (existingUser.isTwoFactorEnabled && existingUser.email) {
+    if (code) {
+      const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email);
+      if (!twoFactorToken) {
+        return {
+          message:
+            "Invalid 2FA code. Generate another code and please try again.",
+          isError: true,
+          twoFactorTokenForm: true,
+        } as AuthResponse;
+      }
+
+      if (twoFactorToken.token !== code) {
+        return {
+          message: "Invalid 2FA code. Please try again.",
+          isError: true,
+          twoFactorTokenForm: true,
+        } as AuthResponse;
+      }
+
+      const hasExpired = twoFactorToken.expires < new Date();
+
+      if (hasExpired) {
+        return {
+          message:
+            "2FA code has expired. Generate another code and please try again.",
+          isError: true,
+          twoFactorTokenForm: true,
+        } as AuthResponse;
+      }
+
+      await db.twoFactorToken.delete({
+        where: { id: twoFactorToken.id },
+      });
+
+      const existingConfirmation = await getTwoFactorConfirmationByUserId(
+        existingUser.id,
+      );
+
+      if (existingConfirmation) {
+        await db.twoFactorConfirmation.delete({
+          where: { id: existingConfirmation.id },
+        });
+      }
+
+      await db.twoFactorConfirmation.create({
+        data: {
+          userId: existingUser.id,
+        },
+      });
+    } else {
+      const twoFactorToken = await generateTwoFactorToken(existingUser.email);
+      try {
+        await sendTwoFactorTokenEmail(existingUser.email, twoFactorToken.token);
+      } catch (error) {
+        console.error(error);
+      }
+      return {
+        message:
+          "Two factor authentication enabled. We are sending you a new email with a 2FA code.",
+        isError: false,
+        twoFactorTokenForm: true,
+      } as AuthResponse;
+    }
   }
 
   try {
