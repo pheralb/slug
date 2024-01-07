@@ -8,8 +8,24 @@ export const LinkSchema = z.object({
 });
 
 export const CreateLinkSchema = z.object({
-  url: z.string(),
-  slug: z.string(),
+  url: z
+    .string()
+    .min(1, { message: "URL is required." })
+    .url({
+      message: "Please enter a valid URL. Include http:// or https://",
+    })
+    .regex(/^\S+$/, {
+      message: "URL must not contain any blank spaces.",
+    }),
+  slug: z
+    .string()
+    .min(1, {
+      message:
+        "Short link is required. Enter a custom slug or click on 'Randomize' button.",
+    })
+    .regex(/^\S+$/, {
+      message: "Custom short link must not contain any blank spaces.",
+    }),
   description: z.string(),
 });
 
