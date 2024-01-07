@@ -50,6 +50,9 @@ dependencies:
   bcryptjs:
     specifier: 2.4.3
     version: 2.4.3
+  boring-avatars:
+    specifier: 1.10.1
+    version: 1.10.1
   class-variance-authority:
     specifier: 0.7.0
     version: 0.7.0
@@ -1652,6 +1655,10 @@ packages:
   /binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
+
+  /boring-avatars@1.10.1:
+    resolution: {integrity: sha512-WcgHDeLrazCR03CDPEvCchLsUecZAZvs4F6FnMiGlTEjyQQf15Q5TRl4EUaAQ1dacvhPq7lC9EOTWkCojQ6few==}
+    dev: false
 
   /brace-expansion@1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
