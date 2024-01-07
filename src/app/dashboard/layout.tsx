@@ -15,9 +15,9 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
     <>
       <nav className="border-b border-gray-100 dark:border-neutral-800 bg-gray-50 dark:bg-neutral-800/50">
         <Container>
-          <div className="mx-auto py-3">
+          <div className="mx-auto">
             <div className="flex w-full items-center justify-between">
-              <div className="mt-0 flex flex-row space-x-2 text-sm font-medium rtl:space-x-reverse">
+              <div className="mt-0 flex flex-row space-x-0 text-sm font-medium rtl:space-x-reverse">
                 <DashboardRoutesComponent />
               </div>
               <Button>
