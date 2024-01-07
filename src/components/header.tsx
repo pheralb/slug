@@ -6,6 +6,7 @@ import ExternalLink from "@/ui/external-link";
 import { GithubIcon } from "lucide-react";
 import { cn } from "@/utils";
 import { buttonVariants } from "@/ui/button";
+import UserButton from "./auth/user-button";
 
 const Header = () => {
   return (
@@ -26,7 +27,7 @@ const Header = () => {
               slug
             </span>
           </Link>
-          <div className="flex items-center space-x-0">
+          <div className="flex items-center space-x-1">
             <ExternalLink
               href="https://github.com/pheralb/slug"
               className={buttonVariants({
@@ -37,12 +38,7 @@ const Header = () => {
               <GithubIcon size={20} />
             </ExternalLink>
             <ModeToggle />
-            <a
-              href="#"
-              className="text-sm  text-blue-600 hover:underline dark:text-blue-500"
-            >
-              pheralb
-            </a>
+            <UserButton />
           </div>
         </div>
       </Container>
