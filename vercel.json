@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    {
+      "source": "/git",
+      "destination": "https://github.com/pheralb/slug"
+    }
+  ]
+}
