@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import {
-  FilterLinkSchema,
   CreateLinkSchema,
   getSingleLinkSchema,
   EditLinkSchema,
@@ -14,7 +13,6 @@ import {
 } from "@/server/trpc";
 
 export const linkRouter = createTRPCRouter({
-
   // Create new link =>
   createLink: protectedProcedure
     .input(CreateLinkSchema)
@@ -53,26 +51,13 @@ export const linkRouter = createTRPCRouter({
     }),
 
   // Get all links =>
-  allLinks: protectedProcedure
-    .input(FilterLinkSchema)
-    .query(({ ctx, input }) => {
-      return ctx.db.link?.findMany({
-        where: {
-          creatorId: ctx.session?.user?.id,
-          AND: input.filter
-            ? [
-                {
-                  OR: [
-                    { url: { contains: input.filter } },
-                    { slug: { contains: input.filter } },
-                    { description: { contains: input.filter } },
-                  ],
-                },
-              ]
-            : undefined,
-        },
-      });
-    }),
+  allLinks: protectedProcedure.query(({ ctx }) => {
+    return ctx.db.link?.findMany({
+      where: {
+        creatorId: ctx.session?.user?.id,
+      },
+    });
+  }),
 
   // Get single link =>
   singleLink: publicProcedure

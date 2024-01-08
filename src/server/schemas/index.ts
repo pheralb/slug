@@ -4,7 +4,8 @@ export const LinkSchema = z.object({
   id: z.number(),
   url: z.string(),
   slug: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
+  tagId: z.number().optional(),
 });
 
 export const CreateLinkSchema = z.object({
@@ -38,12 +39,6 @@ export const EditLinkSchema = z.object({
 export type LinkSchema = z.TypeOf<typeof LinkSchema>;
 export type CreateLinkInput = z.TypeOf<typeof CreateLinkSchema>;
 export type EditLinkInput = z.TypeOf<typeof EditLinkSchema>;
-
-export const FilterLinkSchema = z.object({
-  filter: z.string(),
-});
-
-export type FilterLinkInput = z.TypeOf<typeof FilterLinkSchema>;
 
 export const getSingleLinkSchema = z.object({
   linkId: z.number(),
