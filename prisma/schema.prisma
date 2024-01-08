@@ -16,12 +16,12 @@ model link {
     createdAt   DateTime @default(now())
     createdBy   User?    @relation(fields: [creatorId], references: [id])
     creatorId   String
-    folder      folder?  @relation(fields: [folderId], references: [id])
-    folderId    Int?
+    folder      folder?  @relation(fields: [tagId], references: [id])
+    tagId       Int?
 
     @@index(slug)
     @@index([creatorId])
-    @@index([folderId])
+    @@index([tagId])
 }
 
 model folder {
