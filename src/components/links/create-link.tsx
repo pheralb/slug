@@ -29,7 +29,7 @@ import {
   FormMessage,
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
-import { LoaderIcon, PlusIcon, RocketIcon, ShuffleIcon } from "lucide-react";
+import { LoaderIcon, RocketIcon, ShuffleIcon } from "lucide-react";
 
 interface CreateLinkProps {
   children: ReactNode;
@@ -52,7 +52,7 @@ export function CreateLink(props: CreateLinkProps) {
   });
 
   // Create link mutation:
-  const { mutate } = api.links.createLink.useMutation({
+  const { mutate } = api.linksRouter.createLink.useMutation({
     onSuccess: () => {
       setLoading(false);
       setOpen(false);
