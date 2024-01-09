@@ -21,11 +21,14 @@ const middleware = async (req: NextRequest, isLoggedIn: boolean) => {
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  const slugRoute = req.nextUrl.pathname.split("/").pop();
 
+  // Is Api Route:
   if (isApiAuthRoute) {
     return null;
   }
 
+  // Is Auth Route. First, check is authenticated:
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl));
@@ -33,39 +36,34 @@ const middleware = async (req: NextRequest, isLoggedIn: boolean) => {
     return null;
   }
 
+  // Protected routes:
   if (!isLoggedIn && !isPublicRoute) {
     return Response.redirect(new URL("/login", nextUrl));
   }
 
+  // Now, check ``slug`` route.
+  // If does not exist, redirect to main page.
+  const data = await fetch(`${req.nextUrl.origin}/api/url?slug=${slugRoute}`);
+
+  if (data.status === 404) {
+    return Response.redirect(req.nextUrl.origin);
+  }
+
+  const dataToJson = await data.json();
+
+  if (data?.url) {
+    return Response.redirect(new URL(dataToJson.url as string).toString());
+  }
+
   return null;
-
-  // // Get pathname:
-  // const slug = req.nextUrl.pathname.split("/").pop();
-
-  // // Get data from query:
-  // const data = await fetch(`${req.nextUrl.origin}/api/url/${slug}`);
-
-  // // Return (/) if not found (404):
-  // if (data.status === 404) {
-  //   return NextResponse.redirect(req.nextUrl.origin);
-  // }
-
-  // // Convert data to JSON:
-  // const dataToJson = await data.json();
-
-  // console.log(dataToJson);
-
-  // if (data?.url) {
-  //   return NextResponse.redirect(new URL(dataToJson.url as string).toString());
-  // }
 };
 
 export default auth((req) => middleware(req, !!req.auth));
 
 export const config = {
   matcher: [
-    "/((?!api/|_next/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
     "/",
-    "/:slug",
+    "/((?!api/|_next/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
+    "/s/:slug*",
   ],
 };
