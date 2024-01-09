@@ -1,7 +1,7 @@
 "use server";
 
 import type { z } from "zod";
-import type { LinkSchema } from "@/server/schemas";
+import type { CreateLinkSchema, LinkSchema } from "@/server/schemas";
 
 import { auth } from "@/server/auth";
 import { db } from "@/server/db";
@@ -63,7 +63,11 @@ export const checkIfSlugExist = async (slug: string) => {
     },
   });
 
-  return result;
+  if (result) {
+    return true;
+  }
+
+  return false;
 };
 
 /**
@@ -71,7 +75,7 @@ export const checkIfSlugExist = async (slug: string) => {
  * Authentication required.
  * @type {z.infer<typeof LinkSchema>}
  */
-export const createLink = async (values: z.infer<typeof LinkSchema>) => {
+export const createLink = async (values: z.infer<typeof CreateLinkSchema>) => {
   const currentUser = await auth();
 
   if (!currentUser) {
