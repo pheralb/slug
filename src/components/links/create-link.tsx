@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { api } from "@/server/trpc/react";
+import { checkIfSlugExist, createLink } from "@/server/actions/links";
 
 import Alert from "@/ui/alert";
 import { Button } from "@/ui/button";
@@ -51,36 +51,34 @@ export function CreateLink(props: CreateLinkProps) {
     },
   });
 
-  // Create link mutation:
-  const { mutate } = api.linksRouter.createLink.useMutation({
-    onSuccess: () => {
-      setLoading(false);
-      setOpen(false);
-      toast("Link created successfully");
-      form.reset();
-    },
-    onError: () => {
-      setLoading(false);
-      setError(true);
-      setMessage(
-        "Slug already exists. Please try another one or click 'Randomize' button.",
-      );
-    },
-  });
-
   // Form Submit method:
-  const onSubmit = (values: z.infer<typeof CreateLinkSchema>) => {
+  const onSubmit = async (values: z.infer<typeof CreateLinkSchema>) => {
     // Check if slug & url are equals to prevent infinite redirect =>
-    setError(false);
-    setMessage("");
     if (values.slug === values.url) {
       setLoading(false);
       setError(true);
       setMessage("The URL and the slug cannot be the same");
       return;
     }
-    setLoading(true);
-    mutate(values);
+
+    try {
+      setLoading(true);
+      const slugExists = await checkIfSlugExist(values.slug);
+
+      if (slugExists) {
+        toast.error(
+          "The slug is already exist. Write another or generate a random slug.",
+        );
+        return;
+      }
+
+      await createLink(values);
+    } catch (error) {
+      toast.error("An unexpected error has occurred. Please try again later.");
+    } finally {
+      setError(false);
+      setMessage("");
+    }
   };
 
   const handleGenerateRandomSlug = (e: React.MouseEvent<HTMLButtonElement>) => {
