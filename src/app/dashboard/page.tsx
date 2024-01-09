@@ -1,14 +1,14 @@
 import ShowLinks from "@/components/links/show-links";
-import { api } from "@/server/trpc/server";
+import { getLinksByUser } from "@/server/actions/links";
 
 const DashboardPage = async () => {
-  const getQuery = await api.linksRouter.allLinks.query();
+  const getLinks = await getLinksByUser();
 
-  if (!getQuery) {
+  if (!getLinks) {
     return <div>Error</div>;
   }
 
-  return <ShowLinks links={getQuery} />;
+  return <ShowLinks links={getLinks} />;
 };
 
 export default DashboardPage;
