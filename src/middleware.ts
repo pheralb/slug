@@ -67,6 +67,5 @@ export const config = {
     "/((?!api/|_next/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
     "/",
     "/:slug",
-    "/(api|trpc)(.*)",
   ],
 };
