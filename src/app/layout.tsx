@@ -1,11 +1,8 @@
-import { cookies } from "next/headers";
-
 // Styles:
 import "@/styles/globals.css";
 import { cn } from "@/utils";
 
 // Providers:
-import { TRPCReactProvider } from "@/server/trpc/react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ToasterComponent } from "@/components/providers/toaster";
 
@@ -38,7 +35,7 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-// Layout:
+// App layout:
 export default function RootLayout({
   children,
 }: {
@@ -59,9 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <TRPCReactProvider cookies={cookies().toString()}>
-            {children}
-          </TRPCReactProvider>
+          {children}
           <ToasterComponent />
         </ThemeProvider>
       </body>
