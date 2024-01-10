@@ -19,10 +19,12 @@ export const authRoutes = [
 ];
 
 /**
- * These routes require authentication and are only accessible to admins.
+ * These routes are used for the dashboard.
+ * Required for authentication.
+ * Only type the prefix.
  * @type {string[]}
  */
-export const protectedRoutes = [];
+export const dashboardRoutesPrefix = "/dashboard";
 
 /**
  * These prefix for API authentication routes.
