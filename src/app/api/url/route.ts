@@ -15,9 +15,6 @@ export const GET = async (req: NextRequest) => {
     );
   }
 
-  // Check if page exists:
-  
-
   // Get data from query:
   const data = (await db.link.findFirst({
     where: {
