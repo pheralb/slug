@@ -1,23 +1,33 @@
-> ✨ We are preparing a new version with Next.js 13 /app router, you can see the progress here: [next](https://github.com/pheralb/slug/tree/next) ✨
-
 <div align="center">
+  <a href="https://mintlify.com">
+    <img
+      src="public/images/logo_svg.svg"
+      alt="Mintlify Logo"
+      height="60"
+    />
+  </a>
+  <p>
+    <b>
+      An open-source URL shortener built with T3 Stack.
+    </b>
+  </p>
 
-<a href="slug.vercel.app">
-<img src="./public/img/banner_gh.jpg" />
-</a>
+<a href="https://slug.vercel.app/dashboard">Dashboard</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="https://slug.vercel.app/docs">Docs</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#-getting-started">Contribute</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="https://github.com/pheralb/slug/issues/new/choose">Create issue</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="https://twitter.com/pheralb_">Twitter</a>
 
-<p></p>
-
-<a href="https://slug.vercel.app/dash/create">🚀 Short link</a>
-<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-<a href="#-getting-started">🤝 Contribute</a>
-<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-<a href="https://twitter.com/pheralb_">🐦 Twitter</a>
-
+![Next.js Badge](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=flat)
 ![GitHub stars](https://img.shields.io/github/stars/pheralb/slug)
+![GitHub releases](https://img.shields.io/github/release/pheralb/slug)
 ![GitHub issues](https://img.shields.io/github/issues/pheralb/slug)
 ![GitHub license](https://img.shields.io/github/license/pheralb/slug)
-[![Required Node.JS >=16.0.0](https://img.shields.io/static/v1?label=node&message=%20%3E=16.0.0&logo=node.js&color=3f893e)](https://nodejs.org/about/releases)
+![PlanetScale Badge](https://img.shields.io/badge/PlanetScale-000?logo=planetscale&logoColor=fff&style=flat)
 
 </div>
 
