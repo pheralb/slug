@@ -32,6 +32,8 @@
     "boring-avatars": "1.10.1",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.0",
+    "date-fns": "3.2.0",
+    "framer-motion": "10.18.0",
     "lucide-react": "0.303.0",
     "million": "2.6.4",
     "next": "14.0.4",
