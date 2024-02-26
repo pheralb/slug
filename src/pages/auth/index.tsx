@@ -30,7 +30,7 @@ const Auth = () => {
   return (
     <div className="container mx-auto">
       <div className="mt-16 flex flex-col items-center justify-center px-4">
-        <h1 className="mb-8 text-4xl">👋 Welcome</h1>
+        <h1 className="mb-8 text-4xl">Hello World! slug-ten.vercel.app</h1>
         <Button
           className="ml-4 bg-midnightLight"
           onClick={handleSignIn}
