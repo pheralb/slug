@@ -2,7 +2,9 @@ import type { UserRole } from "@prisma/client";
 
 import NextAuth from "next-auth";
 import authConfig from "auth.config";
+
 import { PrismaAdapter } from "@auth/prisma-adapter";
+
 import { db } from "./db";
 
 import { getUserById } from "./utils/user";
@@ -33,7 +35,7 @@ export const {
       if (account?.provider !== "credentials") return true;
 
       // Check if user exists:
-      const existingUser = await getUserById(user.id);
+      const existingUser = await getUserById(user.id!);
 
       // Prevent sign in without email verification:
       if (!existingUser?.emailVerified) return false;
@@ -65,7 +67,7 @@ export const {
 
       if (session.user) {
         session.user.name = token.name;
-        session.user.email = token.email;
+        session.user.email = token.email!;
         session.user.isOAuth = token.isOAuth as boolean;
       }
 

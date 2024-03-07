@@ -13,6 +13,7 @@ const { auth } = NextAuth(authConfig);
 
 const middleware = async (req: NextRequest, isLoggedIn: boolean) => {
   try {
+    
     const { nextUrl } = req;
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
@@ -64,7 +65,7 @@ export default auth((req) => middleware(req, !!req.auth));
 
 export const config = {
   matcher: [
-    "/((?!api/|_next/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
+    //"/((?!api/|_next/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
     "/s/:slug*",
   ],
 };
