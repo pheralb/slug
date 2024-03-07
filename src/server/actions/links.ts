@@ -5,6 +5,7 @@ import type { CreateLinkSchema, LinkSchema } from "@/server/schemas";
 
 import { auth } from "@/server/auth";
 import { db } from "@/server/db";
+import { revalidatePath } from "next/cache";
 
 /**
  * Get links created by user.
@@ -90,6 +91,8 @@ export const createLink = async (values: z.infer<typeof CreateLinkSchema>) => {
       creatorId: currentUser.user?.id,
     },
   });
+
+  revalidatePath("/dashboard");
 
   return result;
 };
