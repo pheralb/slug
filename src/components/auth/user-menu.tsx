@@ -2,7 +2,13 @@
 
 import { logout } from "@/server/actions/auth";
 import { DropdownMenuItem } from "@/ui/dropdown-menu";
-import { ArrowUpRight, BugIcon, LogOutIcon, SettingsIcon } from "lucide-react";
+import {
+  ArrowUpRight,
+  BugIcon,
+  LayoutDashboardIcon,
+  LogOutIcon,
+  SettingsIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { XLogo } from "../logos";
 
@@ -15,6 +21,12 @@ const UserMenu = () => {
 
   return (
     <>
+      <DropdownMenuItem asChild>
+        <Link href="/dashboard">
+          <LayoutDashboardIcon size={iconSize} />
+          <span>Dashboard</span>
+        </Link>
+      </DropdownMenuItem>
       <DropdownMenuItem asChild>
         <Link href="/dashboard/settings">
           <SettingsIcon size={iconSize} />

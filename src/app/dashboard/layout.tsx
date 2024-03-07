@@ -14,7 +14,7 @@ interface DashboardLayoutProps {
 const DashboardLayout = (props: DashboardLayoutProps) => {
   return (
     <>
-      <nav className="border-b border-gray-100 bg-gray-50 dark:border-neutral-800 dark:bg-neutral-800/50">
+      <nav className="fixed w-full flex items-center border-b border-gray-100 dark:border-neutral-800 dark:bg-neutral-900 z-50">
         <Container>
           <div className="mx-auto">
             <div className="flex w-full items-center justify-between">
@@ -31,7 +31,7 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
           </div>
         </Container>
       </nav>
-      <Container>{props.children}</Container>
+      <Container className="my-[70px]">{props.children}</Container>
     </>
   );
 };

@@ -64,20 +64,23 @@ export function CreateLink(props: CreateLinkProps) {
     try {
       setLoading(true);
       const slugExists = await checkIfSlugExist(values.slug);
-
       if (slugExists) {
         toast.error(
           "The slug is already exist. Write another or generate a random slug.",
         );
         return;
       }
-
       await createLink(values);
+      toast.success("Link created successfully!", {
+        description: `Link: https://slug.vercel.app/${values.slug}`,
+      });
+      setOpen(false);
     } catch (error) {
       toast.error("An unexpected error has occurred. Please try again later.");
     } finally {
       setError(false);
       setMessage("");
+      setLoading(false);
     }
   };
 
