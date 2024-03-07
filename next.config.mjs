@@ -1,13 +1,13 @@
-import million from 'million/compiler';
+// 🥺 Disabled for now 👇
+// import million from "million/compiler";
 
-await import("./src/env.mjs");
-
-/** @type {import("next").NextConfig} */
-const config = {
-    swcMinify: true,
-    reactStrictMode: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
 };
 
-export default million.next(
-  config, { auto: { rsc: true } }
-);
+// const millionConfig = {
+//   auto: true,
+// };
+
+export default nextConfig;
