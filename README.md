@@ -16,11 +16,13 @@
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="https://slug.vercel.app/docs">Docs</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#-roadmap">Roadmap</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-getting-started">Contribute</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="https://github.com/pheralb/slug/issues/new/choose">Create issue</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
-<a href="https://twitter.com/pheralb_">Twitter</a>
+<a href="https://twitter.com/pheralb_">X/Twitter</a>
 
 ![Next.js Badge](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=flat)
 ![GitHub stars](https://img.shields.io/github/stars/pheralb/slug)
@@ -30,6 +32,38 @@
 ![PlanetScale Badge](https://img.shields.io/badge/PlanetScale-000?logo=planetscale&logoColor=fff&style=flat)
 
 </div>
+
+## 🔭 Roadmap
+
+⬆️ **Migrate to a new database:**
+
+- [ ] Migrate all data to a new database.
+
+⬆️ **Auth:**
+
+- [x] Sign In with Github.
+- [ ] Sign In with Google.
+- [ ] Sign In with Email & Password.
+- [ ] Reset password.
+
+⬆️ **Middleware:**
+
+- [x] Redirect with `/*` and `/s/*`.
+- [x] Separate public, protected & authentication routes.
+
+⬆️ **Dashboard (main):**
+
+- [x] Create a new short URL.
+- [x] List all shorted URLs.
+- [ ] Delete a shorted URL.
+- [ ] Update a shorted URL.
+
+⬆️ **Dashboard (settings):**
+
+- [ ] Change password.
+- [ ] Change email.
+- [ ] Activate/remove 2FA.
+- [ ] Delete account.
 
 ## 🤔 What is T3 Stack?
 
@@ -110,6 +144,7 @@ NEXTAUTH_URL:
 ### 🔑 How to get environment variables:
 
 **Planetscale database:**
+
 - [Create a new database](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide#getting-started-planet-scale-dashboard).
 - [Create a dev branch](https://planetscale.com/docs/onboarding/branching-and-deploy-requests#create-a-dev-branch).
 - [In the dev branch, click on "Connect" and select "Prisma". Now you have the DATABASE_URL](https://planetscale.com/docs/concepts/connection-strings#creating-a-password).
@@ -117,13 +152,15 @@ NEXTAUTH_URL:
 > 🚧 The environment variable in the dev branch is not the same as main. When you deploy your app to production, in the environment variables change DATABASE_URL to the main variable.
 
 **Github OAuth:**
+
 - [Click here to create new Github OAuth app](https://github.com/settings/applications/new).
 - Go to "Client secrets" and generate new client secret and and paste it into GITHUB_CLIENT_SECRET env.
 - Copy the Client ID and paste it into GITHUB_ID env.
 
 **Next Auth:**
-- NEXTAUTH_SECRET: ``mykey123`` for example.
-- NEXTAUTH_URL: ``http://localhost:3000/``.
+
+- NEXTAUTH_SECRET: `mykey123` for example.
+- NEXTAUTH_URL: `http://localhost:3000/`.
 
 5. Ready 🥳, now run:
 
