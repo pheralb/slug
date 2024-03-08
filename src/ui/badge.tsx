@@ -18,7 +18,7 @@ export const Badge = (props: BadgeProps) => {
       />
       <div
         className={cn(
-          "inline-flex h-full w-full cursor-default items-center justify-center rounded-full border border-neutral-100 bg-neutral-100 px-3 py-1 text-xs font-medium backdrop-blur-3xl dark:border-neutral-800 dark:bg-neutral-900 dark:text-white",
+          "inline-flex h-full w-full cursor-default items-center justify-center rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1 text-xs font-medium dark:border-neutral-800 dark:bg-neutral-900 dark:text-white",
           props.className,
         )}
       >
