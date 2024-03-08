@@ -35,7 +35,7 @@ export const {
       if (account?.provider !== "credentials") return true;
 
       // Check if user exists:
-      const existingUser = await getUserById(user.id!);
+      const existingUser = await getUserById(user.id);
 
       // Prevent sign in without email verification:
       if (!existingUser?.emailVerified) return false;

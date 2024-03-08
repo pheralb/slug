@@ -34,6 +34,7 @@ import { useSearchParams } from "next/navigation";
 import { sharedAnimationCards } from "./animation-cards";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
+import { cn } from "@/utils";
 
 const SignIn = () => {
   const searchParams = useSearchParams();
@@ -84,11 +85,11 @@ const SignIn = () => {
   };
 
   return (
-    <Card className={sharedAnimationCards}>
+    <Card className={cn(sharedAnimationCards)}>
       <CardHeader>
         <CardTitle className="text-xl">Sign In</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="dark:bg-neutral-900">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-5">

@@ -6,6 +6,7 @@ import type { CreateLinkSchema, LinkSchema } from "@/server/schemas";
 import { auth } from "@/server/auth";
 import { db } from "@/server/db";
 import { revalidatePath } from "next/cache";
+import { env } from "@/env.mjs";
 
 /**
  * Get links created by user.
@@ -65,6 +66,32 @@ export const checkIfSlugExist = async (slug: string) => {
   });
 
   if (result) {
+    return true;
+  }
+
+  return false;
+};
+
+/**
+ * Check if user has exceeded the limit.
+ */
+
+export const checkLimit = async () => {
+  const currentUser = await auth();
+  const limit = Number(env.NEXT_PUBLIC_MAX_URLS_PER_USER);
+
+  if (!currentUser) {
+    console.error("Not authenticated.");
+    return null;
+  }
+
+  const result = await db.link.count({
+    where: {
+      creatorId: currentUser.user?.id,
+    },
+  });
+
+  if (result >= limit) {
     return true;
   }
 

@@ -8,6 +8,7 @@ import { cn } from "@/utils";
 import { buttonVariants } from "@/ui/button";
 import UserButton from "./auth/user-button";
 import { Badge } from "@/ui/badge";
+import { GithubLogo } from "./logos";
 
 const Header = () => {
   return (
@@ -37,7 +38,7 @@ const Header = () => {
                 size: "icon",
               })}
             >
-              <GithubIcon size={20} />
+              <GithubLogo width={20} />
             </ExternalLink>
             <ModeToggle />
             <UserButton />

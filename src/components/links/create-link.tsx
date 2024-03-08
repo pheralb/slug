@@ -7,7 +7,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { checkIfSlugExist, createLink } from "@/server/actions/links";
+import {
+  checkIfSlugExist,
+  checkLimit,
+  createLink,
+} from "@/server/actions/links";
 
 import Alert from "@/ui/alert";
 import { Button } from "@/ui/button";
@@ -30,6 +34,7 @@ import {
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
 import { LoaderIcon, RocketIcon, ShuffleIcon } from "lucide-react";
+import { env } from "@/env.mjs";
 
 interface CreateLinkProps {
   children: ReactNode;
@@ -64,15 +69,33 @@ export function CreateLink(props: CreateLinkProps) {
     try {
       setLoading(true);
       const slugExists = await checkIfSlugExist(values.slug);
+
       if (slugExists) {
         toast.error(
           "The slug is already exist. Write another or generate a random slug.",
         );
         return;
       }
+
+      const limit = await checkLimit();
+      const numberOfLinks = Number(env.NEXT_PUBLIC_MAX_URLS_PER_USER);
+
+      if (limit) {
+        toast.error(
+          `You have reached the limit of links (${numberOfLinks}) that you can create.`,
+          {
+            duration: 10000,
+            closeButton: true,
+          },
+        );
+        return;
+      }
+
       await createLink(values);
-      toast.success("Link created successfully!", {
-        description: `Link: https://slug.vercel.app/${values.slug}`,
+      toast.success("Link created successfully", {
+        description: `Url: https://slug.vercel.app/${values.slug}`,
+        duration: 10000,
+        closeButton: true,
       });
       setOpen(false);
     } catch (error) {
