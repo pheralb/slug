@@ -15,7 +15,8 @@
     "postinstall": "prisma generate",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "db:dump": "pscale database dump urll main"
   },
   "dependencies": {
     "@auth/core": "0.28.0",
@@ -33,6 +34,7 @@
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.0",
     "date-fns": "3.3.1",
+    "geist": "1.2.2",
     "lucide-react": "0.350.0",
     "million": "3.0.5",
     "next": "14.1.3",
