@@ -35,10 +35,6 @@
 
 ## 🔭 Roadmap
 
-⬆️ **Migrate to a new database:**
-
-- [ ] Migrate all data to a new database.
-
 ⬆️ **Auth:**
 
 - [x] Sign In with Github.
