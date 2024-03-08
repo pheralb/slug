@@ -11,19 +11,12 @@ import Header from "@/components/header";
 
 // Fonts:
 import localFont from "next/font/local";
+import { GeistMono } from "geist/font/mono";
 
 const interVariable = localFont({
   variable: "--font-sans",
   src: "../fonts/InterVariable.woff2",
   weight: "100 900",
-  display: "swap",
-  preload: true,
-});
-
-const calsansSemibold = localFont({
-  variable: "--font-headings",
-  src: "../fonts/CalSans-SemiBold.woff2",
-  weight: "600",
   display: "swap",
   preload: true,
 });
@@ -45,7 +38,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `font-sans ${interVariable.variable} ${calsansSemibold.variable} antialiased`,
+          `font-sans ${interVariable.variable} ${GeistMono.variable} antialiased`,
           "bg-white dark:bg-neutral-900",
         )}
       >
