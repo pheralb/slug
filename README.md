@@ -1,4 +1,6 @@
-> ✨ We are preparing a new version with Next.js 13 /app router, you can see the progress here: [next](https://github.com/pheralb/slug/tree/next) ✨
+> [!IMPORTANT]
+> We are preparing a new version of Slug, including a new database. **The option to create new links is permanently closed until the new update.** The new update is planned for April.
+> You can see all the changes [here](https://github.com/pheralb/slug/tree/next) 🚀
 
 <div align="center">
 
