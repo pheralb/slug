@@ -4,7 +4,7 @@ import { getServerAuthSession } from "@/server/common/get-server-auth-session";
 const CreateNewLink = () => {
   return (
     <div className="container mx-auto pt-6">
-      <p>⚠️ We are updating Slug's services. During the upgrade, the option to create new links is closed. Slug will be operational again shortly.</p>
+      <p>⚠️ We are updating Slug services. During the upgrade, the option to create new links is closed. Slug will be operational again shortly.</p>
     </div>
   );
 };
