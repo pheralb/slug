@@ -1,11 +1,10 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { getServerAuthSession } from "@/server/common/get-server-auth-session";
-import Create from "@/components/functions/create";
 
 const CreateNewLink = () => {
   return (
     <div className="container mx-auto pt-6">
-      <Create />
+      <p>⚠️ We are updating Slug's services. During the upgrade, the option to create new links is closed. Slug will be operational again shortly.</p>
     </div>
   );
 };
