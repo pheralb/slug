@@ -1,5 +1,7 @@
 > [!IMPORTANT]
-> We are preparing a new version of Slug, including a new database. **The option to create new links is permanently closed until the new update.** The new update is planned for April.
+> We are preparing a new version of Slug, including a new database.
+> **The option to create new links is closed.**
+> The new update is planned for April.
 > You can see all the changes [here](https://github.com/pheralb/slug/tree/next) 🚀
 
 <div align="center">
