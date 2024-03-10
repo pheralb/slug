@@ -30,7 +30,7 @@ jobs:
         env:
           SKIP_ENV_VALIDATION: true
 
-  typecheck:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -45,3 +45,8 @@ jobs:
 
       - name: Run typecheck
         run: pnpm run typecheck
+
+      - name: Build project
+        run: pnpm run build
+        env:
+          SKIP_ENV_VALIDATION: true
