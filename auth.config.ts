@@ -7,7 +7,7 @@ import { loginSchema } from "@/server/schemas";
 import { getUserByEmail } from "@/server/utils/user";
 
 // Environment variables:
-import { env } from "@/env.mjs";
+import { env } from "@/env.js";
 
 // Providers:
 import Github from "next-auth/providers/github";
