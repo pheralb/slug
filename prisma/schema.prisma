@@ -1,16 +1,17 @@
+
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-    provider     = "mysql"
-    url          = env("DATABASE_URL")
-    relationMode = "prisma"
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
 }
 
 model link {
     id          Int      @id @default(autoincrement())
-    url         String   @db.Text
+    url         String
     slug        String   @unique
     description String?
     createdAt   DateTime @default(now())
@@ -66,11 +67,6 @@ model Session {
     @@index([userId])
 }
 
-enum UserRole {
-    USER
-    ADMIN
-}
-
 model User {
     id                    String                 @id @default(cuid())
     name                  String?
@@ -81,7 +77,7 @@ model User {
     password              String?
     isTwoFactorEnabled    Boolean                @default(false)
     twoFactorConfirmation TwoFactorConfirmation?
-    role                  UserRole               @default(USER)
+    role                  String                 @default("USER")
     accounts              Account[]
     sessions              Session[]
     links                 link[]
