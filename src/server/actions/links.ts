@@ -6,7 +6,7 @@ import type { CreateLinkSchema, LinkSchema } from "@/server/schemas";
 import { auth } from "@/server/auth";
 import { db } from "@/server/db";
 import { revalidatePath } from "next/cache";
-import { env } from "@/env.mjs";
+import { env } from "@/env.js";
 
 /**
  * Get links created by user.

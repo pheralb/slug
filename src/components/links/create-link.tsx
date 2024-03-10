@@ -34,7 +34,7 @@ import {
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
 import { LoaderIcon, RocketIcon, ShuffleIcon } from "lucide-react";
-import { env } from "@/env.mjs";
+import { env } from "@/env.js";
 
 interface CreateLinkProps {
   children: ReactNode;
