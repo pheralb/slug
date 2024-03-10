@@ -36,10 +36,6 @@ export const EditLinkSchema = z.object({
   description: z.string(),
 });
 
-export type LinkSchema = z.TypeOf<typeof LinkSchema>;
-export type CreateLinkInput = z.TypeOf<typeof CreateLinkSchema>;
-export type EditLinkInput = z.TypeOf<typeof EditLinkSchema>;
-
 export const getSingleLinkSchema = z.object({
   linkId: z.number(),
 });
@@ -84,3 +80,7 @@ export const newPasswordSchema = z.object({
     message: "Password must be at least 6 characters long.",
   }),
 });
+
+export type LinkSchema = z.TypeOf<typeof LinkSchema>;
+export type CreateLinkInput = z.TypeOf<typeof CreateLinkSchema>;
+export type EditLinkInput = z.TypeOf<typeof EditLinkSchema>;

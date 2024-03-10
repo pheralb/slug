@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { auth } from "@/server/auth";
+import { auth } from "auth";
 
 import {
   DropdownMenu,
@@ -43,7 +43,9 @@ export default async function UserButton() {
           size: "icon",
         })}
       >
-        <Avatar size={22} name={session.user.name!} variant="beam" />
+        {session.user.name && (
+          <Avatar size={22} name={session.user.name} variant="beam" />
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">

@@ -3,7 +3,7 @@
 import type { z } from "zod";
 import type { CreateLinkSchema, LinkSchema } from "@/server/schemas";
 
-import { auth } from "@/server/auth";
+import { auth } from "auth";
 import { db } from "@/server/db";
 import { revalidatePath } from "next/cache";
 import { env } from "@/env.js";

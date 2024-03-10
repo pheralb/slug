@@ -1,4 +1,4 @@
-import { auth, signOut } from "@/server/auth";
+import { auth, signOut } from "auth";
 
 const SettingsPage = async () => {
   const session = await auth();

@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 import { AuthError } from "next-auth";
 
 import { db } from "@/server/db";
-import { signIn, signOut } from "@/server/auth";
+import { signIn, signOut } from "auth";
 import { getUserByEmail } from "@/server/utils/user";
 import {
   getPasswordResetTokenByToken,
