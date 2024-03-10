@@ -39,3 +39,12 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# prisma & dump files
+migrations
+dev.db
+dev.db-journal
+mysql2sqlite
+pscale*
+db_dump.sql
+dump-in-sqlite.db
