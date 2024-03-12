@@ -41,7 +41,7 @@ The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Th
 - ✨ **Framework**: [Next.js 14 /app Router](https://nextjs.org/).
 - 🔒 **Auth**: [Auth.js v5](https://authjs.dev/).
 - 🏗️ **ORM**: [Prisma](https://prisma.io).
-- ☁️ **Database**: [Turso](https://turso.tech/) + [libSQL](https://github.com/tursodatabase/libsql).
+- ☁️ **Database**: [Turso](https://turso.tech/) (SQLite) + [libSQL](https://github.com/tursodatabase/libsql).
 - 🎨 **Styling**: [TailwindCSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com) & [Radix Primitives](https://www.radix-ui.com).
 - 💅 **Formatting**: [Prettier](https://prettier.io) with [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) + [ESLint](https://eslint.org).
 - 🙂 **Icons**: [Lucide Icons](https://lucide.dev) + [svgl](https://svgl.app).
@@ -79,25 +79,6 @@ The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Th
 - [ ] Activate/remove 2FA.
 - [ ] Delete account.
 
-## 📦 Project structure
-
-```
-- prisma
-- public
-- src
-  |- components
-  |- env
-  |- layout
-  |- motions
-  |- pages
-  |- schema
-  |- server
-  |- styles
-  |- types
-  |- ui
-  |- utils
-```
-
 ## 👨‍🚀 Getting Started
 
 > 🚧 You will need [Nodejs +16 (LTS recommended)](https://nodejs.org/en/) installed.
@@ -120,8 +101,6 @@ npm install
 pnpm install
 # or
 yarn install
-# or
-ultra install
 ```
 
 4. Create a **.env** file with the following content:
