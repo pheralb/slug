@@ -1,4 +1,3 @@
-
 generator client {
     provider        = "prisma-client-js"
     previewFeatures = ["driverAdapters"]
@@ -9,7 +8,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model link {
+model Links {
     id          Int      @id @default(autoincrement())
     url         String
     slug        String   @unique
@@ -17,7 +16,7 @@ model link {
     createdAt   DateTime @default(now())
     createdBy   User?    @relation(fields: [creatorId], references: [id])
     creatorId   String
-    folder      folder?  @relation(fields: [tagId], references: [id])
+    tag         Tags?    @relation(fields: [tagId], references: [id])
     tagId       Int?
 
     @@index(slug)
@@ -25,14 +24,14 @@ model link {
     @@index([tagId])
 }
 
-model folder {
+model Tags {
     id          Int      @id @default(autoincrement())
     name        String
     description String?
     createdAt   DateTime @default(now())
     createdBy   User?    @relation(fields: [creatorId], references: [id])
     creatorId   String
-    links       link[]
+    links       Links[]
 
     @@index([creatorId])
 }
@@ -80,8 +79,8 @@ model User {
     role                  String                 @default("USER")
     accounts              Account[]
     sessions              Session[]
-    links                 link[]
-    folder                folder[]
+    links                 Links[]
+    tags                  Tags[]
 }
 
 model VerificationToken {
