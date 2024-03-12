@@ -54,8 +54,8 @@ This project uses the following technologies:
 
 ⬆️ **Dependencies:**
 
-- [ ] Update `@prisma/adapter-libsql`, `@prisma/client` & `prisma` to the stable version when it's released.
-- [ ] Update `next-auth` to the stable version (v5) when it's released.
+- [x] Update `@prisma/adapter-libsql`, `@prisma/client` & `prisma` to the stable version when it's released.
+- [x] Update `next-auth` to the stable version (v5) when it's released.
 
 ⬆️ **Auth:**
 
