@@ -1,5 +1,5 @@
-import { NextResponse, type NextRequest } from "next/server";
-import { auth } from "auth";
+import NextAuth from "next-auth";
+import authConfig from "@/auth.config";
 
 import {
   DEFAULT_LOGIN_REDIRECT_URL,
@@ -9,9 +9,12 @@ import {
   publicRoutes,
 } from "./routes";
 
-const middleware = async (req: NextRequest, isLoggedIn: boolean) => {
+const { auth } = NextAuth(authConfig);
+
+export default auth(async (req) => {
   try {
     const { nextUrl } = req;
+    const isLoggedIn = !!req.auth;
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
@@ -20,7 +23,7 @@ const middleware = async (req: NextRequest, isLoggedIn: boolean) => {
 
     // Is Api Route:
     if (isApiAuthRoute) {
-      return NextResponse.next();
+      return;
     }
 
     // Is Auth Route. First, check is authenticated:
@@ -28,7 +31,7 @@ const middleware = async (req: NextRequest, isLoggedIn: boolean) => {
       if (isLoggedIn) {
         return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl));
       }
-      return NextResponse.next();
+      return;
     }
 
     // Check ``slug`` route.
@@ -44,7 +47,7 @@ const middleware = async (req: NextRequest, isLoggedIn: boolean) => {
 
       if (data.status === 404) {
         console.log(`Slug not found: ${slugRoute}`);
-        return NextResponse.next();
+        return;
       }
 
       const dataToJson = await data.json();
@@ -66,14 +69,12 @@ const middleware = async (req: NextRequest, isLoggedIn: boolean) => {
       );
     }
 
-    NextResponse.next();
+    return;
   } catch (error) {
     console.error("Error in middleware:", error);
     return new Response("Internal Server Error", { status: 500 });
   }
-};
-
-export default auth((req) => middleware(req, !!req.auth));
+});
 
 export const config = {
   matcher: [
