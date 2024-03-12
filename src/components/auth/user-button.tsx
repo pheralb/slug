@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { auth } from "auth";
+import { auth } from "@/auth";
 
 import {
   DropdownMenu,

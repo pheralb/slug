@@ -3,10 +3,10 @@
 import type { z } from "zod";
 import type { CreateLinkSchema, LinkSchema } from "@/server/schemas";
 
-import { auth } from "auth";
+import { auth } from "@/auth";
 import { db } from "@/server/db";
 import { revalidatePath } from "next/cache";
-import { env } from "@/env.js";
+import { env } from "@/env.mjs";
 
 /**
  * Get links created by user.
@@ -20,7 +20,7 @@ export const getLinksByUser = async () => {
     return null;
   }
 
-  const result = await db.link.findMany({
+  const result = await db.links.findMany({
     where: {
       creatorId: currentUser.user?.id,
     },
@@ -43,7 +43,7 @@ export const getSingleLink = async (id: number) => {
     return null;
   }
 
-  const result = await db.link.findUnique({
+  const result = await db.links.findUnique({
     where: {
       id,
     },
@@ -59,7 +59,7 @@ export const getSingleLink = async (id: number) => {
  * @type {string()}
  */
 export const checkIfSlugExist = async (slug: string) => {
-  const result = await db.link.findUnique({
+  const result = await db.links.findUnique({
     where: {
       slug: slug,
     },
@@ -85,7 +85,7 @@ export const checkLimit = async () => {
     return null;
   }
 
-  const result = await db.link.count({
+  const result = await db.links.count({
     where: {
       creatorId: currentUser.user?.id,
     },
@@ -112,7 +112,7 @@ export const createLink = async (values: z.infer<typeof CreateLinkSchema>) => {
   }
 
   // Create new link:
-  const result = await db.link.create({
+  const result = await db.links.create({
     data: {
       ...values,
       creatorId: currentUser.user?.id,
@@ -138,7 +138,7 @@ export const updateLink = async (values: z.infer<typeof LinkSchema>) => {
   }
 
   // Update link:
-  const result = await db.link.update({
+  const result = await db.links.update({
     where: { slug: values.slug },
     data: {
       ...values,
@@ -163,7 +163,7 @@ export const deleteLink = async (id: number) => {
   }
 
   // Update link:
-  const result = await db.link.delete({
+  const result = await db.links.delete({
     where: { id: id, creatorId: currentUser.user?.id },
   });
 

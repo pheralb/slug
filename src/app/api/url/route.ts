@@ -16,7 +16,7 @@ export const GET = async (req: NextRequest) => {
   }
 
   // Get data from query:
-  const data = (await db.link.findFirst({
+  const data = (await db.links.findFirst({
     where: {
       slug: {
         equals: params,
