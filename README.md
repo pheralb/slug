@@ -33,9 +33,11 @@
 
 </div>
 
-## 🤔 What is T3 Stack?
+## 👋 Introduction
 
-The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**. This project is using:
+[Slug](slug.vercel.app) is a service that offers to shorten urls in a simple, fast and secure way. It's built with [**T3 Stack**](https://create.t3.gg/), a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**. 
+
+This project uses the following technologies:
 
 - 🧑‍🚀 **Bootstrapping**: [create-t3-app](https://create.t3.gg).
 - ✨ **Framework**: [Next.js 14 /app Router](https://nextjs.org/).
@@ -45,6 +47,8 @@ The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Th
 - 🎨 **Styling**: [TailwindCSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com) & [Radix Primitives](https://www.radix-ui.com).
 - 💅 **Formatting**: [Prettier](https://prettier.io) with [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) + [ESLint](https://eslint.org).
 - 🙂 **Icons**: [Lucide Icons](https://lucide.dev) + [svgl](https://svgl.app).
+
+> ⚠️ This is a community project, not associated with [Vercel](https://vercel.com/).
 
 ## 🔭 Roadmap
 
