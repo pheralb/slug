@@ -1,4 +1,4 @@
-await import("./src/env.js");
+await import("./src/env.mjs");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
