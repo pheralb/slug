@@ -1,8 +1,8 @@
 <div align="center">
-  <a href="https://mintlify.com">
+  <a href="https://slug.vercel.app">
     <img
       src="public/images/logo_svg.svg"
-      alt="Mintlify Logo"
+      alt="Slug Logo"
       height="60"
     />
   </a>
@@ -25,15 +25,33 @@
 <a href="https://twitter.com/pheralb_">X/Twitter</a>
 
 ![Next.js Badge](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=flat)
+![Turso Badge](https://img.shields.io/badge/Turso-4FF8D2?logo=turso&logoColor=000&style=flat)
 ![GitHub stars](https://img.shields.io/github/stars/pheralb/slug)
 ![GitHub releases](https://img.shields.io/github/release/pheralb/slug)
 ![GitHub issues](https://img.shields.io/github/issues/pheralb/slug)
 ![GitHub license](https://img.shields.io/github/license/pheralb/slug)
-![PlanetScale Badge](https://img.shields.io/badge/PlanetScale-000?logo=planetscale&logoColor=fff&style=flat)
 
 </div>
 
+## 🤔 What is T3 Stack?
+
+The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**. This project is using:
+
+- 🧑‍🚀 **Bootstrapping**: [create-t3-app](https://create.t3.gg).
+- ✨ **Framework**: [Next.js 14 /app Router](https://nextjs.org/).
+- 🔒 **Auth**: [Auth.js v5](https://authjs.dev/).
+- 🏗️ **ORM**: [Prisma](https://prisma.io).
+- ☁️ **Database**: [Turso](https://turso.tech/) + [libSQL](https://github.com/tursodatabase/libsql).
+- 🎨 **Styling**: [TailwindCSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com) & [Radix Primitives](https://www.radix-ui.com).
+- 💅 **Formatting**: [Prettier](https://prettier.io) with [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) + [ESLint](https://eslint.org).
+- 🙂 **Icons**: [Lucide Icons](https://lucide.dev) + [svgl](https://svgl.app).
+
 ## 🔭 Roadmap
+
+⬆️ **Dependencies:**
+
+- [ ] Update `@prisma/adapter-libsql`, `@prisma/client` & `prisma` to the stable version when it's released.
+- [ ] Update `next-auth` to the stable version (v5) when it's released.
 
 ⬆️ **Auth:**
 
@@ -60,20 +78,6 @@
 - [ ] Change email.
 - [ ] Activate/remove 2FA.
 - [ ] Delete account.
-
-## 🤔 What is T3 Stack?
-
-The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**. This project is using:
-
-- ✅ **Bootstrapping**: [create-t3-app](https://create.t3.gg).
-- ✅ **Framework**: [Nextjs 13 + Typescript](https://nextjs.org/).
-- ✅ **Auth**: [Next-Auth.js](https://next-auth.js.org)
-- ✅ **ORM**: [Prisma](https://prisma.io).
-- ✅ **Database**: [Planetscale](https://planetscale.com/).
-- ✅ **Styling**: [TailwindCSS + HeadlessUI](https://tailwindcss.com).
-- ✅ **Typescript Schema Validation**: [Zod](https://github.com/colinhacks/zod).
-- ✅ **End-to-end typesafe API**: [tRPC](https://trpc.io/).
-- ✅ **Safely serialize JavaScript expressions**: [Superjson](https://github.com/blitz-js/superjson).
 
 ## 📦 Project structure
 
