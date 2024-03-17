@@ -8,10 +8,17 @@ export const ToasterComponent = () => {
   return (
     <Toaster
       position="bottom-right"
-      className="font-sans"
-      style={{
-        backgroundColor: theme === "dark" ? "#1f2937" : "#fff",
-        color: theme === "dark" ? "#fff" : "#1f2937",
+      theme={theme === "dark" ? "dark" : "light"}
+      toastOptions={{
+        style: {
+          background: theme === "dark" ? "#171717" : "#f3f4f6",
+          color: theme === "dark" ? "#f3f4f6" : "#1f2937",
+          borderColor: theme === "dark" ? "#262626" : "#e5e7eb",
+        },
+        classNames: {
+          toast: "font-sans dark:bg-blue-400",
+          description: "font-mono",
+        },
       }}
     />
   );
