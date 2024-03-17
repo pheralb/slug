@@ -173,7 +173,7 @@ const SignIn = () => {
         </Form>
         {!isTwoFactor ? (
           <div className="mt-4">
-            <SocialLogin isPending={isPending} />
+            <SocialLogin />
           </div>
         ) : null}
       </CardContent>

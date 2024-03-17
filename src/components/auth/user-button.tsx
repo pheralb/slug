@@ -23,7 +23,7 @@ export default async function UserButton() {
       <Link
         href="/login"
         className={buttonVariants({
-          variant: "secondary",
+          variant: "outline",
           className: "group",
         })}
       >

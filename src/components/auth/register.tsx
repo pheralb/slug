@@ -158,7 +158,7 @@ const SignUp = () => {
           </form>
         </Form>
         <div className="mt-4">
-          <SocialLogin isPending={isPending} />
+          <SocialLogin />
         </div>
       </CardContent>
       <CardFooter className="flex items-center space-x-1 text-sm text-neutral-600 dark:text-neutral-400">
