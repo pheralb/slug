@@ -1,33 +1,12 @@
 "use server";
 
 import type { z } from "zod";
-import type { CreateLinkSchema, LinkSchema } from "@/server/schemas";
+import type { CreateLinkSchema, EditLinkSchema } from "@/server/schemas";
 
 import { auth } from "@/auth";
 import { db } from "@/server/db";
 import { revalidatePath } from "next/cache";
-import { env } from "@/env.mjs";
-
-/**
- * Get links created by user.
- * Authentication required.
- */
-export const getLinksByUser = async () => {
-  const currentUser = await auth();
-
-  if (!currentUser) {
-    console.error("Not authenticated.");
-    return null;
-  }
-
-  const result = await db.links.findMany({
-    where: {
-      creatorId: currentUser.user?.id,
-    },
-  });
-
-  return result;
-};
+import { LIMIT_LINKS } from "../limits";
 
 /**
  * Get single link data.
@@ -78,7 +57,6 @@ export const checkIfSlugExist = async (slug: string) => {
 
 export const checkLimit = async () => {
   const currentUser = await auth();
-  const limit = Number(env.NEXT_PUBLIC_MAX_URLS_PER_USER);
 
   if (!currentUser) {
     console.error("Not authenticated.");
@@ -91,7 +69,7 @@ export const checkLimit = async () => {
     },
   });
 
-  if (result >= limit) {
+  if (result >= LIMIT_LINKS) {
     return true;
   }
 
@@ -119,6 +97,7 @@ export const createLink = async (values: z.infer<typeof CreateLinkSchema>) => {
     },
   });
 
+  revalidatePath("/");
   revalidatePath("/dashboard");
 
   return result;
@@ -127,9 +106,9 @@ export const createLink = async (values: z.infer<typeof CreateLinkSchema>) => {
 /**
  * Update link data.
  * Authentication required.
- * @type {z.infer<typeof LinkSchema>}
+ * @type {z.infer<typeof EditLinkSchema>}
  */
-export const updateLink = async (values: z.infer<typeof LinkSchema>) => {
+export const updateLink = async (values: z.infer<typeof EditLinkSchema>) => {
   const currentUser = await auth();
 
   if (!currentUser) {
@@ -138,7 +117,7 @@ export const updateLink = async (values: z.infer<typeof LinkSchema>) => {
   }
 
   // Update link:
-  const result = await db.links.update({
+  await db.links.update({
     where: { slug: values.slug },
     data: {
       ...values,
@@ -146,7 +125,10 @@ export const updateLink = async (values: z.infer<typeof LinkSchema>) => {
     },
   });
 
-  return result;
+  revalidatePath("/");
+  revalidatePath("/dashboard");
+
+  return;
 };
 
 /**
@@ -166,6 +148,8 @@ export const deleteLink = async (id: number) => {
   const result = await db.links.delete({
     where: { id: id, creatorId: currentUser.user?.id },
   });
+
+  revalidatePath("/dashboard");
 
   return result;
 };

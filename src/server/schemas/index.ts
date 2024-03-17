@@ -31,8 +31,8 @@ export const CreateLinkSchema = z.object({
 });
 
 export const EditLinkSchema = z.object({
-  url: z.string(),
-  slug: z.string(),
+  url: z.string().min(1, { message: "URL is required." }),
+  slug: z.string().min(1, { message: "Short link is required." }),
   description: z.string(),
 });
 
