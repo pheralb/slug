@@ -1,29 +1,28 @@
 "use client";
 
-import type { z } from "zod";
-import { CreateLinkSchema } from "@/server/schemas";
+import type { Links } from "@prisma/client";
 import { useState, type ReactNode } from "react";
+import type { z } from "zod";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { zodResolver } from "@hookform/resolvers/zod";
 
-import {
-  checkIfSlugExist,
-  checkLimit,
-  createLink,
-} from "@/server/actions/links";
+import { updateLink } from "@/server/actions/links";
 
-import Alert from "@/ui/alert";
-import { Button } from "@/ui/button";
 import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/ui/dialog";
+import { Button } from "@/ui/button";
+import { LoaderIcon, SaveIcon } from "lucide-react";
+import Alert from "@/ui/alert";
 import {
   Form,
   FormControl,
@@ -33,30 +32,31 @@ import {
   FormMessage,
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
-import { LoaderIcon, RocketIcon, ShuffleIcon } from "lucide-react";
+import { EditLinkSchema } from "@/server/schemas";
 
-interface CreateLinkProps {
-  children: ReactNode;
+interface EditLinkProps {
+  trigger: ReactNode;
+  link: Links;
 }
 
-export function CreateLink(props: CreateLinkProps) {
+const EditLink = (props: EditLinkProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [isError, setError] = useState<boolean>(false);
 
   // Main form:
-  const form = useForm<z.infer<typeof CreateLinkSchema>>({
-    resolver: zodResolver(CreateLinkSchema),
+  const form = useForm<z.infer<typeof EditLinkSchema>>({
+    resolver: zodResolver(EditLinkSchema),
     defaultValues: {
-      url: "",
-      slug: "",
-      description: "",
+      url: props.link.url,
+      slug: props.link.slug,
+      description: props.link.description ?? "",
     },
   });
 
   // Form Submit method:
-  const onSubmit = async (values: z.infer<typeof CreateLinkSchema>) => {
+  const onSubmit = async (values: z.infer<typeof EditLinkSchema>) => {
     // Check if slug & url are equals to prevent infinite redirect =>
     if (values.slug === values.url) {
       setLoading(false);
@@ -67,55 +67,31 @@ export function CreateLink(props: CreateLinkProps) {
 
     try {
       setLoading(true);
-
-      const isReachLimit = await checkLimit();
-
-      if (isReachLimit) {
-        toast.error("You have reached the limit of links allowed.", {
-          duration: 10000,
-          closeButton: true,
-        });
-        return;
-      }
-
-      const slugExists = await checkIfSlugExist(values.slug);
-
-      if (slugExists) {
-        toast.error(
-          "The slug is already exist. Write another or generate a random slug.",
-        );
-        return;
-      }
-
-      await createLink(values);
-
-      toast.success("Link created successfully", {
+      await updateLink(values);
+      toast.success("Link edited successfully.", {
         description: `Url: https://slug.vercel.app/${values.slug}`,
         duration: 10000,
         closeButton: true,
       });
+      setOpen(false);
     } catch (error) {
       toast.error("An unexpected error has occurred. Please try again later.");
     } finally {
-      setOpen(false);
       setError(false);
       setMessage("");
       setLoading(false);
     }
   };
 
-  const handleGenerateRandomSlug = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const randomSlug = Math.random().toString(36).substring(7);
-    form.setValue("slug", randomSlug);
-  };
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{props.children}</DialogTrigger>
+      <DialogTrigger asChild>{props.trigger}</DialogTrigger>
       <DialogContent>
-        <DialogHeader className="mb-2">
-          <DialogTitle>Create new link</DialogTitle>
+        <DialogHeader>
+          <DialogTitle>Edit link</DialogTitle>
+          <DialogDescription className="truncate">
+            /{props.link.slug}
+          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -129,7 +105,7 @@ export function CreateLink(props: CreateLinkProps) {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="https://"
+                        placeholder={props.link.url}
                         disabled={loading}
                       />
                     </FormControl>
@@ -147,17 +123,9 @@ export function CreateLink(props: CreateLinkProps) {
                       <div className="relative flex items-center">
                         <Input
                           {...field}
-                          placeholder="mylink"
-                          disabled={loading}
+                          placeholder={props.link.slug}
+                          disabled={true}
                         />
-                        <Button
-                          onClick={handleGenerateRandomSlug}
-                          variant="secondary"
-                          className="absolute right-0"
-                        >
-                          <ShuffleIcon size={14} />
-                          <span>Randomize</span>
-                        </Button>
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -173,7 +141,8 @@ export function CreateLink(props: CreateLinkProps) {
                     <FormControl>
                       <Textarea
                         {...field}
-                        placeholder="Enter a description"
+                        placeholder={props.link.description ?? "Description"}
+
                         disabled={loading}
                       />
                     </FormControl>
@@ -193,9 +162,9 @@ export function CreateLink(props: CreateLinkProps) {
                 {loading ? (
                   <LoaderIcon size={16} className="animate-spin" />
                 ) : (
-                  <RocketIcon size={16} />
+                  <SaveIcon size={16} />
                 )}
-                <span>{loading ? "Creating..." : "Create"}</span>
+                <span>{loading ? "Saving..." : "Save"}</span>
               </Button>
             </DialogFooter>
           </form>
@@ -203,4 +172,6 @@ export function CreateLink(props: CreateLinkProps) {
       </DialogContent>
     </Dialog>
   );
-}
+};
+
+export default EditLink;
