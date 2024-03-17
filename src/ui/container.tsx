@@ -9,7 +9,7 @@ interface ContainerProps {
 const Container = (props: ContainerProps) => {
   return (
     <section
-      className={cn("container mx-auto w-full max-w-6xl", props.className)}
+      className={cn("container mx-auto w-full", props.className)}
     >
       {props.children}
     </section>
