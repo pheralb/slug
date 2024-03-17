@@ -22,9 +22,6 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string(),
     RESEND_API_KEY: z.string(),
   },
-  client: {
-    NEXT_PUBLIC_MAX_URLS_PER_USER: z.string().min(1),
-  },
   runtimeEnv: {
     TURSO_DATABASE_URL: process.env.TURSO_DATABASE_URL,
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
@@ -37,7 +34,6 @@ export const env = createEnv({
     GOOGLE_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
-    NEXT_PUBLIC_MAX_URLS_PER_USER: process.env.NEXT_PUBLIC_MAX_URLS_PER_USER,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,
