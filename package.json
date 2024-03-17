@@ -16,7 +16,7 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name init",
     "db:studio": "prisma studio",
-    "db:push": "turso db shell slug < ./prisma/migrations/20240312092217_init/migration.sql",
+    "db:push": "turso db shell slug < ./prisma/migrations/20240317153755_init/migration.sql",
     "db:pscale:dump": "pscale database dump databasename databasebranch"
   },
   "dependencies": {
