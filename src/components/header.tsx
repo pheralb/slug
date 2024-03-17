@@ -3,7 +3,6 @@ import { ModeToggle } from "./change-theme";
 import Logo from "./logo";
 import Link from "next/link";
 import ExternalLink from "@/ui/external-link";
-import { GithubIcon } from "lucide-react";
 import { cn } from "@/utils";
 import { buttonVariants } from "@/ui/button";
 import UserButton from "./auth/user-button";
@@ -28,7 +27,7 @@ const Header = () => {
             <span className="self-center whitespace-nowrap text-lg font-medium tracking-tight dark:text-white">
               slug
             </span>
-            <Badge>beta</Badge>
+            <Badge className="cursor-pointer">beta</Badge>
           </Link>
           <div className="flex items-center space-x-1">
             <ExternalLink
