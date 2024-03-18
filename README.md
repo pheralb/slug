@@ -55,14 +55,12 @@ This project uses the following technologies:
 ⬆️ **Dependencies:**
 
 - [x] Update `@prisma/adapter-libsql`, `@prisma/client` & `prisma` to the stable version when it's released.
-- [x] Update `next-auth` to the stable version (v5) when it's released.
+- [ ] Update `next-auth` to the stable version (v5) when it's released.
 
 ⬆️ **Auth:**
 
 - [x] Sign In with Github.
 - [ ] Sign In with Google.
-- [ ] Sign In with Email & Password.
-- [ ] Reset password.
 
 ⬆️ **Middleware:**
 
@@ -73,8 +71,8 @@ This project uses the following technologies:
 
 - [x] Create a new short URL.
 - [x] List all shorted URLs.
-- [ ] Delete a shorted URL.
-- [ ] Update a shorted URL.
+- [x] Delete a shorted URL.
+- [x] Update a shorted URL.
 
 ⬆️ **Dashboard (settings):**
 
