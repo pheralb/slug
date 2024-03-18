@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
+
 import { auth, signOut } from "@/auth";
+
+export const metadata: Metadata = {
+  title: "Settings - Dashboard",
+};
 
 const SettingsPage = async () => {
   const session = await auth();

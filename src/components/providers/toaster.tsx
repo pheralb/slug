@@ -12,7 +12,7 @@ export const ToasterComponent = () => {
       toastOptions={{
         style: {
           background: theme === "dark" ? "#171717" : "#f3f4f6",
-          color: theme === "dark" ? "#f3f4f6" : "#1f2937",
+          color: theme === "dark" ? "#f5f5f5" : "#1f2937",
           borderColor: theme === "dark" ? "#262626" : "#e5e7eb",
         },
         classNames: {
