@@ -118,7 +118,7 @@ export const updateLink = async (values: z.infer<typeof EditLinkSchema>) => {
 
   // Update link:
   await db.links.update({
-    where: { slug: values.slug },
+    where: { id: values.id },
     data: {
       ...values,
       creatorId: currentUser.user?.id,
