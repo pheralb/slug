@@ -21,7 +21,7 @@ import {
   DialogTrigger,
 } from "@/ui/dialog";
 import { Button } from "@/ui/button";
-import { LoaderIcon, SaveIcon } from "lucide-react";
+import { LoaderIcon, LockIcon, LockOpenIcon, SaveIcon } from "lucide-react";
 import Alert from "@/ui/alert";
 import {
   Form,
@@ -33,6 +33,7 @@ import {
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
 import { EditLinkSchema } from "@/server/schemas";
+import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 
 interface EditLinkProps {
   trigger: ReactNode;
@@ -44,11 +45,13 @@ const EditLink = (props: EditLinkProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [isError, setError] = useState<boolean>(false);
+  const [unlockSlug, setUnlockSlug] = useState<boolean>(true);
 
   // Main form:
   const form = useForm<z.infer<typeof EditLinkSchema>>({
     resolver: zodResolver(EditLinkSchema),
     defaultValues: {
+      id: props.link.id,
       url: props.link.url,
       slug: props.link.slug,
       description: props.link.description ?? "",
@@ -124,8 +127,41 @@ const EditLink = (props: EditLinkProps) => {
                         <Input
                           {...field}
                           placeholder={props.link.slug}
-                          disabled={true}
+                          disabled={unlockSlug}
                         />
+                        {unlockSlug ? (
+                          <Popover>
+                            <PopoverTrigger className="absolute bottom-0 right-0 top-0 flex items-center px-3">
+                              <LockIcon size={16} />
+                            </PopoverTrigger>
+                            <PopoverContent
+                              sideOffset={0.2}
+                              className="text-sm"
+                            >
+                              <p className="mb-2">
+                                Editing the custom link will remove access from
+                                the previous link and it will be available to
+                                everyone. Are you sure you want to continue?
+                              </p>
+                              <Button
+                                onClick={() => setUnlockSlug(false)}
+                                variant="outline"
+                                className="w-full"
+                              >
+                                <LockOpenIcon size={16} />
+                                <span>Unlock</span>
+                              </Button>
+                            </PopoverContent>
+                          </Popover>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => setUnlockSlug(true)}
+                            className="absolute bottom-0 right-0 top-0 flex items-center px-3"
+                          >
+                            <LockOpenIcon size={16} />
+                          </button>
+                        )}
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -142,7 +178,6 @@ const EditLink = (props: EditLinkProps) => {
                       <Textarea
                         {...field}
                         placeholder={props.link.description ?? "Description"}
-
                         disabled={loading}
                       />
                     </FormControl>

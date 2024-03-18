@@ -37,6 +37,7 @@ import { LoaderIcon, RocketIcon, ShuffleIcon } from "lucide-react";
 
 interface CreateLinkProps {
   children: ReactNode;
+  slug?: string;
 }
 
 export function CreateLink(props: CreateLinkProps) {
@@ -50,7 +51,7 @@ export function CreateLink(props: CreateLinkProps) {
     resolver: zodResolver(CreateLinkSchema),
     defaultValues: {
       url: "",
-      slug: "",
+      slug: props.slug ?? "",
       description: "",
     },
   });
@@ -94,10 +95,11 @@ export function CreateLink(props: CreateLinkProps) {
         duration: 10000,
         closeButton: true,
       });
+
+      setOpen(false);
     } catch (error) {
       toast.error("An unexpected error has occurred. Please try again later.");
     } finally {
-      setOpen(false);
       setError(false);
       setMessage("");
       setLoading(false);
@@ -152,8 +154,8 @@ export function CreateLink(props: CreateLinkProps) {
                         />
                         <Button
                           onClick={handleGenerateRandomSlug}
-                          variant="secondary"
-                          className="absolute right-0"
+                          variant="outline"
+                          className="absolute right-0 rounded-none rounded-tr-md rounded-br-md"
                         >
                           <ShuffleIcon size={14} />
                           <span>Randomize</span>

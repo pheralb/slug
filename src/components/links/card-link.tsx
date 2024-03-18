@@ -3,8 +3,9 @@ import type { Links } from "@prisma/client";
 import ExternalLink from "@/ui/external-link";
 import { formatDate } from "@/utils/formatDate";
 import EditLink from "./edit-link";
-import { CopyIcon, SettingsIcon } from "lucide-react";
+import { CopyIcon, SettingsIcon, TrashIcon } from "lucide-react";
 import CopyLink from "./copy-link";
+import DeleteLink from "./delete-link";
 
 interface CardLinkProps {
   linkInfo: Links;
@@ -35,6 +36,14 @@ const CardLink = ({ linkInfo }: CardLinkProps) => {
             }
             link={linkInfo}
           />
+          <DeleteLink
+            link={linkInfo}
+            trigger={
+              <button className="transition-opacity hover:opacity-75">
+                <TrashIcon size={16} />
+              </button>
+            }
+          />
         </div>
       </div>
       <p
@@ -43,10 +52,11 @@ const CardLink = ({ linkInfo }: CardLinkProps) => {
       >
         {linkInfo.url}
       </p>
-      <div className="flex items-center justify-end">
-        <p className="font-mono text-xs font-medium text-neutral-600 dark:text-neutral-500">
-          {formatDate(linkInfo.createdAt)}
+      <div className="flex items-center justify-between space-x-2 font-mono text-xs font-medium text-neutral-600 dark:text-neutral-500">
+        <p className="max-w-[75%] truncate" title={linkInfo.description ?? ""}>
+          {linkInfo.description}
         </p>
+        <p>{formatDate(linkInfo.createdAt)}</p>
       </div>
     </div>
   );

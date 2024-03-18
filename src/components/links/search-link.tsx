@@ -35,6 +35,8 @@ const SearchLinks = (props: SearchLinksProps) => {
         size={16}
       />
       <Input
+        type="search"
+        autoComplete="off"
         placeholder="Search links"
         className="pl-8"
         onChange={handleSearch}
