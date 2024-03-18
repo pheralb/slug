@@ -24,16 +24,30 @@ export const CreateLinkSchema = z.object({
       message:
         "Short link is required. Enter a custom slug or click on 'Randomize' button.",
     })
-    .regex(/^\S+$/, {
+    .regex(/^[a-zA-Z0-9_-]*$/, {
       message: "Custom short link must not contain any blank spaces.",
     }),
-  description: z.string(),
+  description: z
+    .string()
+    .max(100, { message: "The description must be less than 100 characters." }),
 });
 
 export const EditLinkSchema = z.object({
+  id: z.number(),
   url: z.string().min(1, { message: "URL is required." }),
-  slug: z.string().min(1, { message: "Short link is required." }),
-  description: z.string(),
+  slug: z
+    .string()
+    .min(1, { message: "Short link is required." })
+    .regex(/^[a-zA-Z0-9_-]*$/, {
+      message: "Custom short link must not contain any blank spaces.",
+    }),
+  description: z
+    .string()
+    .max(100, { message: "The description must be less than 100 characters." }),
+});
+
+export const DeleteLinkSchema = z.object({
+  slug: z.string().min(1, { message: "Slug is required." }),
 });
 
 export const getSingleLinkSchema = z.object({
