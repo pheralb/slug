@@ -3,6 +3,10 @@
     {
       "source": "/git",
       "destination": "https://github.com/pheralb/slug"
+    },
+    {
+      "source": "/dash",
+      "destination": "/dashboard"
     }
   ]
 }
