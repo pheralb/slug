@@ -1,8 +1,8 @@
-import Link from "next/link";
+import { sharedAnimationCards } from "@/components/auth/animation-cards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
-import { sharedAnimationCards } from "./animation-cards";
+import Link from "next/link";
 
-const AuthError = () => {
+const AuthErrorPage = () => {
   return (
     <Card className={sharedAnimationCards}>
       <CardHeader>
@@ -10,7 +10,7 @@ const AuthError = () => {
       </CardHeader>
       <CardContent>
         <Link
-          href="/login"
+          href="/auth"
           className="opacity-75 transition-opacity duration-100 hover:text-black hover:opacity-100 dark:hover:text-white"
         >
           <span>Back to login</span>
@@ -20,4 +20,4 @@ const AuthError = () => {
   );
 };
 
-export default AuthError;
+export default AuthErrorPage;

@@ -1,6 +1,5 @@
 "use client";
 
-import { logout } from "@/server/actions/auth";
 import { DropdownMenuItem } from "@/ui/dropdown-menu";
 import {
   ArrowUpRight,
@@ -14,10 +13,6 @@ import { XLogo } from "../logos";
 
 const UserMenu = () => {
   const iconSize = 15;
-
-  const handleSignOut = async () => {
-    await logout();
-  };
 
   return (
     <>
@@ -59,10 +54,6 @@ const UserMenu = () => {
           </div>
           <ArrowUpRight size={iconSize} className="opacity-40" />
         </Link>
-      </DropdownMenuItem>
-      <DropdownMenuItem onClick={handleSignOut}>
-        <LogOutIcon size={iconSize} />
-        <span>Sign Out</span>
       </DropdownMenuItem>
     </>
   );

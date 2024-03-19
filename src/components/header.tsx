@@ -5,7 +5,7 @@ import Link from "next/link";
 import ExternalLink from "@/ui/external-link";
 import { cn } from "@/utils";
 import { buttonVariants } from "@/ui/button";
-import UserButton from "./auth/user-button";
+import UserButton from "./auth/user-btn";
 import { Badge } from "@/ui/badge";
 import { GithubLogo } from "./logos";
 
@@ -18,7 +18,7 @@ const Header = () => {
       )}
     >
       <Container>
-        <div className="flex w-full items-center justify-between pt-4 pb-2">
+        <div className="flex w-full items-center justify-between pb-2 pt-4">
           <Link
             href="/"
             className="flex items-center space-x-3 transition-opacity hover:opacity-80 rtl:space-x-reverse"
