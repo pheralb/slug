@@ -20,7 +20,7 @@ export const {
   basePath: "/api/auth",
   secret: env.AUTH_SECRET,
   pages: {
-    signIn: "/auth/login",
+    signIn: "/auth",
     error: "/auth/error",
   },
   events: {
