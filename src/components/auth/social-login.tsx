@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/ui/button";
-import { GithubLogo, GoogleLogo } from "@/components/logos";
+import { GithubLogo, GoogleLogo } from "@/components/icons/logos";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT_URL } from "@/routes";
 import { useSearchParams } from "next/navigation";

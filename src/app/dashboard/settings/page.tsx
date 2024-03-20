@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const SettingsPage = async () => {
   const session = await auth();
   return (
-    <div>
+    <main className="animate-in duration-500 slide-in-from-bottom-2 fade-in-5">
       {JSON.stringify(session)}
       <form
         action={async () => {
@@ -19,7 +19,7 @@ const SettingsPage = async () => {
       >
         <button>Sign Out</button>
       </form>
-    </div>
+    </main>
   );
 };
 

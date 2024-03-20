@@ -5,11 +5,10 @@ import {
   ArrowUpRight,
   BugIcon,
   LayoutDashboardIcon,
-  LogOutIcon,
   SettingsIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { XLogo } from "../logos";
+import { XLogo } from "@/components/icons/logos";
 
 const UserMenu = () => {
   const iconSize = 15;

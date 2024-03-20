@@ -1,13 +1,15 @@
-import Container from "@/ui/container";
-import { ModeToggle } from "./change-theme";
-import Logo from "./logo";
 import Link from "next/link";
-import ExternalLink from "@/ui/external-link";
 import { cn } from "@/utils";
+
+import Container from "@/ui/container";
 import { buttonVariants } from "@/ui/button";
-import UserButton from "./auth/user-btn";
+import ExternalLink from "@/ui/external-link";
 import { Badge } from "@/ui/badge";
-import { GithubLogo } from "./logos";
+
+import { ModeToggle } from "@/components/change-theme";
+import UserButton from "@/components/auth/user-btn";
+import Logo from "@/components/icons/logo";
+import { GithubLogo } from "@/components/icons/logos";
 
 const Header = () => {
   return (

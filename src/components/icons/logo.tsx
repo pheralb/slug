@@ -1,9 +1,5 @@
 import type { ComponentProps } from "react";
 
-interface LogoProps extends ComponentProps<"svg"> {
-  dark?: boolean;
-}
-
 const Logo: React.FC<ComponentProps<"svg">> = (props) => {
   return (
     <svg
