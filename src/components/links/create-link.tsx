@@ -46,7 +46,6 @@ export function CreateLink(props: CreateLinkProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [isError, setError] = useState<boolean>(false);
-  const jsConfetti = new JSConfetti();
 
   // Main form:
   const form = useForm<z.infer<typeof CreateLinkSchema>>({
@@ -110,10 +109,11 @@ export function CreateLink(props: CreateLinkProps) {
   };
 
   const generateConfetti = async () => {
+    const jsConfetti = new JSConfetti();
     await jsConfetti.addConfetti({
       confettiColors: ["#fdd835", "#4caf50", "#2196f3", "#f44336", "#ff9800"],
       confettiRadius: 3,
-      confettiNumber: 50
+      confettiNumber: 50,
     });
   };
 
