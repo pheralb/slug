@@ -13,7 +13,7 @@ const Footer = (props: FooterProps) => {
   return (
     <footer
       className={cn(
-        "group w-full text-sm text-neutral-600 dark:text-neutral-400",
+        "group w-full text-sm text-neutral-600 dark:text-neutral-400 animate-in fade-in-25",
         props.className,
       )}
     >

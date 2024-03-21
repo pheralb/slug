@@ -10,15 +10,11 @@ import { ModeToggle } from "@/components/change-theme";
 import UserButton from "@/components/auth/user-btn";
 import Logo from "@/components/icons/logo";
 import { GithubLogo } from "@/components/icons/logos";
+import CommandK from "@/components/commandK";
 
 const Header = () => {
   return (
-    <nav
-      className={cn(
-        "flex w-full bg-white dark:bg-neutral-900",
-        "sticky top-0 z-50",
-      )}
-    >
+    <nav className={cn("flex w-full", "sticky top-0 z-50", "bg-white dark:bg-neutral-900")}>
       <Container>
         <div className="flex w-full items-center justify-between pb-2 pt-4">
           <Link
@@ -32,6 +28,7 @@ const Header = () => {
             <Badge className="cursor-pointer">beta</Badge>
           </Link>
           <div className="flex items-center space-x-1">
+            <Link href="/docs">Docs</Link>
             <ExternalLink
               href="https://github.com/pheralb/slug"
               className={buttonVariants({
@@ -41,6 +38,7 @@ const Header = () => {
             >
               <GithubLogo width={20} />
             </ExternalLink>
+            <CommandK />
             <ModeToggle />
             <UserButton />
           </div>
