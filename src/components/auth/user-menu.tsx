@@ -4,6 +4,7 @@ import { DropdownMenuItem } from "@/ui/dropdown-menu";
 import {
   ArrowUpRight,
   BugIcon,
+  HomeIcon,
   LayoutDashboardIcon,
   SettingsIcon,
 } from "lucide-react";
@@ -15,6 +16,12 @@ const UserMenu = () => {
 
   return (
     <>
+      <DropdownMenuItem asChild>
+        <Link href="/">
+          <HomeIcon size={iconSize} />
+          <span>Home</span>
+        </Link>
+      </DropdownMenuItem>
       <DropdownMenuItem asChild>
         <Link href="/dashboard">
           <LayoutDashboardIcon size={iconSize} />
