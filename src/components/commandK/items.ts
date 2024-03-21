@@ -29,7 +29,7 @@ export const Pages = [
 
 export const Documentation = [
   {
-    name: "Getting Started",
+    name: "Docs: Getting Started",
     href: "/docs/getting-started",
     icon: RocketIcon,
   },
@@ -55,7 +55,7 @@ export const ChangeTheme = [
 
 export const SocialPages = [
   {
-    name: "X (Twitter)",
+    name: "X (Formerly Twitter)",
     href: "https://twitter.com/pheralb_",
     icon: XLogo,
   },

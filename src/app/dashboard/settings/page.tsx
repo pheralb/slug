@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-import { auth, signOut } from "@/auth";
+import { auth } from "@/auth";
+import UpdateNameAvatar from "@/components/settings/update-name-avatar";
 
 export const metadata: Metadata = {
   title: "Settings - Dashboard",
@@ -8,17 +9,17 @@ export const metadata: Metadata = {
 
 const SettingsPage = async () => {
   const session = await auth();
+
+  if (!session) return null;
+
   return (
-    <main className="animate-in duration-500 slide-in-from-bottom-2 fade-in-5">
-      {JSON.stringify(session)}
-      <form
-        action={async () => {
-          "use server";
-          await signOut();
-        }}
-      >
-        <button>Sign Out</button>
-      </form>
+    <main className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
+      <UpdateNameAvatar
+        name={session.user.name!}
+        username={session.user.username!}
+        email={session.user.email!}
+        avatar={session.user.image!}
+      />
     </main>
   );
 };
