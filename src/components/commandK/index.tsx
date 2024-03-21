@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/ui/button";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ChangeTheme, Pages, SocialPages } from "./items";
+import { ChangeTheme, Documentation, Pages, SocialPages } from "./items";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
 
@@ -45,6 +45,7 @@ const CommandK = () => {
 
   const handleChangeTheme = (theme: string) => {
     setTheme(theme);
+    setOpen(false);
     toast.success(`Theme changed to ${theme}`);
   };
 
@@ -77,6 +78,17 @@ const CommandK = () => {
               >
                 <theme.icon size={22} strokeWidth={1.5} />
                 <span>{theme.name}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandGroup heading="Documentation">
+            {Documentation.map((doc) => (
+              <CommandItem
+                key={doc.href}
+                onSelect={() => handleRoutePush(doc.href)}
+              >
+                <doc.icon size={22} strokeWidth={1.5} />
+                <span>{doc.name}</span>
               </CommandItem>
             ))}
           </CommandGroup>

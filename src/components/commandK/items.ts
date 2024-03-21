@@ -1,9 +1,9 @@
 import {
-  BookOpenIcon,
   HomeIcon,
   LayoutDashboardIcon,
   MonitorIcon,
   MoonIcon,
+  RocketIcon,
   SettingsIcon,
   SunIcon,
 } from "lucide-react";
@@ -25,10 +25,13 @@ export const Pages = [
     href: "/dashboard/settings",
     icon: SettingsIcon,
   },
+];
+
+export const Documentation = [
   {
-    name: "Documentation",
-    href: "/docs",
-    icon: BookOpenIcon,
+    name: "Getting Started",
+    href: "/docs/getting-started",
+    icon: RocketIcon,
   },
 ];
 
