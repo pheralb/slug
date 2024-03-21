@@ -54,6 +54,13 @@ export const getSingleLinkSchema = z.object({
   linkId: z.number(),
 });
 
+export const UpdateProfileSchema = z.object({
+  name: z.string().min(1, { message: "Name is required." }),
+  username: z.string().optional(),
+  email: z.string().email({ message: "Invalid email address." }),
+});
+
 export type LinkSchema = z.TypeOf<typeof LinkSchema>;
 export type CreateLinkInput = z.TypeOf<typeof CreateLinkSchema>;
 export type EditLinkInput = z.TypeOf<typeof EditLinkSchema>;
+export type UpdateProfileInput = z.TypeOf<typeof UpdateProfileSchema>;
