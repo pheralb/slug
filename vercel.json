@@ -7,6 +7,10 @@
     {
       "source": "/dash",
       "destination": "/dashboard"
+    },
+    {
+      "source": "/docs",
+      "destination": "/docs/getting-started"
     }
   ]
 }
