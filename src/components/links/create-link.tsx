@@ -97,6 +97,7 @@ export function CreateLink(props: CreateLinkProps) {
         closeButton: true,
       });
 
+      form.reset();
       setOpen(false);
       await generateConfetti();
     } catch (error) {

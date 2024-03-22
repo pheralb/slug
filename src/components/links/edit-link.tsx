@@ -76,6 +76,7 @@ const EditLink = (props: EditLinkProps) => {
         duration: 10000,
         closeButton: true,
       });
+      form.reset();
       setOpen(false);
     } catch (error) {
       toast.error("An unexpected error has occurred. Please try again later.");
