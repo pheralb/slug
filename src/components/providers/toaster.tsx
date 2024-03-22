@@ -16,7 +16,7 @@ export const ToasterComponent = () => {
           borderColor: theme === "dark" ? "#262626" : "#e5e7eb",
         },
         classNames: {
-          toast: "font-sans dark:bg-blue-400",
+          toast: "font-sans",
           description: "font-mono",
         },
       }}
