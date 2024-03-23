@@ -103,7 +103,7 @@ const DeleteLink = ({ link, trigger }: DeleteLinkProps) => {
                   Cancel
                 </Button>
               </DialogClose>
-              <Button disabled={loading} type="submit">
+              <Button disabled={loading} type="submit" variant="destructive">
                 {loading ? (
                   <LoaderIcon size={16} className="animate-spin" />
                 ) : (

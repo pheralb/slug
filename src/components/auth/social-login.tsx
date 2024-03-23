@@ -42,11 +42,12 @@ const SocialLogin = () => {
   };
 
   return (
-    <div className="flex items-center justify-center space-x-2">
+    <div className="flex flex-col items-center justify-center space-y-2">
       {socialProviders.map((sp) => (
         <Button
           key={sp.provider}
           variant="outline"
+          className="w-full"
           disabled={loading}
           onClick={() => handleSocialLogin(sp.provider)}
         >

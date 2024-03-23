@@ -1,4 +1,4 @@
-import Footer from "@/components/footer";
+import Footer from "@/components/layout/footer";
 import { cn } from "@/utils";
 import type { ReactNode } from "react";
 

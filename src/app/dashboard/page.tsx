@@ -62,7 +62,7 @@ const DashboardPage = async ({
               slug
             </p>
           ) : (
-            <p>Star creating your first link:</p>
+            <p>Start creating your first link:</p>
           )}
           <CreateLink slug={query}>
             <Button variant="outline">

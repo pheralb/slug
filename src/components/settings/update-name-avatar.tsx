@@ -41,7 +41,6 @@ const UpdateNameAvatar = (props: UpdateNameAvatarProps) => {
   });
 
   const onSubmit = async (values: z.infer<typeof UpdateProfileSchema>) => {
-    console.log(values);
     try {
       setLoading(true);
       await updateProfile(values);

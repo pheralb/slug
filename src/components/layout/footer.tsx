@@ -2,7 +2,7 @@ import Container from "@/ui/container";
 import ExternalLink from "@/ui/external-link";
 import { cn } from "@/utils";
 import React from "react";
-import { T3Logo, XLogo } from "./icons/logos";
+import { T3Logo, XLogo } from "../icons/logos";
 import { ArrowUpRight, Heart } from "lucide-react";
 
 interface FooterProps {

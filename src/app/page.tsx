@@ -1,4 +1,4 @@
-import Footer from "@/components/footer";
+import Footer from "@/components/layout/footer";
 import { GithubLogo } from "@/components/icons/logos";
 import { buttonVariants } from "@/ui/button";
 import ExternalLink from "@/ui/external-link";
