@@ -36,19 +36,20 @@
 
 ## 👋 Introduction
 
-[Slug](slug.vercel.app) is a service that offers to shorten urls in a simple, fast and secure way. It's built with [**T3 Stack**](https://create.t3.gg/), a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**.
+[**Slug**](slug.vercel.app) is a service that offers to shorten urls in a simple, fast and secure way. It's built with [**T3 Stack**](https://create.t3.gg/), a web development stack made by [**Theo**](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**.
 
 This project uses the following technologies:
 
-- 🧑‍🚀 **Bootstrapping**: [create-t3-app](https://create.t3.gg).
-- ✨ **Framework**: [Next.js 14 /app Router](https://nextjs.org/).
-- 🔒 **Auth**: [Auth.js v5](https://authjs.dev/).
-- 🏗️ **ORM**: [Prisma](https://prisma.io).
-- ☁️ **Database**: [Turso](https://turso.tech/) (SQLite) + [libSQL](https://github.com/tursodatabase/libsql).
-- 🎨 **Styling**: [TailwindCSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com) & [Radix Primitives](https://www.radix-ui.com).
-- 💅 **Formatting**: [Prettier](https://prettier.io) with [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) + [ESLint](https://eslint.org).
-- ✍️ **MDX**: [@next/mdx](https://nextjs.org/docs/app/building-your-application/configuring/mdx) + [rehype-pretty-code](https://rehype-pretty-code.netlify.app/).
-- 🙂 **Icons**: [Lucide Icons](https://lucide.dev) + [svgl](https://svgl.app).
+- [**create-t3-app**](https://create.t3.gg) - The best way to start a full-stack, typesafe Next.js app.
+- [**Next.js 14 App Router**](https://nextjs.org/) - The React Framework for the Web.
+- [**Auth.js v5**](https://authjs.dev/) - Authentication for the Web.
+- [**Prisma**](https://prisma.io) - A next-generation Node.js and TypeScript ORM.
+- [**Turso**](https://turso.tech/) (SQLite) + [**libSQL**](https://github.com/tursodatabase/libsql) - SQLite for Production.
+- [**Next.js Server Actions**](https://nextjs.org/docs/api-reference/server-actions) - Asynchronous functions that are executed on the server.
+- [**TailwindCSS**](https://tailwindcss.com) + [**shadcn/ui**](https://ui.shadcn.com) & [**Radix Primitives**](https://www.radix-ui.com) - Design System.
+- [**Prettier**](https://prettier.io) with [**prettier-plugin-tailwindcss**](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) - Code Formatter.
+- [**@next/mdx**](https://nextjs.org/docs/app/building-your-application/configuring/mdx) + [**bright**](https://bright.codehike.org/) - Documentation with MDX & Code Highlighting.
+- [**Lucide Icons**](https://lucide.dev) + [**svgl**](https://svgl.app) - Beautiful SVG icons & logos for the web.
 
 > ⚠️ This is a community project, not associated with [Vercel](https://vercel.com/).
 
@@ -86,7 +87,7 @@ This is the roadmap I will be following for the complete migration to v3:
 
 - [x] Change name.
 - [x] Change email.
-- [ ] Delete account.
+- [x] Delete account.
 - [ ] Download all links data.
 
 ## 👨‍🚀 Getting Started
@@ -106,11 +107,11 @@ git clone git@github.com:YOU_USER/slug.git
 3. Install dependencies:
 
 ```bash
-npm install
-# or
+# Install pnpm globally if you don't have it:
+npm install -g pnpm
+
+# and install dependencies:
 pnpm install
-# or
-yarn install
 ```
 
 4. Create a **.env** file with the following content:
@@ -119,7 +120,7 @@ yarn install
 
 ```bash
 # Database:
-DATABASE_URL=
+DATABASE_URL= # "file:./dev.db"
 TURSO_DATABASE_URL=
 TURSO_AUTH_TOKEN=
 
@@ -137,6 +138,14 @@ GOOGLE_CLIENT_SECRET=
 ```
 
 - 📚 You can read the complete documentation [here](https://slug.vercel.app/docs).
+
+## ✌️ Contributing
+
+<a href="https://github.com/pheralb/slug/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=pheralb/slug" />
+</a>
+
+<p></p>
 
 ## 🚀 Deploy on Vercel
 
