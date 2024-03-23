@@ -14,9 +14,9 @@ model Links {
     slug        String   @unique
     description String?
     createdAt   DateTime @default(now())
-    createdBy   User?    @relation(fields: [creatorId], references: [id])
+    createdBy   User?    @relation(fields: [creatorId], references: [id], onDelete: Cascade)
     creatorId   String
-    tag         Tags?    @relation(fields: [tagId], references: [id])
+    tag         Tags?    @relation(fields: [tagId], references: [id], onDelete: SetNull)
     tagId       Int?
 
     @@index(slug)
