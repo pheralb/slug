@@ -9,15 +9,17 @@ datasource db {
 }
 
 model Links {
-    id          Int      @id @default(autoincrement())
+    id          String    @id @default(cuid())
     url         String
-    slug        String   @unique
+    slug        String    @unique
     description String?
-    createdAt   DateTime @default(now())
-    createdBy   User?    @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+    createdAt   DateTime  @default(now())
+    createdBy   User?     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
     creatorId   String
-    tag         Tags?    @relation(fields: [tagId], references: [id], onDelete: SetNull)
-    tagId       Int?
+    tag         Tags?     @relation(fields: [tagId], references: [id], onDelete: SetNull)
+    tagId       String?
+    clicks      Int       @default(0)
+    lastClicked DateTime?
 
     @@index(slug)
     @@index([creatorId])
@@ -25,7 +27,7 @@ model Links {
 }
 
 model Tags {
-    id          Int      @id @default(autoincrement())
+    id          String   @id @default(cuid())
     name        String
     description String?
     createdAt   DateTime @default(now())
