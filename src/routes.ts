@@ -2,7 +2,7 @@
  * These routes do not require authentication.
  * @type {string[]}
  */
-export const publicRoutes = ["/", "/docs", "verify"];
+export const publicRoutes = ["/", "/docs", "verify", "/check"];
 
 /**
  * These routes are used for authentication.
@@ -25,6 +25,13 @@ export const authRoutes = [
  * @type {string[]}
  */
 export const dashboardRoutesPrefix = "/dashboard";
+
+/**
+ * These routes are used for the check slug.
+ * Only type the prefix.
+ * @type {string[]}
+ */
+export const checkRoutesPrefix = "/check";
 
 /**
  * These prefix for API authentication routes.
