@@ -5,6 +5,7 @@ import {
   DEFAULT_LOGIN_REDIRECT_URL,
   apiAuthPrefix,
   authRoutes,
+  checkRoutesPrefix,
   dashboardRoutesPrefix,
   publicRoutes,
 } from "./routes";
@@ -19,6 +20,7 @@ export default auth(async (req) => {
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
     const isDashboardRoute = nextUrl.pathname.startsWith(dashboardRoutesPrefix);
+    const isCheckRoute = nextUrl.pathname.startsWith(checkRoutesPrefix);
     const slugRoute = req.nextUrl.pathname.split("/").pop();
 
     // Is Api Route:
@@ -34,12 +36,20 @@ export default auth(async (req) => {
       return;
     }
 
+    // If Slug contains ``c``, redirect to /check/:slug:
+    if (slugRoute && slugRoute.endsWith("&c")) {
+      return Response.redirect(
+        new URL(`/check/${slugRoute.replace("&c", "")}`, nextUrl),
+      );
+    }
+
     // Check ``slug`` route.
     if (
       !isDashboardRoute &&
       !isAuthRoute &&
       !isApiAuthRoute &&
-      !isPublicRoute
+      !isPublicRoute &&
+      !isCheckRoute
     ) {
       const data = await fetch(
         `${req.nextUrl.origin}/api/url?slug=${slugRoute}`,
