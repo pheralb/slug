@@ -2,10 +2,12 @@ import type { Links } from "@prisma/client";
 
 import ExternalLink from "@/ui/external-link";
 import { formatDate } from "@/utils/formatDate";
-import EditLink from "./edit-link";
 import { CopyIcon, SettingsIcon, TrashIcon } from "lucide-react";
+
 import CopyLink from "./copy-link";
 import DeleteLink from "./delete-link";
+import EditLink from "./edit-link";
+import ShowClicks from "./show-clicks-link";
 
 interface CardLinkProps {
   linkInfo: Links;
@@ -14,7 +16,7 @@ interface CardLinkProps {
 const CardLink = ({ linkInfo }: CardLinkProps) => {
   return (
     <div className="flex w-full flex-col rounded-md border border-neutral-200 p-3 shadow-sm dark:border-neutral-800">
-      <div className="flex w-full items-center justify-between space-x-2">
+      <div className="flex w-full items-center justify-between space-x-2 mb-1">
         <ExternalLink
           href={`/${linkInfo.slug}`}
           className="flex items-center space-x-[1px] font-medium transition-opacity duration-75 hover:opacity-80"
@@ -23,6 +25,10 @@ const CardLink = ({ linkInfo }: CardLinkProps) => {
           <span>{linkInfo.slug}</span>
         </ExternalLink>
         <div className="flex items-center space-x-3">
+          <ShowClicks
+            numberOfClicks={linkInfo.clicks}
+            lastDate={linkInfo.lastClicked}
+          />
           <CopyLink
             className="transition-opacity hover:opacity-75"
             slug={linkInfo.slug}

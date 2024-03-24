@@ -33,7 +33,7 @@ const DashboardPage = async ({
   });
 
   return (
-    <main className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
+    <main className="duration-500 animate-in fade-in-5 slide-in-from-bottom-2 w-full">
       <div className="mb-2 flex w-full items-center justify-between">
         <SearchLinks className="w-72 max-w-72" />
         <LinksLimit length={data.links.length} />

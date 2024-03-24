@@ -16,7 +16,7 @@ const SettingsPage = async () => {
   if (!session) return null;
 
   return (
-    <main className="flex flex-col space-y-4 duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
+    <main className="flex w-full flex-col space-y-4 duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <UpdateNameAvatar
         name={session.user.name!}
         username={session.user.username!}
