@@ -55,7 +55,9 @@ export const getSingleLinkSchema = z.object({
 });
 
 export const UpdateProfileSchema = z.object({
-  name: z.string().min(1, { message: "Name is required." }),
+  name: z.string().min(1, { message: "Name is required." }).max(40, {
+    message: "Name must be less than 40 characters.",
+  }),
   username: z.string().optional(),
   email: z.string().email({ message: "Invalid email address." }),
 });

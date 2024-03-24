@@ -80,10 +80,41 @@ export const TypographyP = forwardRef<
   return (
     <p
       ref={ref}
-      className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
+      className={cn(
+        "text-pretty leading-7 [&:not(:first-child)]:mt-4",
+        className,
+      )}
       {...props}
     />
   );
 });
 
 TypographyP.displayName = "TypographyP";
+
+export const TypographyListUl = forwardRef<
+  HTMLUListElement,
+  React.ComponentPropsWithoutRef<"ul">
+>(({ className, ...props }, ref) => {
+  return (
+    <ul
+      ref={ref}
+      className={cn("my-6 list-disc [&>li]:mt-2", className)}
+      {...props}
+    />
+  );
+});
+
+TypographyListUl.displayName = "TypographyListUl";
+
+export const TypographyListOl = forwardRef<
+  HTMLOListElement,
+  React.ComponentPropsWithoutRef<"ol">
+>(({ className, ...props }, ref) => {
+  return (
+    <ol
+      ref={ref}
+      className={cn("my-6 list-decimal [&>li]:mt-2", className)}
+      {...props}
+    />
+  );
+});
