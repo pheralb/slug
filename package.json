@@ -16,7 +16,7 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name init",
     "db:studio": "prisma studio",
-    "db:push": "turso db shell slug < ./prisma/migrations/20240323140632_init/migration.sql",
+    "db:push": "turso db shell slug < ./prisma/migrations/20240324115308_init/migration.sql",
     "db:pscale:dump": "pscale database dump databasename databasebranch",
     "db:turso:dump": "turso db shell databasename .dump > dump.sql"
   },
@@ -36,6 +36,7 @@
     "@radix-ui/react-popover": "1.0.7",
     "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-tabs": "1.0.4",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@t3-oss/env-nextjs": "0.9.2",
     "bcryptjs": "2.4.3",
     "boring-avatars": "1.10.1",
