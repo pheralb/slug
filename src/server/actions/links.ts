@@ -12,9 +12,9 @@ import { LIMIT_LINKS } from "../limits";
  * Get single link data.
  * Return an object.
  * Authentication required.
- * @type {number()}
+ * @type {string()}
  */
-export const getSingleLink = async (id: number) => {
+export const getSingleLink = async (id: string) => {
   const currentUser = await auth();
 
   if (!currentUser) {
@@ -134,9 +134,9 @@ export const updateLink = async (values: z.infer<typeof EditLinkSchema>) => {
 /**
  * Delete link.
  * Authentication required.
- * @type {number()}
+ * @type {string()}
  */
-export const deleteLink = async (id: number) => {
+export const deleteLink = async (id: string) => {
   const currentUser = await auth();
 
   if (!currentUser) {
