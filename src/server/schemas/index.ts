@@ -25,21 +25,29 @@ export const CreateLinkSchema = z.object({
         "Short link is required. Enter a custom slug or click on 'Randomize' button.",
     })
     .regex(/^[a-zA-Z0-9_-]*$/, {
-      message: "Custom short link must not contain any blank spaces.",
+      message:
+        "Custom short link must not contain any blank spaces or special characters.",
+    })
+    .regex(/^(?!.*&c$)/, {
+      message: "Custom short link can't end with &c.",
     }),
+
   description: z
     .string()
     .max(100, { message: "The description must be less than 100 characters." }),
 });
 
 export const EditLinkSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   url: z.string().min(1, { message: "URL is required." }),
   slug: z
     .string()
     .min(1, { message: "Short link is required." })
     .regex(/^[a-zA-Z0-9_-]*$/, {
       message: "Custom short link must not contain any blank spaces.",
+    })
+    .regex(/^(?!.*&c$)/, {
+      message: "Custom short link can't end with &c.",
     }),
   description: z
     .string()
