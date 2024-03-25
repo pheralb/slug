@@ -38,7 +38,7 @@ const Footer = (props: FooterProps) => {
             href="https://twitter.com/pheralb_"
             className="flex items-center space-x-1"
           >
-            <p>Twitter</p>
+            <p className="hidden md:block">Twitter</p>
             <ArrowUpRight size={14} />
           </ExternalLink>
         </div>

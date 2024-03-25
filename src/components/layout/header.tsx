@@ -17,7 +17,7 @@ const Header = () => {
     <nav
       className={cn(
         "flex w-full",
-        "pt-4 pb-3 lg:px-4",
+        "pb-3 pt-4 lg:px-4",
         "sticky top-0 z-50",
         "bg-white dark:bg-neutral-900",
       )}
@@ -26,16 +26,16 @@ const Header = () => {
         className={cn("flex w-full items-center justify-between", "container")}
       >
         <div className="flex items-center space-x-5">
-          <div className="flex items-center space-x-1 border-r border-neutral-200 pr-4 dark:border-neutral-800">
+          <div className="flex items-center space-x-1 border-r border-neutral-200 pr-1 md:pr-4 dark:border-neutral-800">
             <Link
               href="/"
               className="flex items-center space-x-3 transition-opacity hover:opacity-80 rtl:space-x-reverse"
             >
               <Logo width={30} />
-              <span className="self-center whitespace-nowrap text-lg font-medium tracking-tight dark:text-white">
+              <span className="hidden self-center whitespace-nowrap text-lg font-medium tracking-tight dark:text-white md:block">
                 slug
               </span>
-              <Badge className="cursor-pointer">beta</Badge>
+              <Badge className="hidden cursor-pointer md:block">beta</Badge>
             </Link>
           </div>
           <HeaderClientRoutes />

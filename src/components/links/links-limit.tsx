@@ -10,7 +10,7 @@ const LinksLimit = ({ length }: LinksLimitProps) => {
   const max = length >= LIMIT_LINKS;
   const mid = length >= LIMIT_LINKS / 2;
   return (
-    <div className="flex items-center justify-end font-mono text-sm text-neutral-400">
+    <div className="flex items-center justify-end font-mono text-sm">
       <div
         className={cn(
           mid ? "text-yellow-500" : "",

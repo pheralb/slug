@@ -24,7 +24,7 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
             <CreateLink>
               <Button>
                 <PlusIcon size={16} />
-                <span>Create Link</span>
+                <span className="hidden md:block">Create Link</span>
               </Button>
             </CreateLink>
           </div>

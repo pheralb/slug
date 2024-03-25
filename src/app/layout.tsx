@@ -74,6 +74,7 @@ export default function RootLayout({
         className={cn(
           `font-sans ${interVariable.variable} ${GeistMono.variable} antialiased`,
           "bg-white dark:bg-neutral-900",
+          "selection:bg-neutral-200 dark:selection:bg-neutral-700",
         )}
       >
         <ThemeProvider
