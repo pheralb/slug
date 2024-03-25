@@ -17,7 +17,7 @@ const Header = () => {
     <nav
       className={cn(
         "flex w-full",
-        "py-2 mt-2 lg:px-4",
+        "pt-4 pb-3 lg:px-4",
         "sticky top-0 z-50",
         "bg-white dark:bg-neutral-900",
       )}
