@@ -24,7 +24,7 @@
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="https://twitter.com/pheralb_">X/Twitter</a>
 
-![Next.js Badge](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=flat)
+![Next.js Badge](https://img.shields.io/badge/Next.js&nbsp;14-000?logo=nextdotjs&logoColor=fff&style=flat)
 ![Turso Badge](https://img.shields.io/badge/Turso-4FF8D2?logo=turso&logoColor=000&style=flat)
 ![Check workflow](https://github.com/pheralb/slug/actions/workflows/ci.yml/badge.svg)
 ![GitHub stars](https://img.shields.io/github/stars/pheralb/slug)
@@ -52,43 +52,6 @@ This project uses the following technologies:
 - [**Lucide Icons**](https://lucide.dev) + [**svgl**](https://svgl.app) - Beautiful SVG icons & logos for the web.
 
 > ⚠️ This is a community project, not associated with [Vercel](https://vercel.com/).
-
-## 🔭 Roadmap
-
-This is the roadmap I will be following for the complete migration to v3:
-
-⬆️ **Known issues:**
-
-- [ ] Fix issue when logging in with different provider but with the same email. Redirect to an existing route in the app ([authjs error](https://authjs.dev/reference/core/errors#accountnotlinked)).
-
-⬆️ **Dependencies:**
-
-- [x] Update `@prisma/adapter-libsql`, `@prisma/client` & `prisma` to the stable version when it's released.
-- [ ] Update `next-auth` to the stable version (v5) when it's released.
-
-⬆️ **Auth:**
-
-- [x] Sign In with Github.
-- [x] Sign In with Google.
-
-⬆️ **Middleware:**
-
-- [x] Redirect with `/*` and `/s/*`.
-- [x] Separate public, protected & authentication routes.
-
-⬆️ **Dashboard (main):**
-
-- [x] Create a new short URL.
-- [x] List all shorted URLs.
-- [x] Delete a shorted URL.
-- [x] Update a shorted URL.
-
-⬆️ **Dashboard (settings):**
-
-- [x] Change name.
-- [x] Change email.
-- [x] Delete account.
-- [ ] Download all links data.
 
 ## 👨‍🚀 Getting Started
 
@@ -137,7 +100,58 @@ GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 ```
 
+5. Run the development server:
+
+```bash
+pnpm dev
+```
+
+and open [http://localhost:3000](http://localhost:3000) with your browser 🚀
+
 - 📚 You can read the complete documentation [here](https://slug.vercel.app/docs).
+
+## 🔭 Roadmap
+
+This is the roadmap I will be following for the complete migration to v3:
+
+> - *✅* = Stable, completed.
+> - *🔔* = Stable, but unexpected errors may appear.
+> - *⚙️* = In progress.
+
+⬆️ **Known issues:**
+
+- ⚙️ Fix issue when logging in with different provider but with the same email. Redirect to an existing route in the app ([authjs error](https://authjs.dev/reference/core/errors#accountnotlinked)).
+
+⬆️ **Dependencies:**
+
+- ✅ Update `@prisma/adapter-libsql`, `@prisma/client` & `prisma` to the stable version when it's released.
+- ⚙️ Update `authjs` to the stable version (v5) when it's released.
+
+⬆️ **Auth:**
+
+- ✅ Sign In with Github.
+- 🔔 Sign In with Google.
+
+🔔 Only for users who have not previously logged in with an existing email address in their Github account. This is an issue that will be worked on soon.
+
+⬆️ **Middleware:**
+
+- ✅ Redirect with `/*` and `/s/*`.
+- ✅ Separate public, protected & authentication routes.
+
+⬆️ **Dashboard (main):**
+
+- ✅ Create a new short URL.
+- ✅ List all shorted URLs.
+- ✅ Delete a shorted URL.
+- ✅ Update a shorted URL.
+
+⬆️ **Dashboard (settings):**
+
+- ✅ Change name.
+- ✅ Change email.
+- ✅ Delete account.
+- ✅ Download all links data.
 
 ## ✌️ Contributing
 
