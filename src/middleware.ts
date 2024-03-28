@@ -4,9 +4,9 @@ import authConfig from "@/auth.config";
 import {
   DEFAULT_LOGIN_REDIRECT_URL,
   apiAuthPrefix,
-  authRoutes,
   checkRoutesPrefix,
-  dashboardRoutesPrefix,
+  authRoutes,
+  protectedRoutes,
   publicRoutes,
 } from "./routes";
 
@@ -15,20 +15,23 @@ const { auth } = NextAuth(authConfig);
 export default auth(async (req) => {
   try {
     const { nextUrl } = req;
+
     const isLoggedIn = !!req.auth;
+
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+    const isCheckRoute = nextUrl.pathname.startsWith(checkRoutesPrefix);
+    const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-    const isDashboardRoute = nextUrl.pathname.startsWith(dashboardRoutesPrefix);
-    const isCheckRoute = nextUrl.pathname.startsWith(checkRoutesPrefix);
+
     const slugRoute = req.nextUrl.pathname.split("/").pop();
 
-    // Is Api Route:
+    // ⚙️ Is Api Route:
     if (isApiAuthRoute) {
       return;
     }
 
-    // Is Auth Route. First, check is authenticated:
+    // ⚙️ Is Auth Route. First, check is authenticated:
     if (isAuthRoute) {
       if (isLoggedIn) {
         return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl));
@@ -36,39 +39,15 @@ export default auth(async (req) => {
       return;
     }
 
-    // If Slug contains ``c``, redirect to /check/:slug:
+    // ⚙️ If Slug contains ``c``, redirect to /check/:slug:
     if (slugRoute && slugRoute.endsWith("&c")) {
       return Response.redirect(
         new URL(`/check/${slugRoute.replace("&c", "")}`, nextUrl),
       );
     }
 
-    // Check ``slug`` route.
-    if (
-      !isDashboardRoute &&
-      !isAuthRoute &&
-      !isApiAuthRoute &&
-      !isPublicRoute &&
-      !isCheckRoute
-    ) {
-      const data = await fetch(
-        `${req.nextUrl.origin}/api/url?slug=${slugRoute}`,
-      );
-
-      if (data.status === 404) {
-        console.log(`Slug not found: ${slugRoute}`);
-        return;
-      }
-
-      const dataToJson = await data.json();
-
-      if (dataToJson.url) {
-        return Response.redirect(new URL(dataToJson.url as string).toString());
-      }
-    }
-
-    // Protected routes:
-    if (!isLoggedIn && !isPublicRoute) {
+    // ⚙️ Protected routes. If not authenticated, redirect to /auth:
+    if (!isLoggedIn && isProtectedRoute) {
       let callbackUrl = nextUrl.pathname;
       if (nextUrl.search) {
         callbackUrl += nextUrl.search;
@@ -79,16 +58,34 @@ export default auth(async (req) => {
       );
     }
 
+    // ⚙️ Redirect using slug and fetch the URL:
+    // If not public route and not protected route:
+    if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
+      const data = await fetch(
+        `${req.nextUrl.origin}/api/url?slug=${slugRoute}`,
+      );
+
+      if (data.status === 404) {
+        return;
+      }
+
+      const dataToJson = await data.json();
+
+      if (dataToJson.url) {
+        return Response.redirect(new URL(dataToJson.url as string).toString());
+      }
+    }
+
     return;
   } catch (error) {
-    console.error("Error in middleware:", error);
-    return new Response("Internal Server Error", { status: 500 });
+    console.error("🚧 Error in middleware:", error);
+    return new Response("🛑 Internal Server Error", { status: 500 });
   }
 });
 
 export const config = {
   matcher: [
-    "/((?!api/|_next/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
+    "/((?!api/|_next/|images/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
     "/s/:slug*",
   ],
 };
