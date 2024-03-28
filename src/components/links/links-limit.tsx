@@ -1,29 +1,57 @@
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/ui/tooltip";
 import { cn } from "@/utils";
-import { LIMIT_LINKS } from "@/server/limits";
-import { PackageIcon } from "lucide-react";
+import { PackageIcon, TriangleAlertIcon } from "lucide-react";
 
 interface LinksLimitProps {
-  length: number;
+  userLinks: number;
+  maxLinks: number;
 }
 
-const LinksLimit = ({ length }: LinksLimitProps) => {
-  const max = length >= LIMIT_LINKS;
-  const mid = length >= LIMIT_LINKS / 2;
+const LinksLimit = ({ userLinks, maxLinks }: LinksLimitProps) => {
+  const max = userLinks >= maxLinks;
+  const mid = userLinks >= maxLinks / 2;
   return (
-    <div className="flex items-center justify-end font-mono text-sm">
-      <div
-        className={cn(
-          mid ? "text-yellow-500" : "",
-          max ? "text-red-500" : "",
-          "flex items-center space-x-2",
-        )}
-      >
-        <PackageIcon size={14} />
-        <span>
-          {length}/{LIMIT_LINKS} links
-        </span>
-      </div>
-    </div>
+    <TooltipProvider delayDuration={500}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="flex cursor-default items-center justify-end font-mono text-sm">
+            <div
+              className={cn(
+                mid ? "text-yellow-500" : "",
+                max ? "text-red-500" : "",
+                "flex items-center space-x-2",
+              )}
+            >
+              {max ? (
+                <TriangleAlertIcon size={14} />
+              ) : (
+                <PackageIcon size={14} />
+              )}
+              <span>
+                {userLinks < 10 ? `0${userLinks}` : userLinks}
+                {"/"}
+                {maxLinks < 10 ? `0${maxLinks}` : maxLinks}
+                {" links "}
+              </span>
+            </div>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          {max ? (
+            <p>You have reached the maximum limit of {maxLinks} links.</p>
+          ) : (
+            <p>
+              You have created {userLinks} out of {maxLinks} links.
+            </p>
+          )}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
 

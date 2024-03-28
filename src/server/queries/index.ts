@@ -1,10 +1,9 @@
 import { cache } from "react";
 import { auth } from "@/auth";
 import { db } from "@/server/db";
-import { LIMIT_LINKS } from "../limits";
 
 /**
- * Get links created by user.
+ * Get links with tags by user.
  * Authentication required.
  */
 export const getLinksByUser = cache(async () => {
@@ -22,7 +21,7 @@ export const getLinksByUser = cache(async () => {
   });
 
   return {
-    limit: LIMIT_LINKS,
+    limit: currentUser.user?.limitLinks,
     links: result,
   };
 });

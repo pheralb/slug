@@ -6,7 +6,6 @@ import type { CreateLinkSchema, EditLinkSchema } from "@/server/schemas";
 import { auth } from "@/auth";
 import { db } from "@/server/db";
 import { revalidatePath } from "next/cache";
-import { LIMIT_LINKS } from "../limits";
 
 /**
  * Get single link data.
@@ -52,45 +51,44 @@ export const checkIfSlugExist = async (slug: string) => {
 };
 
 /**
- * Check if user has exceeded the limit.
+ * Create new link.
+ * Authentication required.
+ * @type {z.infer<typeof LinkSchema>}
  */
 
-export const checkLimit = async () => {
+interface createLinkResult {
+  limit?: boolean;
+  error?: string;
+}
+
+export const createLink = async (
+  values: z.infer<typeof CreateLinkSchema>,
+): Promise<createLinkResult> => {
   const currentUser = await auth();
 
   if (!currentUser) {
     console.error("Not authenticated.");
-    return null;
+    return { error: "Not authenticated. Please login again." };
   }
 
-  const result = await db.links.count({
+  // Get number of links created by the user:
+  const count = await db.links.count({
     where: {
       creatorId: currentUser.user?.id,
     },
   });
 
-  if (result >= LIMIT_LINKS) {
-    return true;
-  }
-
-  return false;
-};
-
-/**
- * Create new link.
- * Authentication required.
- * @type {z.infer<typeof LinkSchema>}
- */
-export const createLink = async (values: z.infer<typeof CreateLinkSchema>) => {
-  const currentUser = await auth();
-
-  if (!currentUser) {
-    console.error("Not authenticated.");
-    return null;
+  // Check if the user has reached the limit:
+  const limit = currentUser.user?.limitLinks;
+  if (count >= limit) {
+    return {
+      limit: true,
+      error: `You have reached the limit of ${limit} links.`,
+    };
   }
 
   // Create new link:
-  const result = await db.links.create({
+  await db.links.create({
     data: {
       ...values,
       creatorId: currentUser.user?.id,
@@ -100,7 +98,7 @@ export const createLink = async (values: z.infer<typeof CreateLinkSchema>) => {
   revalidatePath("/");
   revalidatePath("/dashboard");
 
-  return result;
+  return { limit: false };
 };
 
 /**
@@ -152,4 +150,33 @@ export const deleteLink = async (id: string) => {
   revalidatePath("/dashboard");
 
   return result;
+};
+
+/**
+ * Download all links data as JSON.
+ * Authentication required.
+ * @type {{ slug: string; url: string; }[]}
+ */
+export const downloadAllLinks = async () => {
+  const currentUser = await auth();
+
+  if (!currentUser) {
+    console.error("Not authenticated.");
+    return null;
+  }
+
+  const result = await db.links.findMany({
+    where: {
+      creatorId: currentUser.user?.id,
+    },
+  });
+
+  return result.map((link) => {
+    const { slug, url, createdAt } = link;
+    return { slug, url, createdAt } as {
+      slug: string;
+      url: string;
+      createdAt: Date;
+    };
+  });
 };
