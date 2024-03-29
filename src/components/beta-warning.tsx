@@ -5,9 +5,9 @@ const BetaWarning = () => {
   return (
     <Alert
       variant="info"
-      className="rounded-none p-4"
+      className="bg-white dark:bg-neutral-900/85 border-y dark:border-neutral-800 rounded-none p-4 shadow-sm"
       containerClassName="container"
-      iconSize={14}
+      iconSize={12}
     >
       <p>
         Slug is now in beta. Any problems/bugs, please{" "}

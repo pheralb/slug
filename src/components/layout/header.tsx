@@ -31,7 +31,7 @@ const Header = () => {
               className="flex items-center space-x-3 transition-opacity hover:opacity-80 rtl:space-x-reverse"
             >
               <Logo width={30} />
-              <span className="hidden self-center whitespace-nowrap text-lg font-medium tracking-tight dark:text-white md:block">
+              <span className="self-center whitespace-nowrap text-lg font-medium tracking-tight dark:text-white">
                 slug
               </span>
               <Badge className="hidden cursor-pointer md:block">beta</Badge>
