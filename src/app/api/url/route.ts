@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest) => {
   // If no slug provided (500):
   if (!params || typeof params !== "string") {
     return NextResponse.json(
-      { error: "Error: No slug provided." },
+      { error: "🚧 Error: No slug provided." },
       { status: 500 },
     );
   }
@@ -24,10 +24,7 @@ export const GET = async (req: NextRequest) => {
 
   // If no link found (404):
   if (!getLinkFromServer) {
-    return NextResponse.json(
-      { error: "Error: Slug not found or invalid." },
-      { status: 404 },
-    );
+    return NextResponse.redirect(new URL(`/dashboard?search=${params}`, req.url));
   }
 
   // Increment the clicks in the database:
