@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/server/db";
 
 export const GET = async (req: NextRequest) => {
+  
   const params = req.nextUrl.searchParams.get("slug");
   const newHeaders = new Headers(req.headers);
 
@@ -15,51 +16,38 @@ export const GET = async (req: NextRequest) => {
     );
   }
 
-  const data = await db.$transaction(async (tx) => {
-    // 1. Check if the slug exists:
-    const slugExists = await tx.links.findFirst({
-      where: {
-        slug: params,
-      },
-    });
-
-    // 2. If not found, return null:
-    if (!slugExists) {
-      return null;
-    }
-
-    // 3. Update analytics:
-    const browser = req.headers.get("user-agent");
-    const ipAddress = req.headers.get("x-real-ip");
-
-
-    await tx.links.update({
-      where: {
-        slug: params,
-      },
-      data: {
-        clicks: {
-          increment: 1,
-        },
-        lastClicked: new Date(),
-      },
-    });
-
-    return slugExists;
+  // Search for the slug in the database:
+  const getLinkFromServer = await db.links.findUnique({
+    where: {
+      slug: params,
+    },
   });
 
-  // Return (/) if not found (404):
-  if (!data) {
+  // If no link found (404):
+  if (!getLinkFromServer) {
     return NextResponse.json(
       { error: "Error: Slug not found or invalid." },
       { status: 404 },
     );
   }
 
+  // Increment the clicks in the database:
+  await db.links.update({
+    where: {
+      id: getLinkFromServer.id,
+    },
+    data: {
+      clicks: {
+        increment: 1,
+      },
+    },
+  });
+
   // Cache:
   newHeaders.set("cache-control", "public, max-age=31536000, immutable");
 
-  return NextResponse.json(data, {
+  // Redirect to the URL:
+  return NextResponse.json(getLinkFromServer, {
     headers: newHeaders,
   });
 };

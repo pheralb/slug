@@ -16,11 +16,18 @@ import Header from "@/components/layout/header";
 
 // Fonts:
 import localFont from "next/font/local";
-import { GeistMono } from "geist/font/mono";
 
 const interVariable = localFont({
   variable: "--font-sans",
   src: "../fonts/InterVariable.woff2",
+  weight: "100 900",
+  display: "swap",
+  preload: true,
+});
+
+const geistMonoVariable = localFont({
+  variable: "--font-geist-mono",
+  src: "../fonts/GeistMonoVF.woff2",
   weight: "100 900",
   display: "swap",
   preload: true,
@@ -33,6 +40,20 @@ export const metadata: Metadata = {
     default: "Slug - A beautifully open-source URL shortener",
     template: "%s - Slug",
   },
+  icons: [
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      url: "/images/logo_png.png",
+    },
+    {
+      rel: "icon",
+      type: "image/svg+xml",
+      sizes: "any",
+      url: "/images/logo_svg.svg",
+    },
+  ],
   description: "An open-source URL shortener built with T3 Stack.",
   openGraph: {
     title: "Slug",
@@ -41,9 +62,6 @@ export const metadata: Metadata = {
     siteName: "Slug - An beautifully open-source URL shortener",
     locale: "en_US",
     type: "website",
-  },
-  icons: {
-    icon: "/images/logo_svg.svg",
   },
   robots: {
     index: true,
@@ -72,7 +90,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `font-sans ${interVariable.variable} ${GeistMono.variable} antialiased`,
+          `font-sans ${interVariable.variable} ${geistMonoVariable.variable} antialiased`,
           "bg-white dark:bg-neutral-900",
           "selection:bg-neutral-200 dark:selection:bg-neutral-700",
         )}

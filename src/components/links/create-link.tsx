@@ -8,11 +8,7 @@ import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import JSConfetti from "js-confetti";
 
-import {
-  checkIfSlugExist,
-  checkLimit,
-  createLink,
-} from "@/server/actions/links";
+import { checkIfSlugExist, createLink } from "@/server/actions/links";
 
 import Alert from "@/ui/alert";
 import { Button } from "@/ui/button";
@@ -70,16 +66,6 @@ export function CreateLink(props: CreateLinkProps) {
     try {
       setLoading(true);
 
-      const isReachLimit = await checkLimit();
-
-      if (isReachLimit) {
-        toast.error("You have reached the limit of links allowed.", {
-          duration: 10000,
-          closeButton: true,
-        });
-        return;
-      }
-
       const slugExists = await checkIfSlugExist(values.slug);
 
       if (slugExists) {
@@ -89,7 +75,12 @@ export function CreateLink(props: CreateLinkProps) {
         return;
       }
 
-      await createLink(values);
+      const result = await createLink(values);
+
+      if (result.error && result.limit) {
+        toast.info(result.error);
+        return;
+      }
 
       toast.success("Link created successfully", {
         description: `Url: https://slug.vercel.app/${values.slug}`,

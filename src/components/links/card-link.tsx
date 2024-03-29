@@ -1,23 +1,33 @@
 import type { Links } from "@prisma/client";
 
-import ExternalLink from "@/ui/external-link";
 import { formatDate } from "@/utils/formatDate";
 import {
   ChevronDownIcon,
   CopyIcon,
+  QrCodeIcon,
   SettingsIcon,
   TrashIcon,
 } from "lucide-react";
 
-import CopyLink from "./copy-link";
-import DeleteLink from "./delete-link";
-import EditLink from "./edit-link";
-import ShowClicks from "./show-clicks-link";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/ui/collapsible";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/ui/dropdown-menu";
+import { Dialog, DialogTrigger } from "@/ui/dialog";
+import ExternalLink from "@/ui/external-link";
+
+import CopyQR from "./copy-qr";
+import DeleteLink from "./delete-link";
+import EditLink from "./edit-link";
+import ShowClicks from "./show-clicks-link";
+import CopyLinkDropdown from "./copy-link";
 
 interface CardLinkProps {
   linkInfo: Links;
@@ -40,11 +50,27 @@ const CardLink = ({ linkInfo }: CardLinkProps) => {
             lastDate={linkInfo.lastClicked}
             className="hidden border-r border-neutral-200 pr-2 dark:border-neutral-800 md:flex"
           />
-          <CopyLink
-            className="transition-opacity hover:opacity-75"
-            slug={linkInfo.slug}
-            icon={<CopyIcon size={15} />}
-          />
+          {/* 
+            Radix Dialog + DropdownMenu bug 🥺
+            https://github.com/radix-ui/primitives/issues/1836
+          */}
+          <Dialog>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="transition-opacity hover:opacity-75">
+                <CopyIcon size={15} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <CopyLinkDropdown slug={linkInfo.slug} />
+                <DialogTrigger asChild>
+                  <DropdownMenuItem>
+                    <QrCodeIcon size={15} />
+                    <span>Copy QR Code</span>
+                  </DropdownMenuItem>
+                </DialogTrigger>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <CopyQR linkInfo={linkInfo} />
+          </Dialog>
           <EditLink
             trigger={
               <button className="transition-opacity hover:opacity-75">
@@ -77,7 +103,7 @@ const CardLink = ({ linkInfo }: CardLinkProps) => {
           >
             {linkInfo.description}
           </p>
-          <CollapsibleTrigger className="flex items-center hover:text-neutral-900 dark:hover:text-white md:hidden transition-colors">
+          <CollapsibleTrigger className="flex items-center transition-colors hover:text-neutral-900 dark:hover:text-white md:hidden">
             <ChevronDownIcon size={14} className="mr-2" />
             <span>Info</span>
           </CollapsibleTrigger>
