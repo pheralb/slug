@@ -5,6 +5,8 @@ import UpdateNameAvatar from "@/components/settings/update-name-avatar";
 import DeleteAccount from "@/components/settings/delete-account";
 import { Button } from "@/ui/button";
 import SettingsCard from "@/components/settings/card";
+import DownloadAllLinks from "@/components/links/download-all-links";
+import { HeartCrackIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Settings - Dashboard",
@@ -24,13 +26,18 @@ const SettingsPage = async () => {
         avatar={session.user.image!}
       />
       <SettingsCard title="Account" description="Update your account settings:">
+        <div className="mb-5 flex w-52 flex-col space-y-2">
+          <p>Export links:</p>
+          <DownloadAllLinks />
+        </div>
         <div className="flex w-52 flex-col space-y-2">
           <p>Delete account:</p>
           <DeleteAccount
             email={session.user.email!}
             trigger={
               <Button variant="destructive" size="sm">
-                Delete Account
+                <HeartCrackIcon size={14} />
+                <span>Delete Account</span>
               </Button>
             }
           />

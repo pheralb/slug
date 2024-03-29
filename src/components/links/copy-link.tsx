@@ -1,17 +1,16 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
-import { cn } from "@/utils";
 import { toast } from "sonner";
+import { DropdownMenuItem } from "@/ui/dropdown-menu";
+import { ClipboardIcon } from "lucide-react";
 
 interface CopyLinkProps {
   slug: string;
   className?: string;
-  icon: ReactNode;
 }
 
-const CopyLink = (props: CopyLinkProps) => {
+const CopyLinkDropdown = (props: CopyLinkProps) => {
   const [, copy] = useCopyToClipboard();
   const url = "https://slug.vercel.app";
 
@@ -33,13 +32,11 @@ const CopyLink = (props: CopyLinkProps) => {
   };
 
   return (
-    <button
-      onClick={handleCopy(`${url}/${props.slug}`)}
-      className={cn(props.className)}
-    >
-      {props.icon}
-    </button>
+    <DropdownMenuItem onClick={handleCopy(`${url}/${props.slug}`)}>
+      <ClipboardIcon size={15} />
+      <span>Copy to clipboard</span>
+    </DropdownMenuItem>
   );
 };
 
-export default CopyLink;
+export default CopyLinkDropdown;
