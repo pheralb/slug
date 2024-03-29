@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 import { db } from "@/server/db";
 
 export const GET = async (req: NextRequest) => {
-  
   const params = req.nextUrl.searchParams.get("slug");
   const newHeaders = new Headers(req.headers);
 
@@ -47,7 +46,5 @@ export const GET = async (req: NextRequest) => {
   newHeaders.set("cache-control", "public, max-age=31536000, immutable");
 
   // Redirect to the URL:
-  return NextResponse.json(getLinkFromServer, {
-    headers: newHeaders,
-  });
+  return NextResponse.redirect(new URL(getLinkFromServer.url).toString());
 };

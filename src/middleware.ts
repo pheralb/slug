@@ -57,20 +57,10 @@ export default auth(async (req) => {
     );
   }
 
-  // ⚙️ Redirect using slug and fetch the URL:
+  // ⚙️ Redirect using slug:
   // If not public route and not protected route:
   if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
-    const data = await fetch(`${req.nextUrl.origin}/api/url?slug=${slugRoute}`);
-
-    if (data.status === 404) {
-      return;
-    }
-
-    const dataToJson = await data.json();
-
-    if (dataToJson.url) {
-      return Response.redirect(new URL(dataToJson.url as string).toString());
-    }
+    return Response.redirect(new URL(`/api/url?slug=${slugRoute}`, nextUrl));
   }
 
   return;
