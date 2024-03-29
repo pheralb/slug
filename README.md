@@ -14,8 +14,6 @@
 
 <a href="https://slug.vercel.app/dashboard">Dashboard</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
-<a href="https://slug.vercel.app/docs">Docs</a>
-<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-roadmap">Roadmap</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-getting-started">Contribute</a>
@@ -34,7 +32,7 @@
 
 </div>
 
-## 👋 Introduction
+## 👨‍🚀 Introduction
 
 [**Slug**](slug.vercel.app) is a service that offers to shorten urls in a simple, fast and secure way. It's built with [**T3 Stack**](https://create.t3.gg/), a web development stack made by [**Theo**](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**.
 
@@ -48,12 +46,11 @@ This project uses the following technologies:
 - [**Next.js Server Actions**](https://nextjs.org/docs/api-reference/server-actions) - Asynchronous functions that are executed on the server.
 - [**TailwindCSS**](https://tailwindcss.com) + [**shadcn/ui**](https://ui.shadcn.com) & [**Radix Primitives**](https://www.radix-ui.com) - Design System.
 - [**Prettier**](https://prettier.io) with [**prettier-plugin-tailwindcss**](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) - Code Formatter.
-- [**@next/mdx**](https://nextjs.org/docs/app/building-your-application/configuring/mdx) + [**bright**](https://bright.codehike.org/) - Documentation with MDX & Code Highlighting.
 - [**Lucide Icons**](https://lucide.dev) + [**svgl**](https://svgl.app) - Beautiful SVG icons & logos for the web.
 
 > ⚠️ This is a community project, not associated with [Vercel](https://vercel.com/).
 
-## 👨‍🚀 Getting Started
+## 🚀 Getting Started
 
 > 🚧 You will need [Nodejs +20 (LTS recommended)](https://nodejs.org/en/) installed.
 
@@ -100,7 +97,40 @@ GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 ```
 
-5. Run the development server:
+**Database:**
+
+- [**Create** a new database with Turso](https://docs.turso.tech/cli/db/create).
+- [Get Turso **Auth Token**](https://docs.turso.tech/cli/auth/token).
+- [Get Turso **Database URL**](https://docs.turso.tech/cli/db/show).
+
+**Auth.js:**
+
+- [Get Auth.js **Secret**](https://authjs.dev/getting-started/providers/oauth-tutorial#adding-environment-variables).
+- ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``.
+
+**Github Credentials:**
+
+- [Create a new OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app).
+
+**Google Credentials:**
+
+- [Create a new OAuth 2.0 App from Google API Console](https://developers.google.com/identity/protocols/oauth2?hl=es-419#1.-obtain-oauth-2.0-credentials-from-the-dynamic_data.setvar.console_name-.).
+
+5. Generate a new migration file with Prisma:
+
+```bash
+pnpm db:migrate
+```
+
+6. Insert the migration data into the Turso database. To do this, go to ``package.json``, modify the ``db:push`` command with the name of the migration folder (2024***xxxxxxxxxx***_init) and run it in your terminal:
+
+```bash
+pnpm db:push
+```
+
+7. Run:
+
+- Development server:
 
 ```bash
 pnpm dev
@@ -108,7 +138,13 @@ pnpm dev
 
 and open [http://localhost:3000](http://localhost:3000) with your browser 🚀
 
-- 📚 You can read the complete documentation [here](https://slug.vercel.app/docs).
+- Prisma Studio:
+
+```bash
+pnpm db:studio
+```
+
+and  open [http://localhost:5555](http://localhost:5555) with your browser ✨
 
 ## 🔭 Roadmap
 
@@ -144,7 +180,14 @@ This is the roadmap I will be following for the complete migration to v3:
 - ✅ Create a new short URL.
 - ✅ List all shorted URLs.
 - ✅ Delete a shorted URL.
-- ✅ Update a shorted URL.
+- ✅ Update a shorted URL.`
+
+⬆️ **Dashboard (tags):**
+
+- ⚙️ Add search links by tags in the dashboard.
+- ⚙️ Create a new tag.
+- ⚙️ Update a tag.
+- ⚙️ Delete a tag.
 
 ⬆️ **Dashboard (settings):**
 
@@ -161,7 +204,7 @@ This is the roadmap I will be following for the complete migration to v3:
 
 <p></p>
 
-## 🚀 Deploy on Vercel
+## ☁️ Deploy on Vercel
 
 - ✅ [slug.vercel.app](https://slug.vercel.app/).
 
