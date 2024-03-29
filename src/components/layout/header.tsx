@@ -10,7 +10,6 @@ import UserButton from "@/components/auth/user-btn";
 import Logo from "@/components/icons/logo";
 import { GithubLogo } from "@/components/icons/logos";
 import CommandK from "@/components/commandK";
-import HeaderClientRoutes from "./header-client-routes";
 
 const Header = () => {
   return (
@@ -26,7 +25,7 @@ const Header = () => {
         className={cn("flex w-full items-center justify-between", "container")}
       >
         <div className="flex items-center space-x-5">
-          <div className="flex items-center space-x-1 border-r border-neutral-200 pr-1 md:pr-4 dark:border-neutral-800">
+          <div className="flex items-center space-x-1 pr-1 md:pr-4">
             <Link
               href="/"
               className="flex items-center space-x-3 transition-opacity hover:opacity-80 rtl:space-x-reverse"
@@ -38,7 +37,6 @@ const Header = () => {
               <Badge className="hidden cursor-pointer md:block">beta</Badge>
             </Link>
           </div>
-          <HeaderClientRoutes />
         </div>
         <div className="flex items-center space-x-1">
           <ExternalLink
