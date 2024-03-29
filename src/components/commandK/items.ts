@@ -1,11 +1,13 @@
 import {
+  HeartHandshakeIcon,
   HomeIcon,
   LayoutDashboardIcon,
   MonitorIcon,
   MoonIcon,
-  RocketIcon,
   SettingsIcon,
+  SproutIcon,
   SunIcon,
+  TelescopeIcon,
 } from "lucide-react";
 import { GithubLogo, XLogo } from "@/components/icons/logos";
 
@@ -27,14 +29,6 @@ export const Pages = [
   },
 ];
 
-export const Documentation = [
-  {
-    name: "Docs: Getting Started",
-    href: "/docs/getting-started",
-    icon: RocketIcon,
-  },
-];
-
 export const ChangeTheme = [
   {
     name: "Light Theme",
@@ -50,6 +44,24 @@ export const ChangeTheme = [
     name: "System Theme",
     param: "system",
     icon: MonitorIcon,
+  },
+];
+
+export const DocumentationPages = [
+  {
+    name: "Getting Started",
+    href: "https://github.com/pheralb/slug?tab=readme-ov-file#-getting-started",
+    icon: SproutIcon,
+  },
+  {
+    name: "Roadmap",
+    href: "https://github.com/pheralb/slug?tab=readme-ov-file#-roadmap",
+    icon: TelescopeIcon,
+  },
+  {
+    name: "Contributing",
+    href: "https://github.com/pheralb/slug?tab=readme-ov-file#%EF%B8%8F-contributing",
+    icon: HeartHandshakeIcon,
   },
 ];
 

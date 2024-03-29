@@ -12,9 +12,11 @@ import { useEffect, useState } from "react";
 import { Button } from "@/ui/button";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ChangeTheme, Documentation, Pages, SocialPages } from "./items";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
+
+// Pages:
+import { ChangeTheme, DocumentationPages, Pages, SocialPages } from "./items";
 
 const CommandK = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -52,7 +54,7 @@ const CommandK = () => {
   return (
     <>
       <Button variant="ghost" size="icon" onClick={() => setOpen(true)}>
-        <SearchIcon size={20} />
+        <SearchIcon size={20} strokeWidth={1.5} />
         <span className="sr-only">Open Command Search Dialog</span>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -74,6 +76,7 @@ const CommandK = () => {
             {ChangeTheme.map((theme) => (
               <CommandItem
                 key={theme.param}
+                value={`Change Theme: ${theme.name}`}
                 onSelect={() => handleChangeTheme(theme.param)}
               >
                 <theme.icon size={22} strokeWidth={1.5} />
@@ -81,11 +84,12 @@ const CommandK = () => {
               </CommandItem>
             ))}
           </CommandGroup>
-          <CommandGroup heading="Documentation">
-            {Documentation.map((doc) => (
+          <CommandGroup heading="Contribute">
+            {DocumentationPages.map((doc) => (
               <CommandItem
                 key={doc.href}
-                onSelect={() => handleRoutePush(doc.href)}
+                value={`Contribute: ${doc.name}`}
+                onSelect={() => handleExternalRoute(doc.href)}
               >
                 <doc.icon size={22} strokeWidth={1.5} />
                 <span>{doc.name}</span>
@@ -98,7 +102,7 @@ const CommandK = () => {
                 key={page.href}
                 onSelect={() => handleExternalRoute(page.href)}
               >
-                <page.icon width={20} />
+                <page.icon width={14} />
                 <span>{page.name}</span>
               </CommandItem>
             ))}
