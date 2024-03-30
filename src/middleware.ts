@@ -11,7 +11,8 @@ import {
   protectedRoutes,
   publicRoutes,
 } from "./routes";
-import { urlFromServer } from "./server/actions/redirect";
+
+import { urlFromServer } from "./server/middleware/redirect";
 
 const { auth } = NextAuth(authConfig);
 
