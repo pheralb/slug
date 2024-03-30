@@ -9,15 +9,12 @@ import {
   protectedRoutes,
   publicRoutes,
 } from "./routes";
-import { NextResponse } from "next/server";
 
 const { auth } = NextAuth(authConfig);
 
 export default auth(async (req) => {
   const { nextUrl } = req;
 
-  // log the url
-  console.log("🚧 nextUrl: ", nextUrl.pathname);
   const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
@@ -36,7 +33,9 @@ export default auth(async (req) => {
   // ⚙️ Is Auth Route. First, check is authenticated:
   if (isAuthRoute) {
     if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl));
+      return Response.redirect(
+        new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl),
+      );
     }
     return;
   }
@@ -64,13 +63,8 @@ export default auth(async (req) => {
   // If not public route and not protected route:
   if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
     try {
-      console.log("🚧 slugRoute: ", slugRoute);
-      console.log("🚧 req.nextUrl.origin: ", req.nextUrl.origin);
       const getDataApi = await fetch(
         `${req.nextUrl.origin}/api/url?slug=${slugRoute}`,
-        {
-          cache: "no-store",
-        },
       );
 
       if (getDataApi.status === 404) {
@@ -78,10 +72,9 @@ export default auth(async (req) => {
       }
 
       const getDataUrl = await getDataApi.json();
-      console.log("🚧 getDataUrl: ", getDataUrl);
+
       if (getDataUrl?.url) {
-        const newURL = new URL(getDataUrl.url as string, req.url);
-        return NextResponse.redirect(newURL);
+        return Response.redirect(new URL(getDataUrl.url as string).toString());
       }
     } catch (error) {
       console.error("🚧 Error fetching slug: ", error);
