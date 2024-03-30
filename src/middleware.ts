@@ -85,7 +85,7 @@ export default auth(async (req) => {
 
 export const config = {
   matcher: [
-    "/((?!api/|_next/|images/|docs/|_proxy/|_static|_vercel|.well-known|[\\w-]+\\.\\w+).*)",
+    "/((?!api/|_next/|images/|docs/|_proxy/|_static|_vercel|[\\w-]+\\.\\w+).*)",
     "/s/:slug*",
   ],
 };
