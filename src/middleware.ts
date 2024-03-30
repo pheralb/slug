@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 
+import { NextResponse } from "next/server";
+
 import {
   DEFAULT_LOGIN_REDIRECT_URL,
   apiAuthPrefix,
@@ -33,14 +35,16 @@ export default auth(async (req) => {
   // ⚙️ Is Auth Route. First, check is authenticated:
   if (isAuthRoute) {
     if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl));
+      return NextResponse.redirect(
+        new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl),
+      );
     }
     return;
   }
 
   // ⚙️ If Slug contains ``c``, redirect to /check/:slug:
   if (slugRoute && slugRoute.endsWith("&c")) {
-    return Response.redirect(
+    return NextResponse.redirect(
       new URL(`/check/${slugRoute.replace("&c", "")}`, nextUrl),
     );
   }
@@ -52,7 +56,7 @@ export default auth(async (req) => {
       callbackUrl += nextUrl.search;
     }
     const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-    return Response.redirect(
+    return NextResponse.redirect(
       new URL(`/auth?callbackUrl=${encodedCallbackUrl}`, nextUrl),
     );
   }
@@ -60,21 +64,24 @@ export default auth(async (req) => {
   // ⚙️ Redirect using slug:
   // If not public route and not protected route:
   if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
-    const data = await fetch(`${req.nextUrl.origin}/api/url?slug=${slugRoute}`);
+    try {
+      const getDataApi = await fetch(
+        `${req.nextUrl.origin}/api/url?slug=${slugRoute}`,
+      );
 
-    if (data.status === 404) {
-      return;
+      if (getDataApi.status === 404) {
+        return;
+      }
+
+      const getDataUrl = await getDataApi.json();
+
+      if (getDataUrl?.url) {
+        return NextResponse.redirect(new URL(getDataUrl.url as string));
+      }
+    } catch (error) {
+      console.error("🚧 Error fetching slug: ", error);
     }
-
-    const dataToJson = await data.json();
-
-    if (dataToJson.url) {
-      return Response.redirect(new URL(dataToJson.url as string).toString());
-    }
-
-    return;
   }
-
   return;
 });
 
