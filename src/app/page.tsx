@@ -17,7 +17,7 @@ export default async function Home() {
         className="flex flex-col items-center px-6 pt-16 text-center md:pt-24 lg:pt-32"
       >
         <TypographyH1 className="max-w-[75ch] duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
-          Revolutionize Your Link Management
+          Enhance Your Link Management
         </TypographyH1>
         <TypographyP className="max-w-[75ch] text-sm duration-700 animate-in fade-in-5 slide-in-from-top-2 md:text-base [&:not(:first-child)]:mt-6">
           Slug is an open-source platform that allows you to create, manage, and

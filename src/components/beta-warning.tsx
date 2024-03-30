@@ -1,17 +1,23 @@
 import Alert from "@/ui/alert";
 import ExternalLink from "@/ui/external-link";
+import { SproutIcon } from "lucide-react";
 
 const BetaWarning = () => {
   return (
     <Alert
       variant="info"
-      className="bg-white dark:bg-neutral-900/85 border-y dark:border-neutral-800 rounded-none p-4 shadow-sm"
+      icon={<SproutIcon size={20} />}
+      className="rounded-none border-y bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/85 dark:text-white text-neutral-800"
       containerClassName="container"
       iconSize={12}
     >
       <p>
-        Slug is now in beta. Any problems/bugs, please{" "}
-        <ExternalLink href="https://github.com/pheralb/slug/issues/new/choose" className="underline underline-offset-4 decoration-dotted">
+        Welcome to the Slug beta. If you detect any problem or bug, feel
+        free to{" "}
+        <ExternalLink
+          href="https://github.com/pheralb/slug/issues/new/choose"
+          className="underline decoration-dotted underline-offset-4"
+        >
           create an issue
         </ExternalLink>{" "}
         on Github.
