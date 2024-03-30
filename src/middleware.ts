@@ -1,8 +1,6 @@
 import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 
-import { NextResponse } from "next/server";
-
 import {
   DEFAULT_LOGIN_REDIRECT_URL,
   apiAuthPrefix,
@@ -35,7 +33,7 @@ export default auth(async (req) => {
   // ⚙️ Is Auth Route. First, check is authenticated:
   if (isAuthRoute) {
     if (isLoggedIn) {
-      return NextResponse.redirect(
+      return Response.redirect(
         new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl),
       );
     }
@@ -44,7 +42,7 @@ export default auth(async (req) => {
 
   // ⚙️ If Slug contains ``c``, redirect to /check/:slug:
   if (slugRoute && slugRoute.endsWith("&c")) {
-    return NextResponse.redirect(
+    return Response.redirect(
       new URL(`/check/${slugRoute.replace("&c", "")}`, nextUrl),
     );
   }
@@ -56,7 +54,7 @@ export default auth(async (req) => {
       callbackUrl += nextUrl.search;
     }
     const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-    return NextResponse.redirect(
+    return Response.redirect(
       new URL(`/auth?callbackUrl=${encodedCallbackUrl}`, nextUrl),
     );
   }
@@ -73,13 +71,10 @@ export default auth(async (req) => {
         return;
       }
 
-      const getDataUrl = (await getDataApi.json()) as {
-        message: string;
-        url: string;
-      };
+      const getDataUrl = await getDataApi.json();
 
       if (getDataUrl?.url) {
-        return NextResponse.redirect(new URL(getDataUrl.url).toString());
+        return Response.redirect(new URL(getDataUrl.url as string).toString());
       }
     } catch (error) {
       console.error("🚧 Error fetching slug: ", error);

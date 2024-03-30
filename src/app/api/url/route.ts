@@ -42,10 +42,9 @@ export const GET = async (req: Request) => {
 
     newHeaders.set("cache-control", "public, max-age=31536000, immutable");
 
-    return NextResponse.json(
-      { message: "Link already exists.", url: getLinkFromServer.url },
-      { headers: newHeaders, status: 200 },
-    );
+    return NextResponse.json(getLinkFromServer, {
+      headers: newHeaders,
+    });
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       console.log(`🚧 Error: ${error.message}`);
