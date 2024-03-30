@@ -24,7 +24,10 @@ export const GET = async (req: NextRequest) => {
 
   // If no link found (404):
   if (!getLinkFromServer) {
-    return NextResponse.redirect(new URL(`/dashboard?search=${params}`, req.url));
+    return NextResponse.json(
+      { error: "Error: Slug not found or invalid." },
+      { status: 404 },
+    );
   }
 
   // Increment the clicks in the database:
@@ -43,5 +46,7 @@ export const GET = async (req: NextRequest) => {
   newHeaders.set("cache-control", "public, max-age=31536000, immutable");
 
   // Redirect to the URL:
-  return NextResponse.redirect(new URL(getLinkFromServer.url).toString());
+  return NextResponse.json(getLinkFromServer, {
+    headers: newHeaders,
+  });
 };

@@ -36,7 +36,7 @@ const DashboardPage = async ({
     <main className="w-full duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <div className="mb-2 flex w-full flex-col items-end justify-between space-y-4 md:flex-row md:items-center md:space-y-0">
         <SearchLinks className="w-full md:w-72 md:max-w-72" />
-        <LinksLimit userLinks={filteredLinks.length} maxLinks={data.limit} />
+        <LinksLimit userLinks={data.links.length} maxLinks={data.limit} />
       </div>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-1 lg:grid-cols-2">
         {filteredLinks
