@@ -41,7 +41,7 @@ export default auth(async (req) => {
   }
 
   // ⚙️ If Slug contains ``c``, redirect to /check/:slug:
-  if (slugRoute && slugRoute.endsWith("&c")) {
+  if (slugRoute?.endsWith("&c")) {
     return Response.redirect(
       new URL(`/check/${slugRoute.replace("&c", "")}`, nextUrl),
     );
