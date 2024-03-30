@@ -1,4 +1,5 @@
 import {
+  BugIcon,
   HeartHandshakeIcon,
   HomeIcon,
   LayoutDashboardIcon,
@@ -26,7 +27,7 @@ export const Pages = [
     name: "Settings",
     href: "/dashboard/settings",
     icon: SettingsIcon,
-  },
+  }
 ];
 
 export const ChangeTheme = [
@@ -63,6 +64,11 @@ export const DocumentationPages = [
     href: "https://github.com/pheralb/slug?tab=readme-ov-file#%EF%B8%8F-contributing",
     icon: HeartHandshakeIcon,
   },
+  {
+    name: "Report a Bug",
+    href: "https://github.com/pheralb/slug/issues/new/choose",
+    icon: BugIcon,
+  }
 ];
 
 export const SocialPages = [
