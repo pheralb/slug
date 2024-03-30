@@ -5,6 +5,7 @@ import { db } from "@/server/db";
 interface urlFromServerResult {
   error: boolean;
   message: string;
+  redirect404?: boolean;
   url?: string;
 }
 
@@ -20,8 +21,9 @@ export const urlFromServer = async (
 
     if (!getLinkFromServer) {
       return {
-        error: true,
+        error: false,
         message: "🚧 Error (urlFromServer): Slug not found or invalid.",
+        redirect404: true,
       };
     }
 

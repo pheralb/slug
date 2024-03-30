@@ -13,6 +13,7 @@ import {
 } from "./routes";
 
 import { urlFromServer } from "./server/middleware/redirect";
+import { notFound } from "next/navigation";
 
 const { auth } = NextAuth(authConfig);
 
@@ -69,9 +70,13 @@ export default auth(async (req) => {
     try {
       const getDataApi = await urlFromServer(slugRoute!);
 
+      if (getDataApi.redirect404) {
+        return notFound();
+      }
+
       if (getDataApi.error) {
         return NextResponse.json(
-          { error: `Error: ${getDataApi.message}` },
+          { error: getDataApi.message },
           { status: 500 },
         );
       }
