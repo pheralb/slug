@@ -52,7 +52,14 @@ This project uses the following technologies:
 
 ## 🚀 Getting Started
 
-> 🚧 You will need [Nodejs +20 (LTS recommended)](https://nodejs.org/en/) installed.
+**Requirements:**
+
+- [x] [Node.js](https://nodejs.org) (+v18.x) installed.
+- [x] [pnpm](https://pnpm.io) (v8+) installed.
+- [x] [Turso CLI](https://docs.turso.tech/cli/install) installed (for Windows users, it's necessary to [activate WSL 2](https://docs.microsoft.com/en-us/windows/wsl/install)).
+- [x] [Visual Studio Code](https://code.visualstudio.com) with the recommended extensions installed (ESLint, Prettier, Tailwind CSS IntelliSense).
+
+**Steps:**
 
 1. Fork this project:
 
