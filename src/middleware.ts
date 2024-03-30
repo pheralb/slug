@@ -73,10 +73,13 @@ export default auth(async (req) => {
         return;
       }
 
-      const getDataUrl = await getDataApi.json();
+      const getDataUrl = (await getDataApi.json()) as {
+        message: string;
+        url: string;
+      };
 
       if (getDataUrl?.url) {
-        return NextResponse.redirect(new URL(getDataUrl.url as string));
+        return NextResponse.redirect(new URL(getDataUrl.url).toString());
       }
     } catch (error) {
       console.error("🚧 Error fetching slug: ", error);
