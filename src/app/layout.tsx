@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 // Styles:
 import "@/styles/globals.css";
@@ -40,6 +40,7 @@ export const metadata: Metadata = {
     default: "Slug - A beautifully open-source URL shortener",
     template: "%s - Slug",
   },
+  manifest: "/manifest.json",
   icons: [
     {
       rel: "icon",
@@ -53,12 +54,18 @@ export const metadata: Metadata = {
       sizes: "any",
       url: "/images/logo_svg.svg",
     },
+    {
+      rel: "apple-touch-icon",
+      type: "image/png",
+      sizes: "180x180",
+      url: "/images/apple-touch-icon.png",
+    },
   ],
   description: "An open-source URL shortener built with T3 Stack.",
   openGraph: {
     title: "Slug",
     description: "An beautifully open-source URL shortener",
-    url: "https://slug.vercel.app",
+    url: "https://slug.vercel.app/images/og_image.png",
     siteName: "Slug - An beautifully open-source URL shortener",
     locale: "en_US",
     type: "website",
@@ -78,6 +85,11 @@ export const metadata: Metadata = {
     title: "Slug - An beautifully open-source URL shortener",
     card: "summary_large_image",
   },
+};
+
+// Viewport:
+export const viewport: Viewport = {
+  themeColor: "#171717",
 };
 
 // App layout:
