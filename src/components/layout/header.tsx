@@ -46,7 +46,7 @@ const Header = () => {
               size: "icon",
             })}
           >
-            <GithubLogo width={20} />
+            <GithubLogo width={20} name="GitHub Repository" />
           </ExternalLink>
           <CommandK />
           <ModeToggle />

@@ -20,7 +20,13 @@ export function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="space-x-0">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="space-x-0"
+          aria-label="Change theme"
+          name="Change theme"
+        >
           <SunIcon
             size={20}
             strokeWidth={1.5}
@@ -35,9 +41,7 @@ export function ModeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel className="font-normal">
-          <p className="text-sm font-medium leading-none">
-            Theme
-          </p>
+          <p className="text-sm font-medium leading-none">Theme</p>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem

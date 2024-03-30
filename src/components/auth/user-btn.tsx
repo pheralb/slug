@@ -34,6 +34,7 @@ export default async function UserButton() {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger
+          name={session.user.name ?? "User Menu"}
           className={buttonVariants({
             variant: "ghost",
             size: "icon",

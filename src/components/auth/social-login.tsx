@@ -49,6 +49,7 @@ const SocialLogin = () => {
           variant="outline"
           className="w-full"
           disabled={loading}
+          name={sp.name}
           onClick={() => handleSocialLogin(sp.provider)}
         >
           {provider === sp.provider ? (
