@@ -1,41 +1,50 @@
-# Dependencies =>
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
 /node_modules
 /.pnp
 .pnp.js
-package-lock.json
-yarn.lock
-pnpm-lock.json
 
-# Testing =>
+# testing
 /coverage
 
-# Database =>
+# database
 /prisma/db.sqlite
 /prisma/db.sqlite-journal
 
-# Next.js =>
+# next.js
 /.next/
 /out/
+next-env.d.ts
 
-# Production =>
+# production
 /build
 
-# Misc =>
+# misc
 .DS_Store
 *.pem
 
-# Debug =>
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Local env files =>
+# local env files
 .env
 .env*.local
 
-# Vercel =>
+# vercel
 .vercel
 
-# Typescript =>
+# typescript
 *.tsbuildinfo
+
+# prisma & dump files
+migrations
+dev.db
+dev.db-journal
+mysql2sqlite
+pscale*
+db_dump.sql
+dump-in-sqlite.db

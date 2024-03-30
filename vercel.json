@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/git",
+      "destination": "https://github.com/pheralb/slug"
+    },
+    {
+      "source": "/dash",
+      "destination": "/dashboard"
+    },
+    {
+      "source": "/docs",
+      "destination": "/docs/getting-started"
+    }
+  ]
+}

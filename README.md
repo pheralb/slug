@@ -1,66 +1,72 @@
-> [!IMPORTANT]
-> We are preparing a new version of Slug, including a new database.
-> **The option to create new links is closed.**
-> The new update is planned for April.
-> You can see all the changes [here](https://github.com/pheralb/slug/tree/next) 🚀
+<div align="center">
+  <a href="https://slug.vercel.app">
+    <img
+      src="public/images/logo_svg.svg"
+      alt="Slug Logo"
+      height="60"
+    />
+  </a>
+  <p>
+    <b>
+      An open-source URL shortener built with T3 Stack.
+    </b>
+  </p>
+
+<a href="https://slug.vercel.app/dashboard">Dashboard</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#-roadmap">Roadmap</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="#-getting-started">Contribute</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="https://github.com/pheralb/slug/issues/new/choose">Create issue</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="https://twitter.com/pheralb_">X/Twitter</a>
 
 <div align="center">
-
-<a href="slug.vercel.app">
-<img src="./public/img/banner_gh.jpg" />
+<a href="https://slug.vercel.app">
+<img src="public/images/screenshot_png.png">
 </a>
-
 <p></p>
+</div>
 
-<a href="https://slug.vercel.app/dash/create">🚀 Short link</a>
-<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-<a href="#-getting-started">🤝 Contribute</a>
-<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-<a href="https://twitter.com/pheralb_">🐦 Twitter</a>
-
+![Next.js Badge](https://img.shields.io/badge/Next.js&nbsp;14-000?logo=nextdotjs&logoColor=fff&style=flat)
+![Turso Badge](https://img.shields.io/badge/Turso-4FF8D2?logo=turso&logoColor=000&style=flat)
+![Check workflow](https://github.com/pheralb/slug/actions/workflows/ci.yml/badge.svg)
 ![GitHub stars](https://img.shields.io/github/stars/pheralb/slug)
+![GitHub releases](https://img.shields.io/github/release/pheralb/slug)
 ![GitHub issues](https://img.shields.io/github/issues/pheralb/slug)
 ![GitHub license](https://img.shields.io/github/license/pheralb/slug)
-[![Required Node.JS >=16.0.0](https://img.shields.io/static/v1?label=node&message=%20%3E=16.0.0&logo=node.js&color=3f893e)](https://nodejs.org/about/releases)
 
 </div>
 
-## 🤔 What is T3 Stack?
+## 👨‍🚀 Introduction
 
-The [**T3 Stack**](https://create.t3.gg/) is a web development stack made by [Theo](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**. This project is using:
+[**Slug**](slug.vercel.app) is a service that offers to shorten urls in a simple, fast and secure way. It's built with [**T3 Stack**](https://create.t3.gg/), a web development stack made by [**Theo**](https://twitter.com/t3dotgg) focused on simplicity, modularity, and full-stack **typesafety**.
 
-- ✅ **Bootstrapping**: [create-t3-app](https://create.t3.gg).
-- ✅ **Framework**: [Nextjs 13 + Typescript](https://nextjs.org/).
-- ✅ **Auth**: [Next-Auth.js](https://next-auth.js.org)
-- ✅ **ORM**: [Prisma](https://prisma.io).
-- ✅ **Database**: [Planetscale](https://planetscale.com/).
-- ✅ **Styling**: [TailwindCSS + HeadlessUI](https://tailwindcss.com).
-- ✅ **Typescript Schema Validation**: [Zod](https://github.com/colinhacks/zod).
-- ✅ **End-to-end typesafe API**: [tRPC](https://trpc.io/).
-- ✅ **Safely serialize JavaScript expressions**: [Superjson](https://github.com/blitz-js/superjson).
+This project uses the following technologies:
 
-## 📦 Project structure
+- [**create-t3-app**](https://create.t3.gg) - The best way to start a full-stack, typesafe Next.js app.
+- [**Next.js 14 App Router**](https://nextjs.org/) - The React Framework for the Web.
+- [**Auth.js v5**](https://authjs.dev/) - Authentication for the Web.
+- [**Prisma**](https://prisma.io) - A next-generation Node.js and TypeScript ORM.
+- [**Turso**](https://turso.tech/) (SQLite) + [**libSQL**](https://github.com/tursodatabase/libsql) - SQLite for Production.
+- [**Next.js Server Actions**](https://nextjs.org/docs/api-reference/server-actions) - Asynchronous functions that are executed on the server.
+- [**TailwindCSS**](https://tailwindcss.com) + [**shadcn/ui**](https://ui.shadcn.com) & [**Radix Primitives**](https://www.radix-ui.com) - Design System.
+- [**Prettier**](https://prettier.io) with [**prettier-plugin-tailwindcss**](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) - Code Formatter.
+- [**Lucide Icons**](https://lucide.dev) + [**svgl**](https://svgl.app) - Beautiful SVG icons & logos for the web.
 
-```
-- prisma
-- public
-- src
-  |- components
-  |- env
-  |- layout
-  |- motions
-  |- pages
-  |- schema
-  |- server
-  |- styles
-  |- types
-  |- ui
-  |- utils
-```
+> ⚠️ This is a community project, not associated with [Vercel](https://vercel.com/).
 
-## 👨‍🚀 Getting Started
+## 🚀 Getting Started
 
-> 🚧 You will need [Nodejs +16 (LTS recommended)](https://nodejs.org/en/) installed.
+**Requirements:**
+
+- [x] [Node.js](https://nodejs.org) (+v18.x) installed.
+- [x] [pnpm](https://pnpm.io) (v8+) installed.
+- [x] [Turso CLI](https://docs.turso.tech/cli/install) installed (for Windows users, it's necessary to [activate WSL 2](https://docs.microsoft.com/en-us/windows/wsl/install)).
+- [x] [Visual Studio Code](https://code.visualstudio.com) with the recommended extensions installed (ESLint, Prettier, Tailwind CSS IntelliSense).
+
+**Steps:**
 
 1. Fork this project:
 
@@ -75,13 +81,11 @@ git clone git@github.com:YOU_USER/slug.git
 3. Install dependencies:
 
 ```bash
-npm install
-# or
+# Install pnpm globally if you don't have it:
+npm install -g pnpm
+
+# and install dependencies:
 pnpm install
-# or
-yarn install
-# or
-ultra install
 ```
 
 4. Create a **.env** file with the following content:
@@ -89,50 +93,123 @@ ultra install
 > 🚧 The environment variables must match the following [schema](https://github.com/pheralb/slug/blob/main/src/env/schema.mjs#L8).
 
 ```bash
-# Planetscale DB URL:
-DATABASE_URL:
+# Database:
+DATABASE_URL= # "file:./dev.db"
+TURSO_DATABASE_URL=
+TURSO_AUTH_TOKEN=
 
-# Github OAuth secrets:
-GITHUB_ID:
-GITHUB_CLIENT_SECRET:
+# Auth.js =>
+AUTH_SECRET=
 
-# Next Auth config:
-NEXTAUTH_SECRET:
-NEXTAUTH_URL:
+# Github Provider =>
+GITHUB_ID=
+GITHUB_CLIENT_SECRET=
+
+# Google Provider =>
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
 ```
 
-### 🔑 How to get environment variables:
+**Database:**
 
-**Planetscale database:**
-- [Create a new database](https://planetscale.com/docs/tutorials/planetscale-quick-start-guide#getting-started-planet-scale-dashboard).
-- [Create a dev branch](https://planetscale.com/docs/onboarding/branching-and-deploy-requests#create-a-dev-branch).
-- [In the dev branch, click on "Connect" and select "Prisma". Now you have the DATABASE_URL](https://planetscale.com/docs/concepts/connection-strings#creating-a-password).
+- [**Create** a new database with Turso](https://docs.turso.tech/cli/db/create).
+- [Get Turso **Auth Token**](https://docs.turso.tech/cli/auth/token).
+- [Get Turso **Database URL**](https://docs.turso.tech/cli/db/show).
 
-> 🚧 The environment variable in the dev branch is not the same as main. When you deploy your app to production, in the environment variables change DATABASE_URL to the main variable.
+**Auth.js:**
 
-**Github OAuth:**
-- [Click here to create new Github OAuth app](https://github.com/settings/applications/new).
-- Go to "Client secrets" and generate new client secret and and paste it into GITHUB_CLIENT_SECRET env.
-- Copy the Client ID and paste it into GITHUB_ID env.
+- [Get Auth.js **Secret**](https://authjs.dev/getting-started/providers/oauth-tutorial#adding-environment-variables).
+- ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``. You can change it in the [**``auth.ts`` file**](https://github.com/pheralb/slug/blob/next/src/auth.ts#L20).
 
-**Next Auth:**
-- NEXTAUTH_SECRET: ``mykey123`` for example.
-- NEXTAUTH_URL: ``http://localhost:3000/``.
+**Github Credentials:**
 
-5. Ready 🥳, now run:
+- [Create a new OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app).
+
+**Google Credentials:**
+
+- [Create a new OAuth 2.0 App from Google API Console](https://developers.google.com/identity/protocols/oauth2?hl=es-419#1.-obtain-oauth-2.0-credentials-from-the-dynamic_data.setvar.console_name-.).
+
+5. Generate a new migration file with Prisma:
 
 ```bash
-# Push your DB to Planetscale:
-npx prisma db push
-
-# Run the project:
-npm run dev
-
-# (Optional) Run Prisma Studio to see your DB data:
-npx prisma studio
+pnpm db:migrate
 ```
 
-😊 Contributing:
+6. Insert the migration data into the Turso database. To do this, go to ``package.json``, modify the ``db:push`` command with the name of the migration folder (2024***xxxxxxxxxx***_init) and run it in your terminal:
+
+```bash
+pnpm db:push
+```
+
+7. Run:
+
+- Development server:
+
+```bash
+pnpm dev
+```
+
+and open [http://localhost:3000](http://localhost:3000) with your browser 🚀
+
+- Prisma Studio:
+
+```bash
+pnpm db:studio
+```
+
+and  open [http://localhost:5555](http://localhost:5555) with your browser ✨
+
+## 🔭 Roadmap
+
+This is the roadmap I will be following for the complete migration to v3:
+
+> - *✅* = Stable, completed.
+> - *🔔* = Stable, but unexpected errors may appear.
+> - *⚙️* = In progress.
+
+⬆️ **Known issues:**
+
+- ⚙️ Fix issue when logging in with different provider but with the same email. Redirect to an existing route in the app ([authjs error](https://authjs.dev/reference/core/errors#accountnotlinked)).
+
+⬆️ **Dependencies:**
+
+- ✅ Update `@prisma/adapter-libsql`, `@prisma/client` & `prisma` to the stable version when it's released.
+- ⚙️ Update `authjs` to the stable version (v5) when it's released.
+
+⬆️ **Auth:**
+
+- ✅ Sign In with Github.
+- 🔔 Sign In with Google.
+
+🔔 Only for users who have not previously logged in with an existing email address in their Github account. This is an issue that will be worked on soon.
+
+⬆️ **Middleware:**
+
+- ✅ Redirect with `/*` and `/s/*`.
+- ✅ Separate public, protected & authentication routes.
+
+⬆️ **Dashboard (main):**
+
+- ✅ Create a new short URL.
+- ✅ List all shorted URLs.
+- ✅ Delete a shorted URL.
+- ✅ Update a shorted URL.`
+
+⬆️ **Dashboard (tags):**
+
+- ⚙️ Add search links by tags in the dashboard.
+- ⚙️ Create a new tag.
+- ⚙️ Update a tag.
+- ⚙️ Delete a tag.
+
+⬆️ **Dashboard (settings):**
+
+- ✅ Change name.
+- ✅ Change email.
+- ✅ Delete account.
+- ✅ Download all links data.
+
+## ✌️ Contributing
 
 <a href="https://github.com/pheralb/slug/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=pheralb/slug" />
@@ -140,9 +217,9 @@ npx prisma studio
 
 <p></p>
 
-## 🎉 Deploy on Vercel
+## ☁️ Deploy on Vercel
 
-- ✅ [https://slug.vercel.app/](https://slug.vercel.app/).
+- ✅ [slug.vercel.app](https://slug.vercel.app/).
 
 ## 🔑 License
 
