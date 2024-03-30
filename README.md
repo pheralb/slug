@@ -22,6 +22,13 @@
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="https://twitter.com/pheralb_">X/Twitter</a>
 
+<div align="center">
+<a href="https://slug.vercel.app">
+<img src="public/images/screenshot_png.png">
+</a>
+<p></p>
+</div>
+
 ![Next.js Badge](https://img.shields.io/badge/Next.js&nbsp;14-000?logo=nextdotjs&logoColor=fff&style=flat)
 ![Turso Badge](https://img.shields.io/badge/Turso-4FF8D2?logo=turso&logoColor=000&style=flat)
 ![Check workflow](https://github.com/pheralb/slug/actions/workflows/ci.yml/badge.svg)
