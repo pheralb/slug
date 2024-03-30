@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 
+import { NextResponse } from "next/server";
+
 import {
   DEFAULT_LOGIN_REDIRECT_URL,
   apiAuthPrefix,
@@ -9,6 +11,7 @@ import {
   protectedRoutes,
   publicRoutes,
 } from "./routes";
+import { urlFromServer } from "./server/actions/redirect";
 
 const { auth } = NextAuth(authConfig);
 
@@ -33,7 +36,7 @@ export default auth(async (req) => {
   // ⚙️ Is Auth Route. First, check is authenticated:
   if (isAuthRoute) {
     if (isLoggedIn) {
-      return Response.redirect(
+      return NextResponse.redirect(
         new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl),
       );
     }
@@ -42,7 +45,7 @@ export default auth(async (req) => {
 
   // ⚙️ If Slug contains ``c``, redirect to /check/:slug:
   if (slugRoute?.endsWith("&c")) {
-    return Response.redirect(
+    return NextResponse.redirect(
       new URL(`/check/${slugRoute.replace("&c", "")}`, nextUrl),
     );
   }
@@ -54,7 +57,7 @@ export default auth(async (req) => {
       callbackUrl += nextUrl.search;
     }
     const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-    return Response.redirect(
+    return NextResponse.redirect(
       new URL(`/auth?callbackUrl=${encodedCallbackUrl}`, nextUrl),
     );
   }
@@ -63,18 +66,17 @@ export default auth(async (req) => {
   // If not public route and not protected route:
   if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
     try {
-      const getDataApi = await fetch(
-        `${req.nextUrl.origin}/api/url?slug=${slugRoute}`,
-      );
+      const getDataApi = await urlFromServer(slugRoute!);
 
-      if (getDataApi.status === 404) {
-        return;
+      if (getDataApi.error) {
+        return NextResponse.json(
+          { error: `Error: ${getDataApi.message}` },
+          { status: 500 },
+        );
       }
 
-      const getDataUrl = await getDataApi.json();
-
-      if (getDataUrl?.url) {
-        return Response.redirect(new URL(getDataUrl.url as string).toString());
+      if (getDataApi.url) {
+        return NextResponse.redirect(new URL(getDataApi.url).toString());
       }
     } catch (error) {
       console.error("🚧 Error fetching slug: ", error);
