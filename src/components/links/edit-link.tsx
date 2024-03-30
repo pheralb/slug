@@ -178,7 +178,7 @@ const EditLink = (props: EditLinkProps) => {
                     <FormControl>
                       <Textarea
                         {...field}
-                        placeholder={props.link.description ?? "Description"}
+                        defaultValue={props.link.description ?? "Description"}
                         disabled={loading}
                       />
                     </FormControl>
