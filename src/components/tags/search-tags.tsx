@@ -1,21 +1,30 @@
 "use client";
 
 import type { Tags } from "@prisma/client";
-import type { ReactNode } from "react";
+import { useState } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import { CreateTag } from "./create-tag";
 import { Button } from "@/ui/button";
-import { CheckIcon, PlusIcon, SearchXIcon } from "lucide-react";
+import {
+  CheckIcon,
+  PlusIcon,
+  SearchXIcon,
+  TagIcon,
+  TagsIcon,
+  XIcon,
+} from "lucide-react";
+import DeleteTag from "./delete-tag";
 
 interface SearchTagProps {
   tags: Tags[];
   tagSelected: string;
-  children: ReactNode;
+  tagName?: string;
 }
 
 const SearchTag = (props: SearchTagProps) => {
+  const [isOpened, setIsOpened] = useState<boolean>(false);
   const searchTagParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -37,18 +46,40 @@ const SearchTag = (props: SearchTagProps) => {
   };
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>{props.children}</PopoverTrigger>
+    <Popover open={isOpened} onOpenChange={setIsOpened}>
+      <PopoverTrigger asChild>
+        <Button variant="outline">
+          {isOpened ? <XIcon size={16} /> : <TagsIcon size={16} />}
+          {props.tagName ? (
+            <span>
+              {props.tags.map((tag) => {
+                if (tag.id === props.tagName) {
+                  return tag.name;
+                }
+              })}
+            </span>
+          ) : (
+            <span className="hidden md:block">Select a tag</span>
+          )}
+        </Button>
+      </PopoverTrigger>
       <PopoverContent>
-        <p className="text-center my-2 font-medium">My Tags ({props.tags.length})</p>
+        <p className="my-2 text-center font-medium">
+          My Tags ({props.tags.length})
+        </p>
         <div className="mb-2 flex w-full flex-col space-y-1">
+          {props.tags.length === 0 && (
+            <div className="my-4 flex flex-col items-center justify-center space-y-2 text-sm text-neutral-500 dark:text-neutral-400">
+              <TagIcon size={24} strokeWidth={1.5} />
+              <span>No tags found</span>
+            </div>
+          )}
           {props.tags.map((tag) => {
             return (
-              <button
+              <div
                 key={tag.id}
-                value={tag.id}
-                onClick={() => handleSearchTag(tag.id)}
-                className="flex w-full items-center justify-between rounded-md px-2 py-1 text-left text-sm transition-colors duration-200 hover:opacity-80"
+                aria-label={tag.name}
+                className="flex w-full items-center justify-between rounded-md border border-neutral-200 px-2 py-1 text-left text-sm transition-colors duration-200 hover:opacity-80 dark:border-neutral-800"
                 style={{
                   backgroundColor: tag.color
                     ? `${tag.color}`
@@ -56,9 +87,24 @@ const SearchTag = (props: SearchTagProps) => {
                   color: tag.color ? "#fff" : "#171717",
                 }}
               >
-                <span>{tag.name}</span>
-                {tag.id === props.tagSelected && <CheckIcon size={16} />}
-              </button>
+                <button
+                  onClick={() => handleSearchTag(tag.id)}
+                  className="w-full text-start"
+                >
+                  {tag.name}
+                </button>
+                <div className="flex items-center space-x-2">
+                  {tag.id === props.tagSelected && <CheckIcon size={16} />}
+                  <DeleteTag
+                    tag={tag}
+                    trigger={
+                      <button className="rounded-md p-1 hover:opacity-80">
+                        <XIcon size={16} />
+                      </button>
+                    }
+                  />
+                </div>
+              </div>
             );
           })}
         </div>

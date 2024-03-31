@@ -59,3 +59,27 @@ export const insertTagToLink = async (linkId: string, tagId: string) => {
 
   return;
 };
+
+/**
+ * Remove a tag.
+ * Authentication required.
+ * @type {string()}
+ */
+export const removeTag = async (tagId: string) => {
+  const currentUser = await auth();
+
+  if (!currentUser) {
+    console.error("Not authenticated.");
+    return null;
+  }
+
+  await db.tags.delete({
+    where: {
+      id: tagId,
+    },
+  });
+
+  revalidatePath("/");
+
+  return;
+};

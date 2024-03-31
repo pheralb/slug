@@ -118,19 +118,6 @@ export function CreateTag(props: CreateTagProps) {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="color"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Color:</FormLabel>
-                    <FormControl>
-                      <Input {...field} disabled={loading} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               {isError && <Alert variant="error">{message}</Alert>}
             </div>
             <DialogFooter>

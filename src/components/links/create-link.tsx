@@ -65,6 +65,11 @@ export function CreateLink(props: CreateLinkProps) {
       setSelectedTags(selectedTags.filter((tag) => tag !== tagId));
       return;
     }
+
+    if (selectedTags.length >= 2) {
+      toast.error("You can't add more than 2 tags to a link.");
+      return;
+    }
     setSelectedTags([...selectedTags, tagId]);
   };
 

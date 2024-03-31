@@ -63,7 +63,9 @@ export const getSingleLinkSchema = z.object({
 });
 
 export const CreateTagSchema = z.object({
-  name: z.string().min(1, { message: "Tag name is required." }),
+  name: z.string().min(1, { message: "Tag name is required." }).max(15, {
+    message: "Tag name must be less than 15 characters.",
+  }),
   color: z.string().min(1, { message: "Tag color is required." }),
 });
 

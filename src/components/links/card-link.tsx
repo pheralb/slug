@@ -105,21 +105,18 @@ const CardLink = ({ linkInfo, linkTags, tagsInfo }: CardLinkProps) => {
         {linkInfo.url}
       </p>
       <Collapsible>
-        <div className="flex items-center justify-between font-mono text-xs font-medium text-neutral-600 dark:text-neutral-500 md:space-x-2">
+        <div className="flex items-center justify-between font-mono text-xs font-medium text-neutral-600 dark:text-neutral-400 md:space-x-2">
           <div className="flex max-w-[75%] items-center space-x-2">
             {linkTags.length > 0 && (
-              <div className="flex items-center space-x-1">
+              <div className="flex cursor-default items-center space-x-1">
                 {linkTags.map((tag) => {
                   const tagInfo = tagsInfo.find((t) => t.id === tag.tagId);
                   return (
                     <span
                       key={tag.tagId}
                       className={cn(
-                        "rounded-md border border-neutral-200 px-2 py-[0.5px] font-mono text-xs dark:border-neutral-800",
+                        "rounded-md border border-neutral-200 px-2 py-[0.5px] font-mono text-xs  dark:border-neutral-800",
                       )}
-                      style={{
-                        color: tagInfo?.color ?? "transparent",
-                      }}
                     >
                       {tagInfo?.name}
                     </span>

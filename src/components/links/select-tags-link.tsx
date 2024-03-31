@@ -20,7 +20,9 @@ interface SelectTagsLinkProps {
 const SelectTagsLink = (props: SelectTagsLinkProps) => {
   return (
     <div className="space-y-2">
-      <p>Add tags to your link:</p>
+      <p className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+        Add tags to your link:
+      </p>
       <Select onValueChange={(value) => props.onSelectTag(value)}>
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a tag" />
