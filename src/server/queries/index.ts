@@ -6,7 +6,7 @@ import { db } from "@/server/db";
  * Get links with tags by user.
  * Authentication required.
  */
-export const getLinksByUser = cache(async () => {
+export const getLinksAndTagsByUser = cache(async () => {
   const currentUser = await auth();
 
   if (!currentUser) {
@@ -14,14 +14,46 @@ export const getLinksByUser = cache(async () => {
     return null;
   }
 
-  const result = await db.links.findMany({
+  const [linksData, tagsData] = await db.$transaction([
+    db.links.findMany({
+      where: {
+        creatorId: currentUser.user?.id,
+      },
+      include: {
+        tags: true,
+      },
+    }),
+    db.tags.findMany({
+      where: {
+        creatorId: currentUser.user?.id,
+      },
+    }),
+  ]);
+
+  return {
+    limit: currentUser.user?.limitLinks,
+    links: linksData,
+    tags: tagsData,
+  };
+});
+
+/**
+ * Get only tags by user.
+ * Authentication required.
+ */
+export const getTagsByUser = cache(async () => {
+  const currentUser = await auth();
+
+  if (!currentUser) {
+    console.error("Not authenticated.");
+    return null;
+  }
+
+  const tagsData = await db.tags.findMany({
     where: {
       creatorId: currentUser.user?.id,
     },
   });
 
-  return {
-    limit: currentUser.user?.limitLinks,
-    links: result,
-  };
+  return tagsData;
 });

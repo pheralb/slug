@@ -1,6 +1,6 @@
 "use client";
 
-import type { Links } from "@prisma/client";
+import type { Links, Tags } from "@prisma/client";
 import { useState, type ReactNode } from "react";
 import type { z } from "zod";
 
@@ -38,6 +38,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 interface EditLinkProps {
   trigger: ReactNode;
   link: Links;
+  linkTags: Tags[];
+  allTags: Tags[];
 }
 
 const EditLink = (props: EditLinkProps) => {
@@ -71,6 +73,8 @@ const EditLink = (props: EditLinkProps) => {
     try {
       setLoading(true);
       await updateLink(values);
+
+      // If not any changes in the tags, return:
       toast.success("Link edited successfully.", {
         description: `Url: https://slug.vercel.app/${values.slug}`,
         duration: 10000,

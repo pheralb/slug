@@ -1,4 +1,4 @@
-import type { Links } from "@prisma/client";
+import type { LinkTags, Links, Tags } from "@prisma/client";
 
 import { formatDate } from "@/utils/formatDate";
 import {
@@ -28,12 +28,19 @@ import DeleteLink from "./delete-link";
 import EditLink from "./edit-link";
 import ShowClicks from "./show-clicks-link";
 import CopyLinkDropdown from "./copy-link";
+import { cn } from "@/utils";
 
 interface CardLinkProps {
   linkInfo: Links;
+  linkTags: LinkTags[];
+  tagsInfo: Tags[];
 }
 
-const CardLink = ({ linkInfo }: CardLinkProps) => {
+const CardLink = ({ linkInfo, linkTags, tagsInfo }: CardLinkProps) => {
+  const cardTagsInfo = tagsInfo.filter((tag) =>
+    linkTags.some((linkTag) => linkTag.tagId === tag.id),
+  );
+
   return (
     <div className="flex w-full flex-col rounded-md border border-neutral-200 p-3 shadow-sm dark:border-neutral-800">
       <div className="mb-1 flex w-full items-center justify-between space-x-2">
@@ -78,6 +85,8 @@ const CardLink = ({ linkInfo }: CardLinkProps) => {
               </button>
             }
             link={linkInfo}
+            linkTags={cardTagsInfo}
+            allTags={tagsInfo}
           />
           <DeleteLink
             link={linkInfo}
@@ -97,16 +106,38 @@ const CardLink = ({ linkInfo }: CardLinkProps) => {
       </p>
       <Collapsible>
         <div className="flex items-center justify-between font-mono text-xs font-medium text-neutral-600 dark:text-neutral-500 md:space-x-2">
-          <p
-            className="hidden max-w-[75%] truncate md:block"
-            title={linkInfo.description ?? ""}
-          >
-            {linkInfo.description}
-          </p>
-          <CollapsibleTrigger className="flex items-center transition-colors hover:text-neutral-900 dark:hover:text-white md:hidden">
-            <ChevronDownIcon size={14} className="mr-2" />
-            <span>Info</span>
-          </CollapsibleTrigger>
+          <div className="flex max-w-[75%] items-center space-x-2">
+            {linkTags.length > 0 && (
+              <div className="flex items-center space-x-1">
+                {linkTags.map((tag) => {
+                  const tagInfo = tagsInfo.find((t) => t.id === tag.tagId);
+                  return (
+                    <span
+                      key={tag.tagId}
+                      className={cn(
+                        "rounded-md border border-neutral-200 px-2 py-[0.5px] font-mono text-xs dark:border-neutral-800",
+                      )}
+                      style={{
+                        color: tagInfo?.color ?? "transparent",
+                      }}
+                    >
+                      {tagInfo?.name}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+            <p
+              className="hidden truncate md:block"
+              title={linkInfo.description ?? ""}
+            >
+              {linkInfo.description}
+            </p>
+            <CollapsibleTrigger className="flex items-center transition-colors hover:text-neutral-900 dark:hover:text-white md:hidden">
+              <ChevronDownIcon size={14} className="mr-2" />
+              <span>Info</span>
+            </CollapsibleTrigger>
+          </div>
           <p>{formatDate(linkInfo.createdAt)}</p>
         </div>
         <CollapsibleContent className="flex flex-col">
