@@ -9,33 +9,40 @@ datasource db {
 }
 
 model Links {
-    id          String    @id @default(cuid())
+    id          String     @id @default(cuid())
     url         String
-    slug        String    @unique
+    slug        String     @unique
     description String?
-    createdAt   DateTime  @default(now())
-    createdBy   User?     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+    createdAt   DateTime   @default(now())
+    createdBy   User?      @relation(fields: [creatorId], references: [id], onDelete: Cascade)
     creatorId   String
-    tag         Tags?     @relation(fields: [tagId], references: [id], onDelete: SetNull)
-    tagId       String?
-    clicks      Int       @default(0)
+    clicks      Int        @default(0)
     lastClicked DateTime?
+    tags        LinkTags[]
 
     @@index(slug)
     @@index([creatorId])
-    @@index([tagId])
 }
 
 model Tags {
-    id          String   @id @default(cuid())
-    name        String
-    description String?
-    createdAt   DateTime @default(now())
-    createdBy   User?    @relation(fields: [creatorId], references: [id])
-    creatorId   String
-    links       Links[]
+    id        String     @id @default(cuid())
+    name      String
+    color     String?
+    createdAt DateTime   @default(now())
+    createdBy User?      @relation(fields: [creatorId], references: [id])
+    creatorId String
+    links     LinkTags[]
 
     @@index([creatorId])
+}
+
+model LinkTags {
+    link   Links  @relation(fields: [linkId], references: [id], onDelete: Cascade)
+    linkId String
+    tag    Tags   @relation(fields: [tagId], references: [id], onDelete: Cascade)
+    tagId  String
+
+    @@id([linkId, tagId])
 }
 
 model Account {
