@@ -26,6 +26,10 @@ const DashboardPage = async ({
   const searchLink = searchParams?.search;
   const searchTag = searchParams?.tag;
 
+  if (!data) {
+    return <div>Error</div>;
+  }
+
   if (!data?.links) {
     return <div>Error</div>;
   }

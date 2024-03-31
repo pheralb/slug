@@ -14,27 +14,32 @@ export const getLinksAndTagsByUser = cache(async () => {
     return null;
   }
 
-  const [linksData, tagsData] = await db.$transaction([
-    db.links.findMany({
+  try {
+    
+    const linkData = await db.links.findMany({
       where: {
         creatorId: currentUser.user?.id,
       },
       include: {
         tags: true,
       },
-    }),
-    db.tags.findMany({
+    });
+
+    const tagsData = await db.tags.findMany({
       where: {
         creatorId: currentUser.user?.id,
       },
-    }),
-  ]);
+    });
 
-  return {
-    limit: currentUser.user?.limitLinks,
-    links: linksData,
-    tags: tagsData,
-  };
+    return {
+      limit: currentUser.user?.limitLinks,
+      links: linkData,
+      tags: tagsData,
+    };
+  } catch (error) {
+    console.error("🚧 Error while fetching links and tags:", error);
+    throw error; // Propaga el error para que el componente que llama pueda manejarlo adecuadamente
+  }
 });
 
 /**
