@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 
-import { getLinksByUser } from "@/server/queries";
+import { getLinksAndTagsByUser } from "@/server/queries";
 
 import CardLink from "@/components/links/card-link";
-import LinksLimit from "@/components/links/links-limit";
 import SearchLinks from "@/components/links/search-link";
 import { CreateLink } from "@/components/links/create-link";
 import { Button } from "@/ui/button";
-import { PackageOpenIcon, PlusIcon, SparklesIcon } from "lucide-react";
+import {
+  PackageOpenIcon,
+  PlusIcon,
+  SparklesIcon,
+  TagsIcon,
+} from "lucide-react";
+import SearchTag from "@/components/tags/search-tags";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -18,25 +23,58 @@ const DashboardPage = async ({
 }: {
   searchParams?: {
     search?: string;
+    tag?: string;
   };
 }) => {
-  const data = await getLinksByUser();
-  const query = searchParams?.search;
+  const data = await getLinksAndTagsByUser();
+  const searchLink = searchParams?.search;
+  const searchTag = searchParams?.tag;
 
   if (!data?.links) {
     return <div>Error</div>;
   }
 
   const filteredLinks = data.links.filter((link) => {
-    if (!query) return true;
-    return link.slug.includes(query);
+    if (!searchLink && !searchTag) return true;
+
+    // Filter links by search slug
+    const matchSlug = !searchLink || link.slug.includes(searchLink);
+
+    // Filter links by search tag
+    const matchTag =
+      !searchTag || link.tags.some((tag) => tag.tagId === searchTag);
+
+    return matchSlug && matchTag;
   });
 
   return (
     <main className="w-full duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
       <div className="mb-2 flex w-full flex-col items-end justify-between space-y-4 md:flex-row md:items-center md:space-y-0">
         <SearchLinks className="w-full md:w-72 md:max-w-72" />
-        <LinksLimit userLinks={data.links.length} maxLinks={data.limit} />
+        <div className="flex items-center space-x-2">
+          <SearchTag tags={data.tags} tagSelected={searchTag!}>
+            <Button variant="outline">
+              <TagsIcon size={16} />
+              {searchTag ? (
+                <span className="hidden md:block">
+                  {data.tags.map((tag) => {
+                    if (tag.id === searchTag) {
+                      return tag.name;
+                    }
+                  })}
+                </span>
+              ) : (
+                <span className="hidden md:block">Select a tag</span>
+              )}
+            </Button>
+          </SearchTag>
+          <CreateLink tags={data.tags}>
+            <Button>
+              <PlusIcon size={16} />
+              <span className="hidden md:block">Create Link</span>
+            </Button>
+          </CreateLink>
+        </div>
       </div>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-1 lg:grid-cols-2">
         {filteredLinks
@@ -46,30 +84,37 @@ const DashboardPage = async ({
             );
           })
           .map((link) => {
-            return <CardLink key={link.id} linkInfo={link} />;
+            return (
+              <CardLink
+                key={link.id}
+                linkInfo={link}
+                linkTags={link.tags}
+                tagsInfo={data.tags}
+              />
+            );
           })}
       </div>
       {filteredLinks.length === 0 && (
         <div className="mt-4 flex flex-col items-center justify-center space-y-3 text-center">
-          {query ? (
+          {searchLink ? (
             <PackageOpenIcon size={48} strokeWidth={0.5} />
           ) : (
             <SparklesIcon size={48} strokeWidth={0.5} />
           )}
-          {query ? (
+          {searchLink ? (
             <p>
-              No links found with <span className="font-mono">{query}</span>{" "}
-              slug
+              No links found with{" "}
+              <span className="font-mono">{searchLink}</span> slug
             </p>
           ) : (
             <p>Start creating your first link:</p>
           )}
-          <CreateLink slug={query}>
+          <CreateLink tags={data.tags} slug={searchLink}>
             <Button variant="outline">
               <PlusIcon size={14} />
               <span>
-                {query
-                  ? `Create a link with ${query} slug`
+                {searchLink
+                  ? `Create a link with ${searchLink} slug`
                   : "Create a new link"}
               </span>
             </Button>
