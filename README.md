@@ -198,9 +198,11 @@ This is the roadmap I will be following for the complete migration to v3:
 ⬆️ **Dashboard (tags):**
 
 - ✅ Add search links by tags in the dashboard.
-- ✅ Create a new tag.
+- 🔔 Create a new tag.
 - ✅ Delete a tag.
 - ⚙️ Update the tags of a link.
+
+🔔 Add option to change tag color.
 
 ⬆️ **Dashboard (settings):**
 
