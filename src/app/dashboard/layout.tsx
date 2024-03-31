@@ -20,7 +20,7 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
           </div>
         </div>
       </nav>
-      <main className={cn("container my-[65px] flex w-full items-center")}>
+      <main className={cn("container my-[68px] flex w-full items-center")}>
         {props.children}
       </main>
       <Footer className="fixed bottom-0 py-4" />

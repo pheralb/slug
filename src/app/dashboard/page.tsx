@@ -6,13 +6,9 @@ import CardLink from "@/components/links/card-link";
 import SearchLinks from "@/components/links/search-link";
 import { CreateLink } from "@/components/links/create-link";
 import { Button } from "@/ui/button";
-import {
-  PackageOpenIcon,
-  PlusIcon,
-  SparklesIcon,
-  TagsIcon,
-} from "lucide-react";
+import { PackageOpenIcon, PlusIcon, SparklesIcon } from "lucide-react";
 import SearchTag from "@/components/tags/search-tags";
+import LinksLimit from "@/components/links/links-limit";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -49,25 +45,15 @@ const DashboardPage = async ({
 
   return (
     <main className="w-full duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
-      <div className="mb-2 flex w-full flex-col items-end justify-between space-y-4 md:flex-row md:items-center md:space-y-0">
+      <div className="mb-3 flex w-full items-center space-x-2 md:justify-between">
         <SearchLinks className="w-full md:w-72 md:max-w-72" />
         <div className="flex items-center space-x-2">
-          <SearchTag tags={data.tags} tagSelected={searchTag!}>
-            <Button variant="outline">
-              <TagsIcon size={16} />
-              {searchTag ? (
-                <span className="hidden md:block">
-                  {data.tags.map((tag) => {
-                    if (tag.id === searchTag) {
-                      return tag.name;
-                    }
-                  })}
-                </span>
-              ) : (
-                <span className="hidden md:block">Select a tag</span>
-              )}
-            </Button>
-          </SearchTag>
+          <LinksLimit userLinks={data.links.length} maxLinks={data.limit} />
+          <SearchTag
+            tags={data.tags}
+            tagSelected={searchTag!}
+            tagName={searchTag}
+          />
           <CreateLink tags={data.tags}>
             <Button>
               <PlusIcon size={16} />
@@ -107,7 +93,9 @@ const DashboardPage = async ({
               <span className="font-mono">{searchLink}</span> slug
             </p>
           ) : (
-            <p>Start creating your first link:</p>
+            <p>
+              {searchTag ? "No links found with this tag" : "No links found"}
+            </p>
           )}
           <CreateLink tags={data.tags} slug={searchLink}>
             <Button variant="outline">
