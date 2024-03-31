@@ -13,7 +13,6 @@ import {
 } from "./routes";
 
 import { urlFromServer } from "./server/middleware/redirect";
-import { notFound } from "next/navigation";
 
 const { auth } = NextAuth(authConfig);
 
@@ -67,25 +66,18 @@ export default auth(async (req) => {
   // ⚙️ Redirect using slug:
   // If not public route and not protected route:
   if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
-    try {
-      const getDataApi = await urlFromServer(slugRoute!);
+    const getDataApi = await urlFromServer(slugRoute!);
 
-      if (getDataApi.redirect404) {
-        return notFound();
-      }
+    if (getDataApi.redirect404) {
+      console.log("🚧 Error - Redirect 404: ", slugRoute);
+    }
 
-      if (getDataApi.error) {
-        return NextResponse.json(
-          { error: getDataApi.message },
-          { status: 500 },
-        );
-      }
+    if (getDataApi.error) {
+      return NextResponse.json({ error: getDataApi.message }, { status: 500 });
+    }
 
-      if (getDataApi.url) {
-        return NextResponse.redirect(new URL(getDataApi.url).toString());
-      }
-    } catch (error) {
-      console.error("🚧 Error fetching slug: ", error);
+    if (getDataApi.url) {
+      return NextResponse.redirect(new URL(getDataApi.url).toString());
     }
   }
   return;
