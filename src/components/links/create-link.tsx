@@ -1,6 +1,8 @@
 "use client";
 
 import type { z } from "zod";
+import type { Tags } from "@prisma/client";
+
 import { CreateLinkSchema } from "@/server/schemas";
 import { useState, type ReactNode } from "react";
 import { useForm } from "react-hook-form";
@@ -31,10 +33,13 @@ import {
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
 import { LoaderIcon, RocketIcon, ShuffleIcon } from "lucide-react";
+import { insertTagToLink } from "@/server/actions/tags";
+import SelectTagsLink from "./select-tags-link";
 
 interface CreateLinkProps {
   children: ReactNode;
   slug?: string;
+  tags: Tags[];
 }
 
 export function CreateLink(props: CreateLinkProps) {
@@ -42,6 +47,7 @@ export function CreateLink(props: CreateLinkProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [isError, setError] = useState<boolean>(false);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   // Main form:
   const form = useForm<z.infer<typeof CreateLinkSchema>>({
@@ -52,6 +58,24 @@ export function CreateLink(props: CreateLinkProps) {
       description: "",
     },
   });
+
+  // Add tags to the form:
+  const handleAddTags = (tagId: string) => {
+    if (selectedTags.includes(tagId)) {
+      setSelectedTags(selectedTags.filter((tag) => tag !== tagId));
+      return;
+    }
+
+    if (selectedTags.length >= 2) {
+      toast.error("You can't add more than 2 tags to a link.");
+      return;
+    }
+    setSelectedTags([...selectedTags, tagId]);
+  };
+
+  const handleDeleteTag = (tagId: string) => {
+    setSelectedTags(selectedTags.filter((tag) => tag !== tagId));
+  };
 
   // Form Submit method:
   const onSubmit = async (values: z.infer<typeof CreateLinkSchema>) => {
@@ -82,6 +106,14 @@ export function CreateLink(props: CreateLinkProps) {
         return;
       }
 
+      if (selectedTags.length > 0) {
+        await Promise.all(
+          selectedTags.map(async (tag) => {
+            await insertTagToLink(result.linkId!, tag);
+          }),
+        );
+      }
+
       toast.success("Link created successfully", {
         description: `Url: https://slug.vercel.app/${values.slug}`,
         duration: 10000,
@@ -100,6 +132,7 @@ export function CreateLink(props: CreateLinkProps) {
     }
   };
 
+  // Generate confetti animation:
   const generateConfetti = async () => {
     const jsConfetti = new JSConfetti();
     await jsConfetti.addConfetti({
@@ -109,6 +142,7 @@ export function CreateLink(props: CreateLinkProps) {
     });
   };
 
+  // Generate random slug:
   const handleGenerateRandomSlug = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const randomSlug = Math.random().toString(36).substring(7);
@@ -134,6 +168,7 @@ export function CreateLink(props: CreateLinkProps) {
                     <FormControl>
                       <Input
                         {...field}
+                        autoComplete="off"
                         placeholder="https://"
                         disabled={loading}
                       />
@@ -187,6 +222,12 @@ export function CreateLink(props: CreateLinkProps) {
                 )}
               />
               {isError && <Alert variant="error">{message}</Alert>}
+              <SelectTagsLink
+                selectedTags={selectedTags}
+                onSelectTag={handleAddTags}
+                onDeleteTag={handleDeleteTag}
+                tags={props.tags}
+              />
             </div>
             <DialogFooter>
               <DialogClose asChild>

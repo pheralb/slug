@@ -62,6 +62,13 @@ export const getSingleLinkSchema = z.object({
   linkId: z.number(),
 });
 
+export const CreateTagSchema = z.object({
+  name: z.string().min(1, { message: "Tag name is required." }).max(15, {
+    message: "Tag name must be less than 15 characters.",
+  }),
+  color: z.string().min(1, { message: "Tag color is required." }),
+});
+
 export const UpdateProfileSchema = z.object({
   name: z.string().min(1, { message: "Name is required." }).max(40, {
     message: "Name must be less than 40 characters.",

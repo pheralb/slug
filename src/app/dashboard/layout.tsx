@@ -1,10 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Button } from "@/ui/button";
-import { PlusIcon } from "lucide-react";
-
 import DashboardRoutesComponent from "@/components/dashboard-routes";
-import { CreateLink } from "@/components/links/create-link";
 import Footer from "@/components/layout/footer";
 import { cn } from "@/utils";
 
@@ -21,16 +17,10 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
             <div className="mt-0 flex flex-row space-x-0 text-sm font-medium rtl:space-x-reverse">
               <DashboardRoutesComponent />
             </div>
-            <CreateLink>
-              <Button>
-                <PlusIcon size={16} />
-                <span className="hidden md:block">Create Link</span>
-              </Button>
-            </CreateLink>
           </div>
         </div>
       </nav>
-      <main className={cn("container my-[65px] flex w-full items-center")}>
+      <main className={cn("container my-[68px] flex w-full items-center")}>
         {props.children}
       </main>
       <Footer className="fixed bottom-0 py-4" />

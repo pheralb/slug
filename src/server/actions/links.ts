@@ -59,6 +59,7 @@ export const checkIfSlugExist = async (slug: string) => {
 interface createLinkResult {
   limit?: boolean;
   error?: string;
+  linkId?: string;
 }
 
 export const createLink = async (
@@ -88,7 +89,7 @@ export const createLink = async (
   }
 
   // Create new link:
-  await db.links.create({
+  const result = await db.links.create({
     data: {
       ...values,
       creatorId: currentUser.user?.id,
@@ -98,7 +99,7 @@ export const createLink = async (
   revalidatePath("/");
   revalidatePath("/dashboard");
 
-  return { limit: false };
+  return { limit: false, linkId: result.id };
 };
 
 /**

@@ -91,7 +91,7 @@ const DeleteLink = ({ link, trigger }: DeleteLinkProps) => {
                     confirm:
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} disabled={loading} />
+                    <Input {...field} disabled={loading} autoComplete="off" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
