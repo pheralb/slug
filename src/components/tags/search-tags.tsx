@@ -64,7 +64,7 @@ const SearchTag = (props: SearchTagProps) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent>
-        <p className="my-2 text-center font-medium">
+        <p className="my-2 text-center text-sm font-medium">
           My Tags ({props.tags.length})
         </p>
         <div className="mb-2 flex w-full flex-col space-y-1">
