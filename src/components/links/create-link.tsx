@@ -32,7 +32,7 @@ import {
   FormMessage,
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
-import { LoaderIcon, RocketIcon, ShuffleIcon } from "lucide-react";
+import { LoaderIcon, RocketIcon, ShuffleIcon, TagsIcon } from "lucide-react";
 import { insertTagToLink } from "@/server/actions/tags";
 import SelectTagsLink from "./select-tags-link";
 
@@ -222,12 +222,19 @@ export function CreateLink(props: CreateLinkProps) {
                 )}
               />
               {isError && <Alert variant="error">{message}</Alert>}
-              <SelectTagsLink
-                selectedTags={selectedTags}
-                onSelectTag={handleAddTags}
-                onDeleteTag={handleDeleteTag}
-                tags={props.tags}
-              />
+              {props.tags.length > 0 ? (
+                <SelectTagsLink
+                  selectedTags={selectedTags}
+                  onSelectTag={handleAddTags}
+                  onDeleteTag={handleDeleteTag}
+                  tags={props.tags}
+                />
+              ) : (
+                <div className="flex items-center justify-center space-x-2 rounded-md border border-neutral-200 py-3 text-sm dark:border-neutral-800">
+                  <TagsIcon size={16} />
+                  <p className="font-medium">You don't have any tag created.</p>
+                </div>
+              )}
             </div>
             <DialogFooter>
               <DialogClose asChild>

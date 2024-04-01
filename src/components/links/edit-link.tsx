@@ -139,10 +139,7 @@ const EditLink = (props: EditLinkProps) => {
                             <PopoverTrigger className="absolute bottom-0 right-0 top-0 flex items-center px-3">
                               <LockIcon size={16} />
                             </PopoverTrigger>
-                            <PopoverContent
-                              sideOffset={0.2}
-                              className="text-sm"
-                            >
+                            <PopoverContent className="max-w-72 text-sm">
                               <p className="mb-2">
                                 Editing the custom link will remove access from
                                 the previous link and it will be available to
