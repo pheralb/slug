@@ -9,7 +9,7 @@ import BetaWarning from "@/components/beta-warning";
 
 export default async function Home() {
   return (
-    <>
+    <main className="relative h-[calc(100vh-4rem)]">
       <BetaWarning />
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] dark:bg-neutral-900"></div>
       <section
@@ -23,7 +23,7 @@ export default async function Home() {
           Slug is an open-source platform that allows you to create, manage, and
           share short links with ease. It's fast, secure, and easy to use.
         </TypographyP>
-        <div className="mt-8 items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0 animate-in fade-in-30 duration-700">
+        <div className="mt-8 items-center justify-center gap-x-3 space-y-3 duration-700 animate-in fade-in-30 sm:flex sm:space-y-0">
           <Link
             href="/dashboard"
             className={buttonVariants({
@@ -56,6 +56,6 @@ export default async function Home() {
         </div>
       </section>
       <Footer className="fixed bottom-0 mt-4 py-4" />
-    </>
+    </main>
   );
 }
