@@ -15,14 +15,17 @@ export const CreateLinkSchema = z.object({
     .url({
       message: "Please enter a valid URL. Include http:// or https://",
     })
+    .regex(/^(?!.*(?:http|https):\/\/(?:slug|slugr)\.vercel\.app).*$/, {
+      message: "You cannot redirect to the Slug url.",
+    })
+    // not contain any blank spaces
     .regex(/^\S+$/, {
       message: "URL must not contain any blank spaces.",
     }),
   slug: z
     .string()
-    .min(1, {
-      message:
-        "Short link is required. Enter a custom slug or click on 'Randomize' button.",
+    .min(4, {
+      message: "Short link is required and must be at least 4 characters long.",
     })
     .regex(/^[a-zA-Z0-9_-]*$/, {
       message:
@@ -39,10 +42,21 @@ export const CreateLinkSchema = z.object({
 
 export const EditLinkSchema = z.object({
   id: z.string(),
-  url: z.string().min(1, { message: "URL is required." }),
+  url: z
+    .string()
+    .min(1, { message: "URL is required." })
+    .regex(/^(?!.*(?:http|https):\/\/(?:slug|slugr)\.vercel\.app).*$/, {
+      message: "You cannot redirect to the Slug url.",
+    })
+    // not contain any blank spaces
+    .regex(/^\S+$/, {
+      message: "URL must not contain any blank spaces.",
+    }),
   slug: z
     .string()
-    .min(1, { message: "Short link is required." })
+    .min(4, {
+      message: "Short link is required and must be at least 4 characters long.",
+    })
     .regex(/^[a-zA-Z0-9_-]*$/, {
       message: "Custom short link must not contain any blank spaces.",
     })
