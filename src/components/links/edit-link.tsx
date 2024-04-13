@@ -95,9 +95,9 @@ const EditLink = (props: EditLinkProps) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{props.trigger}</DialogTrigger>
       <DialogContent>
-        <DialogHeader>
+        <DialogHeader className="overflow-hidden">
           <DialogTitle>Edit link</DialogTitle>
-          <DialogDescription className="truncate">
+          <DialogDescription className="block truncate">
             /{props.link.slug}
           </DialogDescription>
         </DialogHeader>
