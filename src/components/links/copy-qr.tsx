@@ -59,7 +59,7 @@ const CopyQR = ({ linkInfo }: CopyQRProps) => {
         <DialogTitle>Copy QR Code</DialogTitle>
         <DialogDescription>{linkInfo.description}</DialogDescription>
       </DialogHeader>
-      <div className="my-3 flex flex-col items-center justify-center space-y-3">
+      <div className="my-3 flex flex-col overflow-hidden items-center justify-center space-y-3">
         <div className="rounded-lg border border-neutral-100 p-2 shadow-md dark:border-neutral-800">
           <QRCode
             id="qr-code"
@@ -69,7 +69,7 @@ const CopyQR = ({ linkInfo }: CopyQRProps) => {
             viewBox={`0 0 128 128`}
           />
         </div>
-        <p className="font-mono font-medium">{`/${linkInfo.slug}`}</p>
+        <p className="font-mono font-medium w-full block truncate">{`/${linkInfo.slug}`}</p>
       </div>
       <DialogFooter>
         <DropdownMenu>

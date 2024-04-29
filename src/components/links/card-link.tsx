@@ -46,7 +46,7 @@ const CardLink = ({ linkInfo, linkTags, tagsInfo }: CardLinkProps) => {
       <div className="mb-1 flex w-full items-center justify-between space-x-2">
         <ExternalLink
           href={`/${linkInfo.slug}`}
-          className="flex items-center space-x-[1px] font-medium transition-opacity duration-75 hover:opacity-80"
+          className="block  space-x-[1px] overflow-hidden truncate font-medium transition-opacity duration-75 hover:opacity-80"
         >
           <span className="text-sm opacity-40">/</span>
           <span>{linkInfo.slug}</span>
