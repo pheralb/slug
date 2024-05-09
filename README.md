@@ -225,4 +225,4 @@ This is the roadmap I will be following for the complete migration to v3:
 
 ## 🔑 License
 
-- [MIT](https://github.com/pheralb/slug/blob/main/LICENSE).
+- [GPL-3.0 license](https://github.com/pheralb/slug/blob/main/LICENSE).
