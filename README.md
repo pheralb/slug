@@ -127,7 +127,7 @@ GOOGLE_CLIENT_SECRET=
 
 **Google Credentials:**
 
-- [Create a new OAuth 2.0 App from Google API Console](https://developers.google.com/identity/protocols/oauth2?hl=es-419#1.-obtain-oauth-2.0-credentials-from-the-dynamic_data.setvar.console_name-.).
+- [Create a new OAuth 2.0 App from Google API Console](https://developers.google.com/identity/protocols/oauth2#1.-obtain-oauth-2.0-credentials-from-the-dynamic_data.setvar.console_name-.).
 
 5. Generate a new migration file with Prisma:
 
