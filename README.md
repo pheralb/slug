@@ -118,7 +118,7 @@ GOOGLE_CLIENT_SECRET=
 
 **Auth.js:**
 
-- [Get Auth.js **Secret**](https://authjs.dev/getting-started/providers/oauth-tutorial#adding-environment-variables).
+- [Get Auth.js **Secret**](https://authjs.dev/getting-started/installation#setup-environment).
 - ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``. You can change it in the [**``auth.ts`` file**](https://github.com/pheralb/slug/blob/next/src/auth.ts#L20).
 
 **Github Credentials:**
