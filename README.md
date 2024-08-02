@@ -1,9 +1,8 @@
 <div align="center">
   <a href="https://slug.vercel.app">
     <img
-      src="public/images/logo_svg.svg"
+      src="/public/images/banner.png"
       alt="Slug Logo"
-      height="60"
     />
   </a>
   <p>
