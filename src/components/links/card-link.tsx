@@ -99,7 +99,7 @@ const CardLink = ({ linkInfo, linkTags, tagsInfo }: CardLinkProps) => {
         </div>
       </div>
       <p
-        className="mb-2 truncate font-mono text-sm text-neutral-500 dark:text-neutral-400"
+        className="mb-2 truncate select-all font-mono text-sm text-neutral-500 dark:text-neutral-400"
         title={linkInfo.url}
       >
         {linkInfo.url}
