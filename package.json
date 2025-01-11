@@ -1,11 +1,12 @@
 {
   "name": "@pheralb/slug",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "author": "@pheralb_",
   "description": "A URL shortener built with T3 Stack",
   "private": true,
   "license": "GPL-3.0-only",
   "type": "module",
+  "packageManager": "pnpm@8.15.6",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
@@ -16,9 +17,9 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name init",
     "db:studio": "prisma studio",
-    "db:push": "turso db shell slug < ./prisma/migrations/20240404040238_init/migration.sql",
+    "db:push": "turso db shell slug < ./prisma/migrations/<migration_id>_init/migration.sql --location=<location>",
     "db:pscale:dump": "pscale database dump databasename databasebranch",
-    "db:turso:dump": "turso db shell slug .dump > dump.sql"
+    "db:turso:dump": "turso db shell <database> .dump > dump.sql --location=<location>"
   },
   "dependencies": {
     "@auth/core": "0.30.0",
@@ -81,6 +82,5 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.25.0"
-  },
-  "packageManager": "pnpm@8.15.6"
+  }
 }

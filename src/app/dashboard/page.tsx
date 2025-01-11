@@ -9,6 +9,7 @@ import { Button } from "@/ui/button";
 import { PackageOpenIcon, PlusIcon, SparklesIcon } from "lucide-react";
 import SearchTag from "@/components/tags/search-tags";
 import LinksLimit from "@/components/links/links-limit";
+import UserBlocked from "@/components/settings/userBlocked";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -49,7 +50,8 @@ const DashboardPage = async ({
 
   return (
     <main className="w-full duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
-      <div className="mb-3 flex w-full items-center space-x-2 md:justify-between">
+      {data.userData?.blocked && <UserBlocked className="mb-3" />}
+      <header className="mb-3 flex w-full items-center space-x-2 md:justify-between">
         <SearchLinks className="w-full md:w-72 md:max-w-72" />
         <div className="flex items-center space-x-2">
           <LinksLimit userLinks={data.links.length} maxLinks={data.limit} />
@@ -65,7 +67,7 @@ const DashboardPage = async ({
             </Button>
           </CreateLink>
         </div>
-      </div>
+      </header>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-1 lg:grid-cols-2">
         {filteredLinks
           .sort((a, b) => {

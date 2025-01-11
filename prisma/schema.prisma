@@ -9,16 +9,16 @@ datasource db {
 }
 
 model Links {
-    id          String     @id @default(cuid())
+    id          String       @id @default(cuid())
     url         String
-    slug        String     @unique
+    slug        String       @unique
     description String?
-    createdAt   DateTime   @default(now())
-    createdBy   User?      @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+    createdAt   DateTime     @default(now())
+    createdBy   User?        @relation(fields: [creatorId], references: [id], onDelete: Cascade)
     creatorId   String
-    clicks      Int        @default(0)
+    clicks      Int          @default(0)
     lastClicked DateTime?
-    tags        LinkTags[]
+    tags        LinkTags[]   
 
     @@index(slug)
     @@index([creatorId])
@@ -87,6 +87,7 @@ model User {
     isTwoFactorEnabled    Boolean                @default(false)
     twoFactorConfirmation TwoFactorConfirmation?
     role                  String                 @default("USER")
+    blocked               Boolean                @default(false)
     accounts              Account[]
     sessions              Session[]
     links                 Links[]
@@ -126,4 +127,9 @@ model TwoFactorConfirmation {
     user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([userId])
+}
+
+model BlockedEmails {
+    id    String @id @default(cuid())
+    email String @unique
 }

@@ -7,6 +7,7 @@ import { Button } from "@/ui/button";
 import SettingsCard from "@/components/settings/card";
 import DownloadAllLinks from "@/components/links/download-all-links";
 import { HeartCrackIcon } from "lucide-react";
+import UserBlocked from "@/components/settings/userBlocked";
 
 export const metadata: Metadata = {
   title: "Settings - Dashboard",
@@ -19,6 +20,7 @@ const SettingsPage = async () => {
 
   return (
     <main className="flex w-full flex-col space-y-4 duration-500 animate-in fade-in-5 slide-in-from-bottom-2">
+      {session.user?.blocked && <UserBlocked />}
       <UpdateNameAvatar
         name={session.user.name!}
         username={session.user.username!}

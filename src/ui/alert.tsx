@@ -1,50 +1,69 @@
 import type { ReactNode } from "react";
 
 import { cn } from "@/utils";
-import { AlertCircle, CheckCircle, InfoIcon, XCircleIcon } from "lucide-react";
+import {
+  AlertTriangleIcon,
+  CheckIcon,
+  CircleXIcon,
+  InfoIcon,
+} from "lucide-react";
 
 interface AlertProps {
   variant: "error" | "success" | "warning" | "info";
   children: ReactNode;
   className?: string;
-  containerClassName?: string;
-  icon?: ReactNode;
+  iconClassname?: string;
   iconSize?: number;
 }
 
 const Alert = (props: AlertProps) => {
   return (
     <div
+      role="alert"
       className={cn(
-        "w-full rounded-md p-3 text-sm",
-        props.variant === "error" && "dark:bg-red-900/20 dark:text-red-200",
+        "flex items-center gap-2.5",
+        "rounded-md border-[1.5px] py-3 pl-3 pr-2",
+        "not-prose text-sm [&_a]:underline [&_a]:underline-offset-2",
         props.variant === "success" &&
-          "dark:bg-green-900/20 dark:text-green-200",
+          "border-emerald-600/20 bg-emerald-100/50 text-emerald-900 selection:bg-emerald-500/20 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-200 dark:selection:bg-emerald-500/30",
+        props.variant === "error" &&
+          "border-red-600/20 bg-red-100/50 text-red-900 selection:bg-red-500/20 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-200 dark:selection:bg-red-500/30",
         props.variant === "warning" &&
-          "dark:bg-yellow-900/20 dark:text-yellow-200",
+          "border-yellow-600/20 bg-yellow-100/50 text-yellow-900 selection:bg-yellow-500/20 dark:border-yellow-500/30 dark:bg-yellow-500/10 dark:text-yellow-200 dark:selection:bg-yellow-500/30",
         props.variant === "info" &&
-          "bg-blue-700/20 text-blue-900 dark:bg-blue-900/20 dark:text-blue-200",
+          "border-blue-600/20 bg-blue-100/50 text-blue-900 selection:bg-blue-500/20 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-200 dark:selection:bg-blue-500/30",
         props.className,
       )}
     >
-      <div
-        className={cn("flex items-center space-x-2", props.containerClassName)}
-      >
-        {props.variant === "error" && !props.icon && (
-          <XCircleIcon size={20 || props.iconSize} />
-        )}
-        {props.variant === "success" && !props.icon && (
-          <CheckCircle size={20 || props.iconSize} />
-        )}
-        {props.variant === "warning" && !props.icon && (
-          <AlertCircle size={20 || props.iconSize} />
-        )}
-        {props.icon}
-        {props.variant === "info" && !props.icon && (
-          <InfoIcon size={20 || props.iconSize} />
-        )}
-        <span>{props.children}</span>
-      </div>
+      {props.variant === "success" && (
+        <CheckIcon
+          strokeWidth={1.5}
+          className={props.iconClassname}
+          size={props.iconSize ?? 18}
+        />
+      )}
+      {props.variant === "error" && (
+        <CircleXIcon
+          strokeWidth={1.5}
+          className={props.iconClassname}
+          size={props.iconSize ?? 18}
+        />
+      )}
+      {props.variant === "warning" && (
+        <AlertTriangleIcon
+          strokeWidth={1.5}
+          className={props.iconClassname}
+          size={props.iconSize ?? 18}
+        />
+      )}
+      {props.variant === "info" && (
+        <InfoIcon
+          strokeWidth={1.5}
+          className={props.iconClassname}
+          size={props.iconSize ?? 18}
+        />
+      )}
+      {props.children}
     </div>
   );
 };

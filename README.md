@@ -1,10 +1,12 @@
 <div align="center">
   <a href="https://slug.vercel.app">
     <img
-      src="/public/images/banner.png"
+      src="https://raw.githubusercontent.com/pheralb/slug/refs/heads/main/public/images/logo_svg.svg"
       alt="Slug Logo"
+      height="64"
     />
   </a>
+  <p></p>
   <p>
     <b>
       An open-source URL shortener built with T3 Stack.

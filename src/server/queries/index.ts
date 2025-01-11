@@ -35,10 +35,11 @@ export const getLinksAndTagsByUser = cache(async () => {
       limit: currentUser.user?.limitLinks,
       links: linkData,
       tags: tagsData,
+      userData: currentUser.user,
     };
   } catch (error) {
     console.error("🚧 Error while fetching links and tags:", error);
-    throw error; // Propaga el error para que el componente que llama pueda manejarlo adecuadamente
+    throw error;
   }
 });
 
