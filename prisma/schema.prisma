@@ -128,3 +128,8 @@ model TwoFactorConfirmation {
 
     @@unique([userId])
 }
+
+model BlockedEmails {
+    id    String @id @default(cuid())
+    email String @unique
+}
