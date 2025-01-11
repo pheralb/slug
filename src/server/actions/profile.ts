@@ -60,3 +60,14 @@ export const deleteProfile = async () => {
 
   return true;
 };
+
+/** Check if the user is blocked, for URL redirects. */
+export const checkBlocked = async (userId: string) => {
+  const result = await db.user.findFirst({
+    where: {
+      id: userId,
+      blocked: true,
+    },
+  });
+  return result;
+}

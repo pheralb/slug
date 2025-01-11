@@ -1,18 +1,22 @@
 "use server";
 
 import { db } from "@/server/db";
+import { checkBlocked } from "../actions/profile";
 
-interface urlFromServerResult {
+export interface urlFromServerResult {
   error: boolean;
   message: string;
+  createdBy?: string;
   redirect404?: boolean;
   url?: string;
+  rateLimited?: boolean;
 }
 
 export const urlFromServer = async (
   slug: string,
 ): Promise<urlFromServerResult> => {
   try {
+    // Get link from server:s
     const getLinkFromServer = await db.links.findUnique({
       where: {
         slug: slug,
@@ -23,6 +27,16 @@ export const urlFromServer = async (
       return {
         error: false,
         message: "🚧 Error (urlFromServer): Slug not found or invalid.",
+        redirect404: true,
+      };
+    }
+
+    const isUserBlocked = await checkBlocked(getLinkFromServer.creatorId);
+
+    if (isUserBlocked) {
+      return {
+        error: false,
+        message: "🚧 Error (urlFromServer): User blocked.",
         redirect404: true,
       };
     }
@@ -42,6 +56,7 @@ export const urlFromServer = async (
     return {
       error: false,
       message: "Success",
+      createdBy: getLinkFromServer.creatorId,
       url: getLinkFromServer.url,
     };
   } catch (error) {

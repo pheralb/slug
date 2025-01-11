@@ -88,6 +88,14 @@ export const createLink = async (
     };
   }
 
+  // If the user is blocked, dont allow to create a new link:
+  if (currentUser.user?.blocked) {
+    return {
+      limit: true,
+      error: "Your account is blocked. Please contact the support.",
+    };
+  }
+
   // Create new link:
   const result = await db.links.create({
     data: {
