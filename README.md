@@ -3,10 +3,10 @@
     <img
       src="https://raw.githubusercontent.com/pheralb/slug/refs/heads/main/public/images/logo_svg.svg"
       alt="Slug Logo"
-      height="46"
+      height="64"
     />
   </a>
-  <br />
+  <p></p>
   <p>
     <b>
       An open-source URL shortener built with T3 Stack.
