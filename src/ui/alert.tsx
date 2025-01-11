@@ -31,17 +31,17 @@ const Alert = (props: AlertProps) => {
         className={cn("flex items-center space-x-2", props.containerClassName)}
       >
         {props.variant === "error" && !props.icon && (
-          <XCircleIcon size={20 || props.iconSize} />
+          <XCircleIcon className="flex-shrink-0" size={props.iconSize ?? 20} />
         )}
         {props.variant === "success" && !props.icon && (
-          <CheckCircle size={20 || props.iconSize} />
+          <CheckCircle className="flex-shrink-0" size={props.iconSize ?? 20} />
         )}
         {props.variant === "warning" && !props.icon && (
-          <AlertCircle size={20 || props.iconSize} />
+          <AlertCircle className="flex-shrink-0" size={props.iconSize ?? 20} />
         )}
         {props.icon}
         {props.variant === "info" && !props.icon && (
-          <InfoIcon size={20 || props.iconSize} />
+          <InfoIcon className="flex-shrink-0" size={props.iconSize ?? 20} />
         )}
         <span>{props.children}</span>
       </div>
