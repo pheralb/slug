@@ -69,6 +69,7 @@ export const {
         session.user.email = token.email!;
         session.user.isOAuth = token.isOAuth as boolean;
         session.user.limitLinks = token.limitLinks as number;
+        session.user.blocked = token.blocked as boolean;
       }
 
       return session;
@@ -88,6 +89,7 @@ export const {
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
       token.limitLinks = existingUser.limitLinks;
+      token.blocked = existingUser.blocked;
 
       return token;
     },
