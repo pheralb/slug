@@ -12,7 +12,7 @@ import {
   publicRoutes,
 } from "./routes";
 
-import { urlFromServer } from "./server/middleware/redirect";
+import type { urlFromServerResult } from "./server/middleware/redirect";
 
 const { auth } = NextAuth(authConfig);
 
@@ -66,7 +66,12 @@ export default auth(async (req) => {
   // ⚙️ Redirect using slug:
   // If not public route and not protected route:
   if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
-    const getDataApi = await urlFromServer(slugRoute!);
+    const apiUrl = new URL(`/api/url-redirect/${slugRoute}`, nextUrl);
+    const res = await fetch(apiUrl);
+    if (!res.ok) {
+      return NextResponse.json({ error: "Failed to fetch" }, { status: res.status });
+    }
+    const getDataApi = (await res.json()) as urlFromServerResult;
 
     if (getDataApi.redirect404) {
       console.log("🚧 Error - Redirect 404: ", slugRoute);
