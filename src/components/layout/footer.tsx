@@ -24,10 +24,10 @@ const Footer = (props: FooterProps) => {
             className="text-red-500 group-hover:transform group-hover:animate-pulse"
           />
           <ExternalLink
-            href="https://create.t3.gg/"
+            href="https://sellbotaiml.com/"
             className="flex items-center space-x-1"
           >
-            <p>Made by Pablo using</p>
+            <p>Made SellbotAiML</p>
             <T3Logo className="h-4 w-4" />
             <ArrowUpRight size={14} />
           </ExternalLink>
@@ -35,7 +35,7 @@ const Footer = (props: FooterProps) => {
         <div className="flex items-center space-x-2">
           <XLogo className="h-3 w-3" />
           <ExternalLink
-            href="https://twitter.com/pheralb_"
+            href="https://twitter.com/whisperaiml"
             className="flex items-center space-x-1"
           >
             <p className="hidden md:block">Twitter</p>
