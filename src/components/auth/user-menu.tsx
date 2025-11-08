@@ -39,7 +39,7 @@ const UserMenu = () => {
         className="flex w-full items-center justify-between"
       >
         <Link
-          href="https://github.com/pheralb/slug/issues/new/choose"
+          href="https://github.com/whisperaiml/slug/issues/new/choose"
           target="_blank"
         >
           <div className="flex items-center space-x-3">
@@ -53,7 +53,7 @@ const UserMenu = () => {
         asChild
         className="flex w-full items-center justify-between"
       >
-        <Link href="https://twitter.com/pheralb_" target="_blank">
+        <Link href="https://twitter.com/whisperaiml" target="_blank">
           <div className="flex items-center space-x-3">
             <XLogo width={iconSize} />
             <span>Contact</span>

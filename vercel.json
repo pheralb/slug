@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/git",
-      "destination": "https://github.com/pheralb/slug"
+      "destination": "https://github.com/whisperaiml/slug"
     },
     {
       "source": "/dash",

@@ -51,22 +51,22 @@ export const ChangeTheme = [
 export const DocumentationPages = [
   {
     name: "Getting Started",
-    href: "https://github.com/pheralb/slug?tab=readme-ov-file#-getting-started",
+    href: "https://github.com/whisperaiml/slug?tab=readme-ov-file#-getting-started",
     icon: SproutIcon,
   },
   {
     name: "Roadmap",
-    href: "https://github.com/pheralb/slug?tab=readme-ov-file#-roadmap",
+    href: "https://github.com/whisperaiml/slug?tab=readme-ov-file#-roadmap",
     icon: TelescopeIcon,
   },
   {
     name: "Contributing",
-    href: "https://github.com/pheralb/slug?tab=readme-ov-file#%EF%B8%8F-contributing",
+    href: "https://github.com/whisperaiml/slug?tab=readme-ov-file#%EF%B8%8F-contributing",
     icon: HeartHandshakeIcon,
   },
   {
     name: "Report a Bug",
-    href: "https://github.com/pheralb/slug/issues/new/choose",
+    href: "https://github.com/whisperaiml/slug/issues/new/choose",
     icon: BugIcon,
   }
 ];
@@ -74,12 +74,12 @@ export const DocumentationPages = [
 export const SocialPages = [
   {
     name: "X (Formerly Twitter)",
-    href: "https://twitter.com/pheralb_",
+    href: "https://twitter.com/whisperaiml",
     icon: XLogo,
   },
   {
     name: "GitHub Repository",
-    href: "https://github.com/pheralb/slug",
+    href: "https://github.com/whisperaiml/slug",
     icon: GithubLogo,
   },
 ];

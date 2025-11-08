@@ -28,7 +28,7 @@ const NotFoundPage = async () => {
             </Link>
             <ExternalLink
               className={buttonVariants({ variant: "outline" })}
-              href="https://github.com/pheralb/slug/issues/new/choose"
+              href="https://github.com/whisperaiml/slug/issues/new/choose"
             >
               <span>Create issue</span>
               <ArrowUpRight size={18} />

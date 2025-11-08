@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://slug.vercel.app">
     <img
-      src="https://raw.githubusercontent.com/pheralb/slug/refs/heads/main/public/images/logo_svg.svg"
+      src="https://raw.githubusercontent.com/whisperaiml/slug/refs/heads/main/public/images/logo_svg.svg"
       alt="Slug Logo"
       height="64"
     />
@@ -13,15 +13,15 @@
     </b>
   </p>
 
-<a href="https://slug.vercel.app/dashboard">Dashboard</a>
+<a href="https://slug-eight.vercel.app/dashboard">Dashboard</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-roadmap">Roadmap</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-getting-started">Contribute</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
-<a href="https://github.com/pheralb/slug/issues/new/choose">Create issue</a>
+<a href="https://github.com/whisperaiml/slug/issues/new/choose">Create issue</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
-<a href="https://twitter.com/pheralb_">X/Twitter</a>
+<a href="https://twitter.com/whisperaiml">X/Twitter</a>
 
 <div align="center">
 <a href="https://slug.vercel.app">
@@ -32,11 +32,11 @@
 
 ![Next.js Badge](https://img.shields.io/badge/Next.js&nbsp;14-000?logo=nextdotjs&logoColor=fff&style=flat)
 ![Turso Badge](https://img.shields.io/badge/Turso-4FF8D2?logo=turso&logoColor=000&style=flat)
-![Check workflow](https://github.com/pheralb/slug/actions/workflows/ci.yml/badge.svg)
-![GitHub stars](https://img.shields.io/github/stars/pheralb/slug)
-![GitHub releases](https://img.shields.io/github/release/pheralb/slug)
-![GitHub issues](https://img.shields.io/github/issues/pheralb/slug)
-![GitHub license](https://img.shields.io/github/license/pheralb/slug)
+![Check workflow](https://github.com/whisperaiml/slug/actions/workflows/ci.yml/badge.svg)
+![GitHub stars](https://img.shields.io/github/stars/whisperaiml/slug)
+![GitHub releases](https://img.shields.io/github/release/whisperaiml/slug)
+![GitHub issues](https://img.shields.io/github/issues/whisperaiml/slug)
+![GitHub license](https://img.shields.io/github/license/whisperaiml/slug)
 
 </div>
 
@@ -71,7 +71,7 @@ This project uses the following technologies:
 
 1. Fork this project:
 
-- [Click here](https://github.com/pheralb/slug/fork).
+- [Click here](https://github.com/whisperaiml/slug/fork).
 
 2. Clone the repository:
 
@@ -91,7 +91,7 @@ pnpm install
 
 4. Create a **.env** file with the following content:
 
-> 🚧 The environment variables must match the following [schema](https://github.com/pheralb/slug/blob/main/src/env/schema.mjs#L8).
+> 🚧 The environment variables must match the following [schema](https://github.com/whisperaiml/slug/blob/main/src/env/schema.mjs#L8).
 
 ```bash
 # Database:
@@ -120,7 +120,7 @@ GOOGLE_CLIENT_SECRET=
 **Auth.js:**
 
 - [Get Auth.js **Secret**](https://authjs.dev/getting-started/installation#setup-environment).
-- ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``. You can change it in the [**``auth.ts`` file**](https://github.com/pheralb/slug/blob/next/src/auth.ts#L20).
+- ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``. You can change it in the [**``auth.ts`` file**](https://github.com/whisperaiml/slug/blob/next/src/auth.ts#L20).
 
 **Github Credentials:**
 
@@ -214,16 +214,16 @@ This is the roadmap I will be following for the complete migration to v3:
 
 ## ✌️ Contributing
 
-<a href="https://github.com/pheralb/slug/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=pheralb/slug" />
+<a href="https://github.com/whisperaiml/slug-eight/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=whisperaiml/slug" />
 </a>
 
 <p></p>
 
 ## ☁️ Deploy on Vercel
 
-- ✅ [slug.vercel.app](https://slug.vercel.app/).
+- ✅ [slug.vercel.app](https://slug-eight.vercel.app/).
 
 ## 🔑 License
 
-- [GPL-3.0 license](https://github.com/pheralb/slug/blob/main/LICENSE).
+- [GPL-3.0 license](https://github.com/whisperaiml/slug-eight/blob/main/LICENSE).

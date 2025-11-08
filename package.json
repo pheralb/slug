@@ -1,7 +1,7 @@
 {
-  "name": "@pheralb/slug",
+  "name": "@whisperaiml/slug",
   "version": "3.2.0",
-  "author": "@pheralb_",
+  "author": "@whisperaiml",
   "description": "A URL shortener built with T3 Stack",
   "private": true,
   "license": "GPL-3.0-only",
