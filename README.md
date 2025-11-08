@@ -1,8 +1,8 @@
 <div align="center">
-  <a href="https://slug.vercel.app">
+  <a href="https://slug-eight.vercel.app">
     <img
       src="https://raw.githubusercontent.com/whisperaiml/slug/refs/heads/main/public/images/logo_svg.svg"
-      alt="Slug Logo"
+      alt="slug-eight Logo"
       height="64"
     />
   </a>
