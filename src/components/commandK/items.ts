@@ -66,7 +66,7 @@ export const DocumentationPages = [
   },
   {
     name: "Report a Bug",
-    href: "https://github.com/whisperaiml/slug/issues/new/choose",
+    href: "https://github.com/whisperaiml/slug-eight/issues/new/choose",
     icon: BugIcon,
   }
 ];

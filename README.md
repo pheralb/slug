@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://slug-eight.vercel.app">
     <img
-      src="https://raw.githubusercontent.com/whisperaiml/slug/refs/heads/main/public/images/logo_svg.svg"
+      src="https://raw.githubusercontent.com/whisperaiml/slug-eight/refs/heads/main/public/images/logo_svg.svg"
       alt="slug-eight Logo"
       height="64"
     />
@@ -71,7 +71,7 @@ This project uses the following technologies:
 
 1. Fork this project:
 
-- [Click here](https://github.com/whisperaiml/slug/fork).
+- [Click here](https://github.com/whisperaiml/slug-eight/fork).
 
 2. Clone the repository:
 
@@ -120,7 +120,7 @@ GOOGLE_CLIENT_SECRET=
 **Auth.js:**
 
 - [Get Auth.js **Secret**](https://authjs.dev/getting-started/installation#setup-environment).
-- ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``. You can change it in the [**``auth.ts`` file**](https://github.com/whisperaiml/slug/blob/next/src/auth.ts#L20).
+- ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``. You can change it in the [**``auth.ts`` file**](https://github.com/whisperaiml/slug-eight/blob/next/src/auth.ts#L20).
 
 **Github Credentials:**
 
