@@ -48,7 +48,7 @@
     "eslint-config-next": "14.2.3",
     "js-confetti": "0.12.0",
     "lucide-react": "0.376.0",
-    "next": "14.2.3",
+    "next": "14.2.35",
     "next-auth": "5.0.0-beta.17",
     "next-themes": "0.3.0",
     "react": "18.3.1",
