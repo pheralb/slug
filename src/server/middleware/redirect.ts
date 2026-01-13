@@ -8,6 +8,8 @@ export interface urlFromServerResult {
   message: string;
   createdBy?: string;
   redirect404?: boolean;
+  redirectExpired?: boolean;
+  redirectPassword?: boolean;
   url?: string;
   rateLimited?: boolean;
 }
@@ -38,6 +40,22 @@ export const urlFromServer = async (
         error: false,
         message: "🚧 Error (urlFromServer): User blocked.",
         redirect404: true,
+      };
+    }
+
+    if (getLinkFromServer.expiresAt && new Date() > getLinkFromServer.expiresAt) {
+      return {
+        error: false,
+        message: "Link expired.",
+        redirectExpired: true,
+      };
+    }
+
+    if (getLinkFromServer.password) {
+      return {
+        error: false,
+        message: "Password required.",
+        redirectPassword: true,
       };
     }
 

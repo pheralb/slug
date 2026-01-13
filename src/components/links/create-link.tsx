@@ -32,7 +32,16 @@ import {
   FormMessage,
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
-import { LoaderIcon, RocketIcon, ShuffleIcon, TagsIcon } from "lucide-react";
+import {
+  LoaderIcon,
+  RocketIcon,
+  ShuffleIcon,
+  TagsIcon,
+  LockIcon,
+  CalendarIcon,
+  EyeIcon,
+  EyeOffIcon,
+} from "lucide-react";
 import { insertTagToLink } from "@/server/actions/tags";
 import SelectTagsLink from "./select-tags-link";
 
@@ -48,6 +57,7 @@ export function CreateLink(props: CreateLinkProps) {
   const [message, setMessage] = useState<string>("");
   const [isError, setError] = useState<boolean>(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   // Main form:
   const form = useForm<z.infer<typeof CreateLinkSchema>>({
@@ -216,6 +226,67 @@ export function CreateLink(props: CreateLinkProps) {
                         placeholder="Enter a description"
                         disabled={loading}
                       />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password (optional):</FormLabel>
+                    <FormControl>
+                      <div className="relative flex items-center">
+                        <LockIcon size={14} className="absolute left-3 text-neutral-500" />
+                        <Input
+                          {...field}
+                          type={showPassword ? "text" : "password"}
+                          className="pl-9 pr-10"
+                          placeholder="Secret password"
+                          disabled={loading}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-0 top-0 flex h-full items-center px-3 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+                        >
+                          {showPassword ? <EyeOffIcon size={16} /> : <EyeIcon size={16} />}
+                        </button>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="expiresAt"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Expiration (optional):</FormLabel>
+                    <FormControl>
+                      <div className="relative flex items-center">
+                        <CalendarIcon size={14} className="absolute left-3 text-neutral-500" />
+                        <Input
+                          type="datetime-local"
+                          className="pl-9"
+                          disabled={loading}
+                          min={new Date().toISOString().slice(0, 16)}
+                          onChange={(e) => {
+                            const date = new Date(e.target.value);
+                            field.onChange(date);
+                          }}
+                          value={
+                            field.value instanceof Date
+                              ? new Date(field.value.getTime() - field.value.getTimezoneOffset() * 60000)
+                                .toISOString()
+                                .slice(0, 16)
+                              : ""
+                          }
+                        />
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

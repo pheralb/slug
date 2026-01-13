@@ -7,6 +7,7 @@ import {
   DEFAULT_LOGIN_REDIRECT_URL,
   apiAuthPrefix,
   checkRoutesPrefix,
+  passwordRoutesPrefix,
   authRoutes,
   protectedRoutes,
   publicRoutes,
@@ -23,6 +24,7 @@ export default auth(async (req) => {
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isCheckRoute = nextUrl.pathname.startsWith(checkRoutesPrefix);
+  const isPasswordRoute = nextUrl.pathname.startsWith(passwordRoutesPrefix);
   const isProtectedRoute = protectedRoutes.includes(nextUrl.pathname);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
@@ -65,11 +67,19 @@ export default auth(async (req) => {
 
   // ⚙️ Redirect using slug:
   // If not public route and not protected route:
-  if (!isPublicRoute && !isProtectedRoute && !isCheckRoute) {
+  if (!isPublicRoute && !isProtectedRoute && !isCheckRoute && !isPasswordRoute) {
     const getDataApi = await urlFromServer(slugRoute!);
 
     if (getDataApi.redirect404) {
       console.log("🚧 Error - Redirect 404: ", slugRoute);
+    }
+
+    if (getDataApi.redirectExpired) {
+      return NextResponse.redirect(new URL("/link-expired", nextUrl));
+    }
+
+    if (getDataApi.redirectPassword) {
+      return NextResponse.redirect(new URL(`/password/${slugRoute}`, nextUrl));
     }
 
     if (getDataApi.error) {

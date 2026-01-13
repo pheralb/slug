@@ -38,6 +38,8 @@ export const CreateLinkSchema = z.object({
   description: z
     .string()
     .max(100, { message: "The description must be less than 100 characters." }),
+  password: z.string().optional(),
+  expiresAt: z.date().nullable().optional(),
 });
 
 export const EditLinkSchema = z.object({
@@ -66,6 +68,8 @@ export const EditLinkSchema = z.object({
   description: z
     .string()
     .max(100, { message: "The description must be less than 100 characters." }),
+  password: z.string().optional(),
+  expiresAt: z.date().nullable().optional(),
 });
 
 export const DeleteLinkSchema = z.object({

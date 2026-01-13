@@ -21,7 +21,7 @@ import {
   DialogTrigger,
 } from "@/ui/dialog";
 import { Button } from "@/ui/button";
-import { LoaderIcon, LockIcon, LockOpenIcon, SaveIcon } from "lucide-react";
+import { LoaderIcon, LockIcon, LockOpenIcon, SaveIcon, CalendarIcon, EyeIcon, EyeOffIcon, TrashIcon } from "lucide-react";
 import Alert from "@/ui/alert";
 import {
   Form,
@@ -48,6 +48,7 @@ const EditLink = (props: EditLinkProps) => {
   const [message, setMessage] = useState<string>("");
   const [isError, setError] = useState<boolean>(false);
   const [unlockSlug, setUnlockSlug] = useState<boolean>(true);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   // Main form:
   const form = useForm<z.infer<typeof EditLinkSchema>>({
@@ -57,6 +58,7 @@ const EditLink = (props: EditLinkProps) => {
       url: props.link.url,
       slug: props.link.slug,
       description: props.link.description ?? "",
+      expiresAt: props.link.expiresAt ? new Date(props.link.expiresAt) : null,
     },
   });
 
@@ -183,6 +185,96 @@ const EditLink = (props: EditLinkProps) => {
                         disabled={loading}
                       />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      Password {props.link.password && "(Active)"}:
+                    </FormLabel>
+                    <FormControl>
+                      <div className="relative flex items-center">
+                        <LockIcon size={14} className="absolute left-3 text-neutral-500" />
+                        <Input
+                          {...field}
+                          type={showPassword ? "text" : "password"}
+                          className="pl-9 pr-10"
+                          // Use defaultValue if not controlled, but we are using controlled field from react-hook-form
+                          placeholder={props.link.password ? "Change password" : "Set password"}
+                          disabled={loading}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-0 top-0 flex h-full items-center px-3 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+                        >
+                          {showPassword ? <EyeOffIcon size={16} /> : <EyeIcon size={16} />}
+                        </button>
+                      </div>
+                    </FormControl>
+                    {props.link.password && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="mt-1 h-auto p-0 text-xs text-red-500 hover:bg-transparent hover:text-red-600"
+                        onClick={() => form.setValue("password", "", { shouldDirty: true })}
+                      >
+                        <TrashIcon size={12} className="mr-1" /> Remove Password
+                      </Button>
+                    )}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="expiresAt"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Expiration (optional):</FormLabel>
+                    <FormControl>
+                      <div className="relative flex items-center">
+                        <CalendarIcon size={14} className="absolute left-3 text-neutral-500" />
+                        <Input
+                          type="datetime-local"
+                          className="pl-9"
+                          disabled={loading}
+                          min={new Date().toISOString().slice(0, 16)}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (!value) {
+                              field.onChange(null);
+                            } else {
+                              field.onChange(new Date(value));
+                            }
+                          }}
+                          value={
+                            field.value instanceof Date
+                              ? new Date(field.value.getTime() - field.value.getTimezoneOffset() * 60000)
+                                .toISOString()
+                                .slice(0, 16)
+                              : ""
+                          }
+                        />
+                      </div>
+                    </FormControl>
+                    {field.value && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="mt-1 h-auto p-0 text-xs text-red-500 hover:bg-transparent hover:text-red-600"
+                        onClick={() => form.setValue("expiresAt", null, { shouldDirty: true })}
+                      >
+                        <TrashIcon size={12} className="mr-1" /> Remove Expiration Date
+                      </Button>
+                    )}
                     <FormMessage />
                   </FormItem>
                 )}

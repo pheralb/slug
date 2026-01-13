@@ -7,6 +7,8 @@ import {
   QrCodeIcon,
   SettingsIcon,
   TrashIcon,
+  LockIcon,
+  TimerIcon,
 } from "lucide-react";
 
 import {
@@ -20,6 +22,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/ui/tooltip";
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import ExternalLink from "@/ui/external-link";
 
@@ -81,7 +89,18 @@ const CardLink = ({ linkInfo, linkTags, tagsInfo }: CardLinkProps) => {
           <EditLink
             trigger={
               <button className="transition-opacity hover:opacity-75">
-                <SettingsIcon size={16} />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span>
+                        <SettingsIcon size={16} />
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Edit link</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </button>
             }
             link={linkInfo}
@@ -92,7 +111,18 @@ const CardLink = ({ linkInfo, linkTags, tagsInfo }: CardLinkProps) => {
             link={linkInfo}
             trigger={
               <button className="transition-opacity hover:opacity-75">
-                <TrashIcon size={16} />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span>
+                        <TrashIcon size={16} />
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Delete link</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </button>
             }
           />
@@ -135,7 +165,41 @@ const CardLink = ({ linkInfo, linkTags, tagsInfo }: CardLinkProps) => {
               <span>Info</span>
             </CollapsibleTrigger>
           </div>
-          <p>{formatDate(linkInfo.createdAt)}</p>
+          <div className="flex items-center space-x-2">
+            {linkInfo.password && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span>
+                      <LockIcon size={12} className="text-neutral-500" />
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Protected link</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+            {linkInfo.expiresAt && (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span>
+                      <TimerIcon size={12} className="text-neutral-500" />
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>
+                      {new Date(linkInfo.expiresAt) < new Date()
+                        ? `Expired on ${new Date(linkInfo.expiresAt).toLocaleString()}`
+                        : `Will expire on ${new Date(linkInfo.expiresAt).toLocaleString()}`}
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+            <p>{formatDate(linkInfo.createdAt)}</p>
+          </div>
         </div>
         <CollapsibleContent className="flex flex-col">
           <div className="my-2 p-2 shadow-sm">

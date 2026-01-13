@@ -13,6 +13,8 @@ model Links {
     url         String
     slug        String     @unique
     description String?
+    password    String?
+    expiresAt   DateTime?
     createdAt   DateTime   @default(now())
     createdBy   User?      @relation(fields: [creatorId], references: [id], onDelete: Cascade)
     creatorId   String

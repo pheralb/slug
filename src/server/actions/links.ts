@@ -5,7 +5,9 @@ import type { CreateLinkSchema, EditLinkSchema } from "@/server/schemas";
 
 import { auth } from "@/auth";
 import { db } from "@/server/db";
+
 import { revalidatePath } from "next/cache";
+import bcrypt from "bcryptjs";
 
 /**
  * Get single link data.
@@ -97,9 +99,15 @@ export const createLink = async (
   }
 
   // Create new link:
+  let finalPassword = null;
+  if (values.password && values.password.length > 0) {
+    finalPassword = await bcrypt.hash(values.password, 10);
+  }
+
   const result = await db.links.create({
     data: {
       ...values,
+      password: finalPassword,
       creatorId: currentUser.user?.id,
     },
   });
@@ -124,12 +132,21 @@ export const updateLink = async (values: z.infer<typeof EditLinkSchema>) => {
   }
 
   // Update link:
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const dataToUpdate: any = {
+    ...values,
+    creatorId: currentUser.user?.id,
+  };
+
+  if (values.password && values.password.length > 0) {
+    dataToUpdate.password = await bcrypt.hash(values.password, 10);
+  } else if (values.password === "") {
+    dataToUpdate.password = null;
+  }
+
   await db.links.update({
     where: { id: values.id },
-    data: {
-      ...values,
-      creatorId: currentUser.user?.id,
-    },
+    data: dataToUpdate,
   });
 
   revalidatePath("/");

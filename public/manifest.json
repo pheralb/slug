@@ -5,7 +5,7 @@
   "scope": "/",
   "start_url": "/",
   "name": "slug",
-  "description": "A beautifully open-source URL shortener",
+  "description": "A free, open-source URL shortener built with modern web technologies. Create short, memorable links for your projects in seconds.",
   "short_name": "slug",
   "icons": [
     {

@@ -3,7 +3,7 @@
  * 🔓 Not required for authentication.
  * @type {string[]}
  */
-export const publicRoutes = ["/", "/docs", "verify", "/check"];
+export const publicRoutes = ["/", "/docs", "verify", "/check", "/link-expired"];
 
 /**
  * 🌱 These routes are used for authentication.
@@ -33,6 +33,14 @@ export const protectedRoutes = ["/dashboard", "/dashboard/settings"];
  * @type {string[]}
  */
 export const checkRoutesPrefix = "/check";
+
+/**
+ * 🌱 These routes are used for the password slug.
+ * ✍️ Only type the prefix, with "/".
+ * 🔓 Not required for authentication.
+ * @type {string[]}
+ */
+export const passwordRoutesPrefix = "/password";
 
 /**
  * 🌱 These prefix for API authentication routes.
