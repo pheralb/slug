@@ -115,7 +115,7 @@ export function CreateLink(props: CreateLinkProps) {
       }
 
       toast.success("Link created successfully", {
-        description: `Url: https://slug.vercel.app/${values.slug}`,
+        description: `Url: https://slu9.vercel.app/${values.slug}`,
         duration: 10000,
         closeButton: true,
       });

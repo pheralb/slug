@@ -1,7 +1,7 @@
 <div align="center">
-  <a href="https://slug.vercel.app">
+  <a href="https://slu9.vercel.app">
     <img
-      src="https://raw.githubusercontent.com/pheralb/slug/refs/heads/main/public/images/logo_svg.svg"
+      src="https://raw.githubusercontent.com/reblox01/slug/refs/heads/main/public/images/logo_svg.svg"
       alt="Slug Logo"
       height="64"
     />
@@ -13,18 +13,20 @@
     </b>
   </p>
 
-<a href="https://slug.vercel.app/dashboard">Dashboard</a>
+<a href="https://slu9.vercel.app/dashboard">Dashboard</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-roadmap">Roadmap</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
 <a href="#-getting-started">Contribute</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
-<a href="https://github.com/pheralb/slug/issues/new/choose">Create issue</a>
+<a href="https://github.com/reblox01/slug/issues/new/choose">Create issue</a>
 <span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
-<a href="https://twitter.com/pheralb_">X/Twitter</a>
+<a href="https://twitter.com/arosck1">X/Twitter</a>
+<span>&nbsp;&nbsp;❖&nbsp;&nbsp;</span>
+<a href="https://sohailkoutari.com">Website</a>
 
 <div align="center">
-<a href="https://slug.vercel.app">
+<a href="https://slu9.vercel.app">
 <img src="public/images/screenshot_png.png">
 </a>
 <p></p>
@@ -71,12 +73,16 @@ This project uses the following technologies:
 
 1. Fork this project:
 
-- [Click here](https://github.com/pheralb/slug/fork).
+- [Click here](https://github.com/reblox01/slug/fork).
 
 2. Clone the repository:
 
 ```bash
-git clone git@github.com:YOU_USER/slug.git
+git clone git@github.com:reblox01/slug.git
+```
+or
+```bash
+git clone https://github.com/reblox01/slug.git
 ```
 
 3. Install dependencies:
@@ -91,11 +97,11 @@ pnpm install
 
 4. Create a **.env** file with the following content:
 
-> 🚧 The environment variables must match the following [schema](https://github.com/pheralb/slug/blob/main/src/env/schema.mjs#L8).
+> 🚧 The environment variables must match the following [schema](https://github.com/reblox01/slug/blob/main/src/env/schema.mjs#L8).
 
 ```bash
 # Database:
-DATABASE_URL= # "file:./dev.db"
+DATABASE_URL= # "file:./prisma/dev.db"
 TURSO_DATABASE_URL=
 TURSO_AUTH_TOKEN=
 
@@ -120,7 +126,7 @@ GOOGLE_CLIENT_SECRET=
 **Auth.js:**
 
 - [Get Auth.js **Secret**](https://authjs.dev/getting-started/installation#setup-environment).
-- ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``. You can change it in the [**``auth.ts`` file**](https://github.com/pheralb/slug/blob/next/src/auth.ts#L20).
+- ``AUTH_URL`` is the URL of your Auth.js API, for example, ``/api/auth``. You can change it in the [**``auth.ts`` file**](https://github.com/reblox01/slug/blob/next/src/auth.ts#L20).
 
 **Github Credentials:**
 
@@ -222,8 +228,8 @@ This is the roadmap I will be following for the complete migration to v3:
 
 ## ☁️ Deploy on Vercel
 
-- ✅ [slug.vercel.app](https://slug.vercel.app/).
+- ✅ [slug.vercel.app](https://slu9.vercel.app/).
 
 ## 🔑 License
 
-- [GPL-3.0 license](https://github.com/pheralb/slug/blob/main/LICENSE).
+- [GPL-3.0 license](https://github.com/reblox01/slug/blob/main/LICENSE).

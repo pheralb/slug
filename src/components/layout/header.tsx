@@ -40,7 +40,7 @@ const Header = () => {
         </div>
         <div className="flex items-center space-x-1">
           <ExternalLink
-            href="https://github.com/pheralb/slug"
+            href="https://github.com/reblox01/slug"
             className={buttonVariants({
               variant: "ghost",
               size: "icon",

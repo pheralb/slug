@@ -39,7 +39,7 @@ const UserMenu = () => {
         className="flex w-full items-center justify-between"
       >
         <Link
-          href="https://github.com/pheralb/slug/issues/new/choose"
+          href="https://github.com/reblox01/slug/issues/new/choose"
           target="_blank"
         >
           <div className="flex items-center space-x-3">
