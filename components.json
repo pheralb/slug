@@ -10,8 +10,12 @@
     "cssVariables": false,
     "prefix": ""
   },
+  "iconLibrary": "radix",
   "aliases": {
     "components": "@/ui",
     "utils": "@/utils"
+  },
+  "registries": {
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
   }
 }
