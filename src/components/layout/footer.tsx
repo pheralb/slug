@@ -35,7 +35,7 @@ const Footer = (props: FooterProps) => {
         <div className="flex items-center space-x-2">
           <XLogo className="h-3 w-3" />
           <ExternalLink
-            href="https://twitter.com/pheralb_"
+            href="https://twitter.com/arosck1"
             className="flex items-center space-x-1"
           >
             <p className="hidden md:block">Twitter</p>

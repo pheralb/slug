@@ -53,7 +53,7 @@ const UserMenu = () => {
         asChild
         className="flex w-full items-center justify-between"
       >
-        <Link href="https://twitter.com/pheralb_" target="_blank">
+        <Link href="https://twitter.com/arosck1" target="_blank">
           <div className="flex items-center space-x-3">
             <XLogo width={iconSize} />
             <span>Contact</span>

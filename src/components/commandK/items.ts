@@ -74,7 +74,7 @@ export const DocumentationPages = [
 export const SocialPages = [
   {
     name: "X (Formerly Twitter)",
-    href: "https://twitter.com/pheralb_",
+    href: "https://twitter.com/arosck1",
     icon: XLogo,
   },
   {

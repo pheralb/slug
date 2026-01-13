@@ -61,14 +61,40 @@ export const metadata: Metadata = {
       url: "/images/apple-touch-icon.png",
     },
   ],
-  description: "An open-source URL shortener built with T3 Stack.",
+  description: "A free, open-source URL shortener built with modern web technologies. Create short, memorable links for your projects in seconds.",
+  keywords: [
+    "url shortener",
+    "link shortener",
+    "open source",
+    "next.js",
+    "turso",
+    "prisma",
+    "slug",
+    "link management",
+  ],
+  authors: [
+    {
+      name: "Sohail Koutari",
+      url: "https://sohailkoutari.com",
+    },
+  ],
+  creator: "reblox01",
+  publisher: "reblox01",
   openGraph: {
-    title: "Slug",
-    description: "An beautifully open-source URL shortener",
-    url: "https://slu9.vercel.app/images/og_image.png",
-    siteName: "Slug - An beautifully open-source URL shortener",
+    title: "Slug - Open Source URL Shortener",
+    description: "A free, open-source URL shortener built with modern web technologies.",
+    url: "https://slu9.vercel.app",
+    siteName: "Slug",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://slu9.vercel.app/images/og_image.png",
+        width: 1200,
+        height: 630,
+        alt: "Slug - Open Source URL Shortener",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -82,8 +108,17 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Slug - An beautifully open-source URL shortener",
     card: "summary_large_image",
+    title: "Slug - Open Source URL Shortener",
+    description: "A free, open-source URL shortener built with modern web technologies.",
+    creator: "@reblox01",
+    images: ["https://slu9.vercel.app/images/og_image.png"],
+  },
+  verification: {
+    google: "o2_vS37hY5JF907HRg757HWWyYsGY-BvpvdDx3SFMUM",
+  },
+  alternates: {
+    canonical: "https://slu9.vercel.app",
   },
 };
 
