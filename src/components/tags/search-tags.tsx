@@ -1,6 +1,6 @@
 "use client";
 
-import type { Tags } from "@prisma/client";
+import type { Tags } from "@/generated/client";
 import { useState } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -83,7 +83,7 @@ const SearchTag = (props: SearchTagProps) => {
                 style={{
                   backgroundColor: tag.color
                     ? `${tag.color}`
-                    : "rgba(23, 23, 23, 0.5)" || "#171717",
+                    : "rgba(23, 23, 23, 0.5)",
                   color: tag.color ? "#fff" : "#171717",
                 }}
               >

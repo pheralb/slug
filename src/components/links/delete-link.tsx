@@ -1,6 +1,6 @@
 "use client";
 
-import type { Links } from "@prisma/client";
+import type { Links } from "@/generated/client";
 import type { z } from "zod";
 import { useState, type ReactNode } from "react";
 

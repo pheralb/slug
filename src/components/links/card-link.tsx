@@ -1,4 +1,4 @@
-import type { LinkTags, Links, Tags } from "@prisma/client";
+import type { LinkTags, Links, Tags } from "@/generated/client";
 
 import { formatDate } from "@/utils/formatDate";
 import {

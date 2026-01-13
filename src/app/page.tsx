@@ -37,7 +37,7 @@ export default async function Home() {
             <span>Create a Link</span>
           </Link>
           <ExternalLink
-            href="https://github.com/pheralb/slug"
+            href="https://github.com/reblox01/slug"
             className={buttonVariants({
               variant: "expandIcon",
               size: "lg",

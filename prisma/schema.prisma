@@ -1,24 +1,24 @@
 generator client {
     provider        = "prisma-client-js"
+    output          = "../src/generated/client"
     previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
     provider = "sqlite"
-    url      = env("DATABASE_URL")
 }
 
 model Links {
-    id          String       @id @default(cuid())
+    id          String     @id @default(cuid())
     url         String
-    slug        String       @unique
+    slug        String     @unique
     description String?
-    createdAt   DateTime     @default(now())
-    createdBy   User?        @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+    createdAt   DateTime   @default(now())
+    createdBy   User?      @relation(fields: [creatorId], references: [id], onDelete: Cascade)
     creatorId   String
-    clicks      Int          @default(0)
+    clicks      Int        @default(0)
     lastClicked DateTime?
-    tags        LinkTags[]   
+    tags        LinkTags[]
 
     @@index(slug)
     @@index([creatorId])

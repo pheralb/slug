@@ -1,7 +1,7 @@
 "use client";
 
 import type { z } from "zod";
-import type { Tags } from "@prisma/client";
+import type { Tags } from "@/generated/client";
 
 import { CreateTagSchema } from "@/server/schemas";
 import { useState, type ReactNode } from "react";

@@ -7,6 +7,7 @@ const nextConfig = {
   pageExtensions: ["ts", "tsx", "js", "jsx"],
   experimental: {
     optimizePackageImports: ["lucide-react"],
+    serverComponentsExternalPackages: ["@libsql/client", "libsql", "@prisma/adapter-libsql", "@libsql/hrana-client"],
   },
 };
 

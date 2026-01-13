@@ -43,6 +43,7 @@ yarn-error.log*
 
 # prisma & dump files
 migrations
+src/generated
 dev.db
 dev.db-journal
 mysql2sqlite

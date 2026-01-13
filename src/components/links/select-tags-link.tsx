@@ -1,4 +1,4 @@
-import type { Tags } from "@prisma/client";
+import type { Tags } from "@/generated/client";
 
 import {
   Select,

@@ -1,6 +1,6 @@
 "use client";
 
-import type { Tags } from "@prisma/client";
+import type { Tags } from "@/generated/client";
 import { type ReactNode, useState } from "react";
 
 import { toast } from "sonner";
