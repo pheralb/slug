@@ -33,7 +33,6 @@ import {
 } from "@/ui/form";
 import { Input, Textarea } from "@/ui/input";
 import { LoaderIcon, RocketIcon, ShuffleIcon, TagsIcon } from "lucide-react";
-import { insertTagToLink } from "@/server/actions/tags";
 import SelectTagsLink from "./select-tags-link";
 
 interface CreateLinkProps {
@@ -106,16 +105,7 @@ export function CreateLink(props: CreateLinkProps) {
         return;
       }
 
-      if (selectedTags.length > 0) {
-        await Promise.all(
-          selectedTags.map(async (tag) => {
-            await insertTagToLink(result.linkId!, tag);
-          }),
-        );
-      }
-
-      toast.success("Link created successfully", {
-        description: `Url: https://slug.vercel.app/${values.slug}`,
+      toast.success("Creation link disabled for now.", {
         duration: 10000,
         closeButton: true,
       });

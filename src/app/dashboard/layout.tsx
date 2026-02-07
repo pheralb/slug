@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import DashboardRoutesComponent from "@/components/dashboard-routes";
 import Footer from "@/components/layout/footer";
 import { cn } from "@/utils";
+import Alert from "@/ui/alert";
+import Link from "next/link";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -20,7 +22,21 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
           </div>
         </div>
       </nav>
-      <main className={cn("container my-[68px] flex w-full items-center")}>
+      <main
+        className={cn("container my-[68px] flex w-full flex-col items-center")}
+      >
+        <Alert variant="warning" className="mb-4 w-full">
+          <p>
+            The creation of new links has been temporarily disabled. You can
+            download the links on your{" "}
+            <Link
+              href="/dashboard/settings"
+              className="underline underline-offset-2"
+            >
+              account settings page
+            </Link>
+          </p>
+        </Alert>
         {props.children}
       </main>
       <Footer className="fixed bottom-0 py-4" />

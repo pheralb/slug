@@ -60,12 +60,6 @@ const DashboardPage = async ({
             tagSelected={searchTag!}
             tagName={searchTag}
           />
-          <CreateLink tags={data.tags}>
-            <Button>
-              <PlusIcon size={16} />
-              <span className="hidden md:block">Create Link</span>
-            </Button>
-          </CreateLink>
         </div>
       </header>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-1 lg:grid-cols-2">
